@@ -51,9 +51,9 @@ if ($relatos_initial_filter != ''){
 
 $start = ($page * $count) - $count;
 
-$relatos_service_request = $solr_service_url . '/solr/relatos/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json';
+$relatos_service_request = $solr_service_url . '/solr/best-practices/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json';
 
-// $relatos_service_request = $relatos_service_url . '/api/relatos?offset=' . $start . '&limit=' . $count . '&lang=' . $locale[$lang];;
+// $relatos_service_request = $relatos_service_url . '/api/experience?offset=' . $start . '&limit=' . $count . '&lang=' . $locale[$lang];;
 
 $filter_list = explode(";", $relatos_config['available_filter']);
 

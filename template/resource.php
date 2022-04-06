@@ -58,9 +58,9 @@ $likert = array(
     "E" => __("I totally disagree",'relatos')
 );
 
-// $relatos_service_request = $solr_service_url . '/solr/relatoss/select/?q=id:' . $resource_id . '&wt=json';
+// $relatos_service_request = $solr_service_url . '/solr/best-practices/select/?q=id:' . $resource_id . '&wt=json';
 
-$relatos_service_request = $relatos_service_url . '/api/relatos/' . $resource_id . '?lang=' . $locale[$lang];
+$relatos_service_request = $relatos_service_url . '/api/experience/' . $resource_id . '?lang=' . $locale[$lang];
 
 // echo "<pre>"; print_r($relatos_service_request); echo "</pre>"; die();
 
@@ -91,7 +91,7 @@ if ($response){
     }
 }
 
-$feed_url = real_site_url($relatos_plugin_slug) . 'relatoss-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$feed_url = real_site_url($relatos_plugin_slug) . 'relatos-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 $home_url = ( $relatos_config['home_url_' . $lang] ) ? $relatos_config['home_url_' . $lang] : real_site_url();
 $plugin_breadcrumb = isset($relatos_config['plugin_title_' . $lang]) ? $relatos_config['plugin_title_' . $lang] : $relatos_config['plugin_title'];
@@ -99,7 +99,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 ?>
 
-<?php get_header('relatoss');?>
+<?php get_header('relatos');?>
 
 <section id="sectionSearch" class="padding2">
 	<div class="container">

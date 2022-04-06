@@ -35,7 +35,7 @@ class Relatos_Widget extends WP_Widget {
 		);
 
         $relatos_config = get_option('relatos_config');
-        $relatos_service_request = $this->service_url . '/api/relatos?limit=' . $instance['total'] . '&lang=' . $locale[$lang];
+        $relatos_service_request = $this->service_url . '/api/experience?limit=' . $instance['total'] . '&lang=' . $locale[$lang];
 
         $response = @file_get_contents($relatos_service_request);
         if ($response){
