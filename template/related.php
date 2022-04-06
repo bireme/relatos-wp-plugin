@@ -61,7 +61,7 @@
                             <?php
                         }
                     } else {
-                        echo '<li>' . __('No related documents', 'bp') . '</li>';
+                        echo '<li>' . __('No related documents', 'relatos') . '</li>';
                     }
                 ?>
                 </ul>

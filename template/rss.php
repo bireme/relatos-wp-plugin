@@ -2,13 +2,13 @@
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
 
 /*
-Template Name: Best Practices record RSS
+Template Name: Experience Reports record RSS
 */
 
-global $bp_service_url, $bp_plugin_slug;
+global $relatos_service_url, $relatos_plugin_slug;
 
-$bp_config = get_option('bp_config');
-$bp_initial_filter = $bp_config['initial_filter'];
+$relatos_config = get_option('relatos_config');
+$relatos_initial_filter = $relatos_config['initial_filter'];
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang_dir = substr($site_language,0,2);
@@ -20,22 +20,22 @@ $total       = 0;
 $count       = 10;
 $filter      = '';
 
-if ($bp_initial_filter != ''){
+if ($relatos_initial_filter != ''){
     if ($user_filter != ''){
-        $filter = $bp_initial_filter . ' AND ' . $user_filter;
+        $filter = $relatos_initial_filter . ' AND ' . $user_filter;
     }else{
-        $filter = $bp_initial_filter;
+        $filter = $relatos_initial_filter;
     }
 }else{
     $filter = $user_filter;
 }
 $start = ($page * $count) - $count;
 
-$bp_service_request = $bp_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang_dir;
+$relatos_service_request = $relatos_service_url . 'api/bibliographic/search/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&lang=' . $lang_dir;
 
-//print $bp_service_request;
+//print $relatos_service_request;
 
-$response = @file_get_contents($bp_service_request);
+$response = @file_get_contents($relatos_service_request);
 if ($response){
     $response_json = json_decode($response);
     //echo "<pre>"; print_r($response_json); echo "</pre>";
@@ -44,12 +44,12 @@ if ($response){
     $docs_list = $response_json->diaServerResponse[0]->response->docs;
 }
 
-$page_url_params = home_url($bp_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$page_url_params = home_url($relatos_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
 ?>
 <rss version="2.0">
     <channel>
-        <title><?php _e('Best Practices records', 'bp') ?> <?php echo ($query != '' ? '|' . $query : '') ?></title>
+        <title><?php _e('Experience Reports records', 'relatos') ?> <?php echo ($query != '' ? '|' . $query : '') ?></title>
         <link><?php echo htmlspecialchars($page_url_params) ?></link>
         <description><?php echo $query ?></description>
         <lastBuildDate><?php echo date_format(date_create(), 'D, d M Y H:i:s T');?></lastBuildDate>
@@ -60,7 +60,7 @@ $page_url_params = home_url($bp_plugin_slug) . '?q=' . urlencode($query) . '&fil
                 if ( $doc->author ){
                     echo "   <author><![CDATA[" . implode(", ", $doc->author) . "]]></author>\n";
                 }
-                echo "   <link>" . home_url($bp_plugin_slug) .'/resource/?id=' . $doc->id . "</link>\n";
+                echo "   <link>" . home_url($relatos_plugin_slug) .'/resource/?id=' . $doc->id . "</link>\n";
                 if ( $doc->reference_abstract ) {
                     echo "   <description><![CDATA[" . implode("<br /><br />", $doc->reference_abstract) . "]]></description>\n";
                 }

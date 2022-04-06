@@ -4,31 +4,31 @@ Plugin Name: Relatos de Experiência
 Plugin URI: https://github.com/bireme/relatos-wp-plugin
 Description: Search experience report records.
 Author: BIREME/OPAS/OMS
-Version: 1.0
 Author URI: http://reddes.bvsalud.org/
+Version: 1.0
 */
 
-define('BP_PLUGIN_VERSION', '1.4' );
+define('RELATOS_PLUGIN_VERSION', '1.4' );
 
-define('BP_SYMBOLIC_LINK', false );
-define('BP_PLUGIN_DIRNAME', 'relatos' );
-define('BP_PLUGIN_BASENAME', plugin_basename( __FILE__ ));
+define('RELATOS_SYMBOLIC_LINK', false );
+define('RELATOS_PLUGIN_DIRNAME', 'relatos' );
+define('RELATOS_PLUGIN_BASENAME', plugin_basename( __FILE__ ));
 
-if(BP_SYMBOLIC_LINK == true) {
-    define('BP_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . BP_PLUGIN_DIRNAME );
+if(RELATOS_SYMBOLIC_LINK == true) {
+    define('RELATOS_PLUGIN_PATH',  ABSPATH . 'wp-content/plugins/' . RELATOS_PLUGIN_DIRNAME );
 } else {
-    define('BP_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
+    define('RELATOS_PLUGIN_PATH',  plugin_dir_path(__FILE__) );
 }
 
-define('BP_PLUGIN_DIR', plugin_basename( BP_PLUGIN_PATH ) );
-define('BP_PLUGIN_URL', plugin_dir_url(__FILE__) );
+define('RELATOS_PLUGIN_DIR', plugin_basename( RELATOS_PLUGIN_PATH ) );
+define('RELATOS_PLUGIN_URL', plugin_dir_url(__FILE__) );
 
-require_once(BP_PLUGIN_PATH . '/settings.php');
-require_once(BP_PLUGIN_PATH . '/template-functions.php');
-require_once(BP_PLUGIN_PATH . '/widgets.php');
+require_once(RELATOS_PLUGIN_PATH . '/settings.php');
+require_once(RELATOS_PLUGIN_PATH . '/template-functions.php');
+require_once(RELATOS_PLUGIN_PATH . '/widgets.php');
 
-if(!class_exists('Best_Practices_Plugin')) {
-    class Best_Practices_Plugin {
+if(!class_exists('Relatos_Plugin')) {
+    class Relatos_Plugin {
 
         private $plugin_slug = 'relatos';
         private $service_url = 'https://experiencias.bvsalud.org';
@@ -52,7 +52,7 @@ if(!class_exists('Best_Practices_Plugin')) {
             add_filter('document_title_separator', array(&$this, 'title_tag_sep'));
             add_filter('document_title_parts', array(&$this, 'theme_slug_render_title'));
             add_filter('wp_title', array(&$this, 'theme_slug_render_wp_title'));
-            add_filter('plugin_action_links_'.BP_PLUGIN_BASENAME, array(&$this, 'settings_link'));
+            add_filter('plugin_action_links_'.RELATOS_PLUGIN_BASENAME, array(&$this, 'settings_link'));
 
         } // END public function __construct
 
@@ -75,33 +75,33 @@ if(!class_exists('Best_Practices_Plugin')) {
 
         function load_translation(){
             // Translations
-            load_plugin_textdomain( 'bp', false,  BP_PLUGIN_DIR . '/languages' );
+            load_plugin_textdomain( 'relatos', false,  RELATOS_PLUGIN_DIR . '/languages' );
         }
 
         function plugin_init() {
-            global $bp_texts;
+            global $relatos_texts;
 
-            $bp_config = get_option('bp_config');
-            $bp_config['use_translation'] = true;
+            $relatos_config = get_option('relatos_config');
+            $relatos_config['use_translation'] = true;
 
-            if ($bp_config && $bp_config['plugin_slug'] != ''){
-                $this->plugin_slug = $bp_config['plugin_slug'];
+            if ($relatos_config && $relatos_config['plugin_slug'] != ''){
+                $this->plugin_slug = $relatos_config['plugin_slug'];
             }
-            if ($bp_config['use_translation']){
+            if ($relatos_config['use_translation']){
                 $site_language = strtolower(get_bloginfo('language'));
                 $lang = substr($site_language,0,2);
 
-                $bp_texts = @parse_ini_file(BP_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
-                if ( !$bp_texts ) {
-                    $bp_texts = @parse_ini_file(BP_PLUGIN_PATH . "/languages/texts_en.ini", true);
+                $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
+                if ( !$relatos_texts ) {
+                    $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_en.ini", true);
                 }
             }
 
         }
 
         function admin_menu() {
-            add_options_page(__('Best Practices settings', 'bp'), __('Best Practices', 'bp'),
-                'manage_options', 'bp-settings', 'bp_page_admin');
+            add_options_page(__('Experience Reports settings', 'relatos'), __('Experience Reports', 'relatos'),
+                'manage_options', 'relatos-settings', 'relatos_page_admin');
             //call register settings function
             add_action( 'admin_init', array(&$this, 'register_settings'));
         }
@@ -110,7 +110,7 @@ if(!class_exists('Best_Practices_Plugin')) {
     		// Build and escape the URL.
     		$url = esc_url( add_query_arg(
     			'page',
-    			'bp-settings',
+    			'relatos-settings',
     			get_admin_url() . 'admin.php'
     		) );
 
@@ -127,7 +127,7 @@ if(!class_exists('Best_Practices_Plugin')) {
     	}
 
         function template_redirect() {
-            global $wp, $bp_service_url, $bp_plugin_slug, $similar_docs_url, $solr_service_url;
+            global $wp, $relatos_service_url, $relatos_plugin_slug, $similar_docs_url, $solr_service_url;
             $pagename = '';
 
             // check if request contains plugin slug string
@@ -137,8 +137,8 @@ if(!class_exists('Best_Practices_Plugin')) {
             }
 
             if ( is_404() && $pos_slug !== false ){
-                $bp_service_url = $this->service_url;
-                $bp_plugin_slug = $this->plugin_slug;
+                $relatos_service_url = $this->service_url;
+                $relatos_plugin_slug = $this->plugin_slug;
                 $similar_docs_url = $this->similar_docs_url;
                 $solr_service_url = $this->solr_service_url;
 
@@ -147,15 +147,15 @@ if(!class_exists('Best_Practices_Plugin')) {
                     $pagename == $this->plugin_slug . '/relatos-feed') {
 
                     add_action( 'wp_enqueue_scripts', array(&$this, 'page_template_styles_scripts'), 999);
-                    add_filter( 'pll_the_languages', array(&$this, 'bp_language_switcher'), 10, 2 );
+                    add_filter( 'pll_the_languages', array(&$this, 'relatos_language_switcher'), 10, 2 );
 
                     if ($pagename == $this->plugin_slug) {
-                        $template = BP_PLUGIN_PATH . '/template/home.php';
+                        $template = RELATOS_PLUGIN_PATH . '/template/home.php';
                     } elseif ($pagename == $this->plugin_slug . '/relatos-feed') {
                         header("Content-Type: text/xml; charset=UTF-8");
-                        $template = BP_PLUGIN_PATH . '/template/rss.php';
+                        $template = RELATOS_PLUGIN_PATH . '/template/rss.php';
                     } else {
-                        $template = BP_PLUGIN_PATH . '/template/resource.php';
+                        $template = RELATOS_PLUGIN_PATH . '/template/resource.php';
                     }
 
                     // force status to 200 - OK
@@ -170,7 +170,7 @@ if(!class_exists('Best_Practices_Plugin')) {
 
         function register_sidebars(){
             $args = array(
-                'name' => __('Relatos sidebar', 'bp'),
+                'name' => __('Relatos sidebar', 'relatos'),
                 'id'   => 'relatos-home',
                 'before_widget' => '<section id="%1$s" class="row-fluid marginbottom25 widget_categories">',
                 'after_widget'  => '</section>',
@@ -180,7 +180,7 @@ if(!class_exists('Best_Practices_Plugin')) {
             register_sidebar( $args );
 
             $args2 = array(
-                'name' => __('Relatos header', 'bp'),
+                'name' => __('Relatos header', 'relatos'),
                 'id'   => 'relatos-header',
                 'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
                 'after_widget'  => '</section>',
@@ -196,7 +196,7 @@ if(!class_exists('Best_Practices_Plugin')) {
         }
 
         function theme_slug_render_title($title) {
-            global $wp, $bp_plugin_title;
+            global $wp, $relatos_plugin_title;
             $pagename = '';
 
             // check if request contains plugin slug string
@@ -206,21 +206,21 @@ if(!class_exists('Best_Practices_Plugin')) {
             }
 
             if ( is_404() && $pos_slug !== false ){
-                $bp_config = get_option('bp_config');
+                $relatos_config = get_option('relatos_config');
                 if ( function_exists( 'pll_the_languages' ) ) {
                     $current_lang = pll_current_language();
-                    $bp_plugin_title = $bp_config['plugin_title_' . $current_lang];
+                    $relatos_plugin_title = $relatos_config['plugin_title_' . $current_lang];
                 }else{
-                    $bp_plugin_title = $bp_config['plugin_title'];
+                    $relatos_plugin_title = $relatos_config['plugin_title'];
                 }
-                $title['title'] = $bp_plugin_title;
+                $title['title'] = $relatos_plugin_title;
             }
 
             return $title;
         }
 
         function theme_slug_render_wp_title($title) {
-            global $wp, $bp_plugin_title;
+            global $wp, $relatos_plugin_title;
             $pagename = '';
             $sep = ' | ';
 
@@ -231,17 +231,17 @@ if(!class_exists('Best_Practices_Plugin')) {
             }
 
             if ( is_404() && $pos_slug !== false ){
-                $bp_config = get_option('bp_config');
+                $relatos_config = get_option('relatos_config');
 
                 if ( function_exists( 'pll_the_languages' ) ) {
                     $current_lang = pll_current_language();
-                    $bp_plugin_title = $bp_config['plugin_title_' . $current_lang];
+                    $relatos_plugin_title = $relatos_config['plugin_title_' . $current_lang];
                 } else {
-                    $bp_plugin_title = $bp_config['plugin_title'];
+                    $relatos_plugin_title = $relatos_config['plugin_title'];
                 }
 
-                if ( $bp_plugin_title )
-                    $title = $bp_plugin_title . ' | ';
+                if ( $relatos_plugin_title )
+                    $title = $relatos_plugin_title . ' | ';
                 else
                     $title = '';
             }
@@ -265,19 +265,19 @@ if(!class_exists('Best_Practices_Plugin')) {
         }
 
         function page_template_styles_scripts(){
-            wp_enqueue_script ('bp-tooltipster', BP_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
+            wp_enqueue_script ('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
             wp_enqueue_script ('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
-            wp_enqueue_script ('bp', BP_PLUGIN_URL . 'template/js/functions.js', array(), BP_PLUGIN_VERSION);
-            wp_enqueue_style ('fontawesome', BP_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
-            wp_enqueue_style ('bp-tooltipster', BP_PLUGIN_URL . 'template/css/tooltipster.css');
+            wp_enqueue_script ('relatos', RELATOS_PLUGIN_URL . 'template/js/functions.js', array(), RELATOS_PLUGIN_VERSION);
+            wp_enqueue_style ('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
+            wp_enqueue_style ('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/css/tooltipster.css');
             wp_enqueue_style ('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
             wp_enqueue_style ('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
-            wp_enqueue_style ('bp-styles',  BP_PLUGIN_URL . 'template/css/style.css', array(), BP_PLUGIN_VERSION);
+            wp_enqueue_style ('relatos-styles',  RELATOS_PLUGIN_URL . 'template/css/style.css', array(), RELATOS_PLUGIN_VERSION);
         }
 
         function register_settings(){
-            register_setting('bp-settings-group', 'bp_config');
-            wp_enqueue_style('bp',  BP_PLUGIN_URL . 'template/css/admin.css');
+            register_setting('relatos-settings-group', 'relatos_config');
+            wp_enqueue_style('relatos',  RELATOS_PLUGIN_URL . 'template/css/admin.css');
             wp_enqueue_script('jquery-ui-sortable');
         }
 
@@ -285,16 +285,16 @@ if(!class_exists('Best_Practices_Plugin')) {
             global $wp;
 
             $pagename = $wp->query_vars["pagename"];
-            $bp_config = get_option('bp_config');
+            $relatos_config = get_option('relatos_config');
 
             // check if is defined GA code and pagename starts with plugin slug
-            if ($bp_config['google_analytics_code'] != ''
+            if ($relatos_config['google_analytics_code'] != ''
                 && strpos($pagename, $this->plugin_slug) === 0){
         ?>
 
         <script type="text/javascript">
           var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '<?php echo $bp_config['google_analytics_code'] ?>']);
+          _gaq.push(['_setAccount', '<?php echo $relatos_config['google_analytics_code'] ?>']);
           _gaq.push(['_trackPageview']);
 
           (function() {
@@ -309,7 +309,7 @@ if(!class_exists('Best_Practices_Plugin')) {
             } //endif
         }
 
-        function bp_language_switcher( $output, $args ) {
+        function relatos_language_switcher( $output, $args ) {
             if ( defined( 'POLYLANG_VERSION' ) ) {
                 $current_language = strtolower(get_bloginfo('language'));
                 $site_lang = substr($current_language, 0,2);
@@ -330,17 +330,17 @@ if(!class_exists('Best_Practices_Plugin')) {
             return $output;
         }
 
-    } // END class Best_Practices_Plugin
-} // END if(!class_exists('Best_Practices_Plugin'))
+    } // END class Relatos_Plugin
+} // END if(!class_exists('Relatos_Plugin'))
 
-if(class_exists('Best_Practices_Plugin'))
+if(class_exists('Relatos_Plugin'))
 {
     // Installation and uninstallation hooks
-    register_activation_hook(__FILE__, array('Best_Practices_Plugin', 'activate'));
-    register_deactivation_hook(__FILE__, array('Best_Practices_Plugin', 'deactivate'));
+    register_activation_hook(__FILE__, array('Relatos_Plugin', 'activate'));
+    register_deactivation_hook(__FILE__, array('Relatos_Plugin', 'deactivate'));
 
     // instantiate the plugin class
-    $wp_plugin_template = new Best_Practices_Plugin();
+    $wp_plugin_template = new Relatos_Plugin();
 }
 
 ?>

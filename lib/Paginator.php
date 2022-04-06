@@ -31,8 +31,8 @@ class Paginator{
         $this->output .= '<ul>';
         if ($pag['total_pages'] > 0){
             if ($this->current_page > 1){
-                $this->output .= '<li><a href="' . $page_url_params . '&page=1" title="' . __('go to page', 'bp') . ' 1">&laquo;&laquo;</a></li>';
-                $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($this->current_page-1) . '" title="' .  __('go to page', 'bp') . ' ' . ($this->current_page-1) . '"> &laquo; </a></li>';
+                $this->output .= '<li><a href="' . $page_url_params . '&page=1" title="' . __('go to page', 'relatos') . ' 1">&laquo;&laquo;</a></li>';
+                $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($this->current_page-1) . '" title="' .  __('go to page', 'relatos') . ' ' . ($this->current_page-1) . '"> &laquo; </a></li>';
             }else{
                 $this->output .= '<li class="disabled"><a href="#">&laquo;&laquo;</a></li>';
                 $this->output .= '<li class="disabled"><a href="#"> &laquo; </a></li>';
@@ -43,13 +43,13 @@ class Paginator{
 
                 if ( $this->current_page != '' ){
                     if ($this->current_page != $for_page){
-                        $this->output .= '<li><a href="' . $page_url_params . '&page=' . $for_page . '" title="' . __('go to page','bp') . ' ' . $for_page . '">' . $for_page . '</a></li>';
+                        $this->output .= '<li><a href="' . $page_url_params . '&page=' . $for_page . '" title="' . __('go to page','relatos') . ' ' . $for_page . '">' . $for_page . '</a></li>';
                     }else{
                         $this->output .= '<li class="active"><a href="#">' . $for_page .'</a></li>';
                     }
                 }else{
                     if ($for_page != 1){
-                        $this->output .= '<li><a href="' . $page_url_params . '&page=' . $for_page . '" title="' . __('go to page','bp') . ' ' . $for_page . '">' .$for_page . '</a></li>';
+                        $this->output .= '<li><a href="' . $page_url_params . '&page=' . $for_page . '" title="' . __('go to page','relatos') . ' ' . $for_page . '">' .$for_page . '</a></li>';
                     }else{
                         $this->output .= '<li> class="active"><a href="#">' . $for_page .'</a></li>';
                     }
@@ -58,14 +58,14 @@ class Paginator{
 
             if ( $this->current_page != '' ){
                 if ($this->current_page < $pag['total_pages']) {
-                    $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($this->current_page+1) . '" title="' . __('go to page', 'bp') . ($this->current_page+1) . '"> &raquo; </a></li>';
-                    $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($pag['total_pages']) . '" title="' . __('go to page', 'bp') . $pag['total_pages'] . '">&raquo;&raquo;</a></li>';
+                    $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($this->current_page+1) . '" title="' . __('go to page', 'relatos') . ($this->current_page+1) . '"> &raquo; </a></li>';
+                    $this->output .= '<li><a href="' . $page_url_params . '&page=' . ($pag['total_pages']) . '" title="' . __('go to page', 'relatos') . $pag['total_pages'] . '">&raquo;&raquo;</a></li>';
                 }else{
                     $this->output .= '<li class="disabled"><a href="#">&raquo;</a></li>';
                     $this->output .= '<li class="disabled"><a href="#"> &raquo;&raquo; </a></li>';
                 }
             } else {
-                $this->output .= '<li><a href="' . $page_url_params . '&page=2" title="' . __('go to page', 'bp') . ' 2"> &raquo; </a></li>';
+                $this->output .= '<li><a href="' . $page_url_params . '&page=2" title="' . __('go to page', 'relatos') . ' 2"> &raquo; </a></li>';
                 $this->output .= '<li><a href="' . $page_url_params . '&page=' . $pag['total_pages'] .'" title="' . __('go to page') . ' ' . $pag['total_pages'] . '">&raquo;&raquo;</a></li>';
             }
 

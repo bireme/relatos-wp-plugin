@@ -1,17 +1,17 @@
 <?php
 
-// Adds widget: Best Practices
-class Best_Practices_Widget extends WP_Widget {
+// Adds widget: Experience Reports
+class Relatos_Widget extends WP_Widget {
 
     private $service_url;
 
 	function __construct() {
-        $this->service_url = 'https://admin.bestpractices.teste.bvsalud.org';
+        $this->service_url = 'https://experiencias.bvsalud.org';
 
 		parent::__construct(
 			'best_practices_widget',
-			esc_html__( 'Best Practices', 'bp' ),
-			array( 'description' => esc_html__( 'Display the lastest best practices', 'bp' ), ) // Args
+			esc_html__( 'Best Practices', 'relatos' ),
+			array( 'description' => esc_html__( 'Display the lastest best practices', 'relatos' ), ) // Args
 		);
 	}
 
@@ -34,10 +34,10 @@ class Best_Practices_Widget extends WP_Widget {
 		    'en' => 'en'
 		);
 
-        $bp_config = get_option('bp_config');
-        $bp_service_request = $this->service_url . '/api/bp?limit=' . $instance['total'] . '&lang=' . $locale[$lang];
+        $relatos_config = get_option('relatos_config');
+        $relatos_service_request = $this->service_url . '/api/relatos?limit=' . $instance['total'] . '&lang=' . $locale[$lang];
 
-        $response = @file_get_contents($bp_service_request);
+        $response = @file_get_contents($relatos_service_request);
         if ($response){
             $response_json = json_decode($response);
             $total = $response_json->total;
@@ -56,13 +56,13 @@ class Best_Practices_Widget extends WP_Widget {
                 $data = $item->main_submission;
                 echo '<article>';
     			echo '<div class="destaqueBP">';
-                echo '<a href="' . real_site_url($bp_config['plugin_slug']) . 'resource/?id=' . $item->id . '"><b>' . $data->title . '</b></a>';
+                echo '<a href="' . real_site_url($relatos_config['plugin_slug']) . 'resource/?id=' . $item->id . '"><b>' . $data->title . '</b></a>';
                 if ( $data->introduction ) {
                     echo '<p>'. wp_trim_words( $data->introduction, 60, '...' ) . '</p>';
                 }
                 if ( $data->target ) {
-                    echo '<div class="bp-target">';
-                    echo '<b>' . esc_html__( 'Goals', 'bp' ) . ':</b>';
+                    echo '<div class="relatos-target">';
+                    echo '<b>' . esc_html__( 'Goals', 'relatos' ) . ':</b>';
                     foreach ( $data->target as $target ) {
                         echo '<a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top" title="' . $target->subtext . '">' . $target->name . '</a>';
                     }
@@ -72,9 +72,9 @@ class Best_Practices_Widget extends WP_Widget {
                 echo '</article>';
             }
             echo '<br />';
-            echo '<div class="bp-link"><a href="' . real_site_url($bp_config['plugin_slug']) . '" class="btn btn-outline-primary" title="' . esc_html__( 'See more best practices', 'bp' ) . '">' . esc_html__( 'See more Best Practices', 'bp' ) . '</a></div>';
+            echo '<div class="relatos-link"><a href="' . real_site_url($relatos_config['plugin_slug']) . '" class="btn btn-outline-primary" title="' . esc_html__( 'See more best practices', 'relatos' ) . '">' . esc_html__( 'See more Best Practices', 'relatos' ) . '</a></div>';
         } else {
-            echo esc_html__( 'No best practices found', 'bp' );
+            echo esc_html__( 'No best practices found', 'relatos' );
         }
 
 		echo $args['after_widget'];
@@ -87,7 +87,7 @@ class Best_Practices_Widget extends WP_Widget {
 			if ( isset($widget_field['default']) ) {
 				$default = $widget_field['default'];
 			}
-			$widget_value = ! empty( $instance[$widget_field['id']] ) ? $instance[$widget_field['id']] : esc_html__( $default, 'bp' );
+			$widget_value = ! empty( $instance[$widget_field['id']] ) ? $instance[$widget_field['id']] : esc_html__( $default, 'relatos' );
 			switch ( $widget_field['type'] ) {
 				default:
 					$output .= '<p>';
@@ -103,7 +103,7 @@ class Best_Practices_Widget extends WP_Widget {
 		$title = ! empty( $instance['title'] ) ? $instance['title'] : '';
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title', 'bp' ); ?>:</label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_attr_e( 'Title', 'relatos' ); ?>:</label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
 		<?php
@@ -123,10 +123,10 @@ class Best_Practices_Widget extends WP_Widget {
 	}
 }
 
-function register_bp_widget() {
+function register_relatos_widget() {
 	register_widget( 'Best_Practices_Widget' );
 }
 
-add_action( 'widgets_init', 'register_bp_widget' );
+add_action( 'widgets_init', 'register_relatos_widget' );
 
 ?>

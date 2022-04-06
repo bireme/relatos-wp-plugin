@@ -1,23 +1,23 @@
 <?php
-function bp_page_admin() {
-    global $bp_texts;
+function relatos_page_admin() {
+    global $relatos_texts;
 
-    $config = get_option('bp_config');
+    $config = get_option('relatos_config');
 
-    if ($bp_texts['filter']){
-        $available_filter_list = $bp_texts['filter'];
+    if ($relatos_texts['filter']){
+        $available_filter_list = $relatos_texts['filter'];
     }else{
         $available_filter_list = array(
-                                    'type' =>  __('Type','bp'),
-                                    'subregion' => __('Sub Region','bp') ,
-                                    'country' =>  __('Country', 'bp'),
-                                    'institution' =>  __('Institution','bp'),
-                                    'stakeholder' =>  __('Stakeholder','bp'),
-                                    'population_group' =>  __('Population Group','bp'),
-                                    'intervention' =>  __('Intervention','bp'),
-                                    'target' =>  __('Target','bp'),
+                                    'type' =>  __('Type','relatos'),
+                                    'subregion' => __('Sub Region','relatos') ,
+                                    'country' =>  __('Country', 'relatos'),
+                                    'institution' =>  __('Institution','relatos'),
+                                    'stakeholder' =>  __('Stakeholder','relatos'),
+                                    'population_group' =>  __('Population Group','relatos'),
+                                    'intervention' =>  __('Intervention','relatos'),
+                                    'target' =>  __('Target','relatos'),
         );
-        $bp_texts['filter'] = $available_filter_list;
+        $relatos_texts['filter'] = $available_filter_list;
     }
 
     if ( $config['available_filter'] ){
@@ -28,35 +28,35 @@ function bp_page_admin() {
 ?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
-        <h2><?php _e('Best Practices record settings', 'bp'); ?></h2>
+        <h2><?php _e('Experience Reports record settings', 'relatos'); ?></h2>
         <form method="post" action="options.php">
 
-            <?php settings_fields('bp-settings-group'); ?>
+            <?php settings_fields('relatos-settings-group'); ?>
 
             <table class="form-table">
                 <tbody>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Plugin page', 'bp'); ?>:</th>
-                        <td><input type="text" name="bp_config[plugin_slug]" value="<?php echo ($config['plugin_slug'] != '' ? $config['plugin_slug'] : 'best-practices'); ?>" class="regular-text code"></td>
+                        <th scope="row"><?php _e('Plugin page', 'relatos'); ?>:</th>
+                        <td><input type="text" name="relatos_config[plugin_slug]" value="<?php echo ($config['plugin_slug'] != '' ? $config['plugin_slug'] : 'relatos'); ?>" class="regular-text code"></td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Filter query', 'bp'); ?>:</th>
-                        <td><input type="text" name="bp_config[initial_filter]" value='<?php echo $config['initial_filter'] ?>' class="regular-text code"></td>
+                        <th scope="row"><?php _e('Filter query', 'relatos'); ?>:</th>
+                        <td><input type="text" name="relatos_config[initial_filter]" value='<?php echo $config['initial_filter'] ?>' class="regular-text code"></td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('AddThis profile ID', 'bp'); ?>:</th>
-                        <td><input type="text" name="bp_config[addthis_profile_id]" value="<?php echo $config['addthis_profile_id'] ?>" class="regular-text code"></td>
+                        <th scope="row"><?php _e('AddThis profile ID', 'relatos'); ?>:</th>
+                        <td><input type="text" name="relatos_config[addthis_profile_id]" value="<?php echo $config['addthis_profile_id'] ?>" class="regular-text code"></td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Google Analytics code', 'bp'); ?>:</th>
-                        <td><input type="text" name="bp_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
+                        <th scope="row"><?php _e('Google Analytics code', 'relatos'); ?>:</th>
+                        <td><input type="text" name="relatos_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Fulltext', 'bp'); ?>:</th>
+                        <th scope="row"><?php _e('Fulltext', 'relatos'); ?>:</th>
                         <td>
                             <label for="present_alternative_links">
-                                <input type="checkbox" name="bp_config[alternative_links]" value="true" id="present_alternative_links" <?php echo (isset($config['alternative_links']) ?  " checked='true'" : '') ;?> ></input>
-                                <?php _e('Present alternative fulltext links', 'bp'); ?>
+                                <input type="checkbox" name="relatos_config[alternative_links]" value="true" id="present_alternative_links" <?php echo (isset($config['alternative_links']) ?  " checked='true'" : '') ;?> ></input>
+                                <?php _e('Present alternative fulltext links', 'relatos'); ?>
                             </label>
                         </td>
                     </tr>
@@ -71,44 +71,44 @@ function bp_page_admin() {
                                 $home_url = 'home_url_' . $lang;
 
                                 echo '<tr valign="top">';
-                                echo '    <th scope="row"> ' . __("Home URL", "bp") . ' (' . $available_languages_name[$count] . '):</th>';
-                                echo '    <td><input type="text" name="bp_config[' . $home_url . ']" value="' . $config[$home_url] . '" class="regular-text code"></td>';
+                                echo '    <th scope="row"> ' . __("Home URL", "relatos") . ' (' . $available_languages_name[$count] . '):</th>';
+                                echo '    <td><input type="text" name="relatos_config[' . $home_url . ']" value="' . $config[$home_url] . '" class="regular-text code"></td>';
                                 echo '</tr>';
 
                                 echo '<tr valign="top">';
-                                echo '    <th scope="row"> ' . __("Page title", "bp") . ' (' . $available_languages_name[$count] . '):</th>';
-                                echo '    <td><input type="text" name="bp_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';
+                                echo '    <th scope="row"> ' . __("Page title", "relatos") . ' (' . $available_languages_name[$count] . '):</th>';
+                                echo '    <td><input type="text" name="relatos_config[' . $key_name . ']" value="' . $config[$key_name] . '" class="regular-text code"></td>';
                                 echo '</tr>';
                                 $count++;
                             }
                         } else {
                             echo '<tr valign="top">';
-                            echo '   <th scope="row">' . __("Page title", "bp") . ':</th>';
-                            echo '   <td><input type="text" name="bp_config[plugin_title]" value="' . $config["plugin_title"] . '" class="regular-text code"></td>';
+                            echo '   <th scope="row">' . __("Page title", "relatos") . ':</th>';
+                            echo '   <td><input type="text" name="relatos_config[plugin_title]" value="' . $config["plugin_title"] . '" class="regular-text code"></td>';
                             echo '</tr>';
                         }
                     ?>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Related Documents filter', 'bp'); ?>:</th>
+                        <th scope="row"><?php _e('Related Documents filter', 'relatos'); ?>:</th>
                         <td>
-                            <input type="text" name="bp_config[default_filter_db]" value='<?php echo $config['default_filter_db']; ?>' class="regular-text code">
-                            <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'bp'); ?></small>
+                            <input type="text" name="relatos_config[default_filter_db]" value='<?php echo $config['default_filter_db']; ?>' class="regular-text code">
+                            <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'relatos'); ?></small>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('More Related filter', 'bp'); ?>:</th>
+                        <th scope="row"><?php _e('More Related filter', 'relatos'); ?>:</th>
                         <td>
-                            <input type="text" name="bp_config[extra_filter_db]" value='<?php echo $config['extra_filter_db']; ?>' class="regular-text code">
-                            <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'bp'); ?></small>
+                            <input type="text" name="relatos_config[extra_filter_db]" value='<?php echo $config['extra_filter_db']; ?>' class="regular-text code">
+                            <small style="display: block;">* <?php _e('The filters must be separated by commas.', 'relatos'); ?></small>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><?php _e('Search filters', 'bp');?>:</th>
+                        <th scope="row"><?php _e('Search filters', 'relatos');?>:</th>
                         <td>
                             <table border=0>
                                 <tr>
                                     <td>
-                                        <p align="left"><?php _e('Available', 'bp');?><br>
+                                        <p align="left"><?php _e('Available', 'relatos');?><br>
                                             <ul id="sortable1" class="connectedSortable">
                                                 <?php
                                                     foreach ($available_filter_list as $filter_field => $filter_title){
@@ -121,18 +121,18 @@ function bp_page_admin() {
                                         </p>
                                     </td>
                                     <td>
-                                        <p align="left"><?php _e('Selected', 'bp');?> <br>
+                                        <p align="left"><?php _e('Selected', 'relatos');?> <br>
                                           <ul id="sortable2" class="connectedSortable">
                                               <?php
                                                 foreach ($config_filter_list as $selected_filter) {
-                                                    $filter_title = $bp_texts['filter'][$selected_filter];
+                                                    $filter_title = $relatos_texts['filter'][$selected_filter];
                                                     if ($filter_title != ''){
                                                         echo '<li class="ui-state-default" id="' . $selected_filter . '">' . $filter_title . '</li>';
                                                     }
                                                 }
                                               ?>
                                           </ul>
-                                          <input type="hidden" id="available_filter_aux" name="bp_config[available_filter]" value="<?php echo $config['available_filter']; ?>" >
+                                          <input type="hidden" id="available_filter_aux" name="relatos_config[available_filter]" value="<?php echo $config['available_filter']; ?>" >
                                         </p>
                                     </td>
                                 </tr>

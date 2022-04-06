@@ -1,16 +1,16 @@
 <?php
 /*
-Template Name: Best Practices Detail
+Template Name: Experience Reports Detail
 */
 
-global $bp_service_url, $bp_plugin_slug, $similar_docs_url, $solr_service_url;
+global $relatos_service_url, $relatos_plugin_slug, $similar_docs_url, $solr_service_url;
 
-$bp_config         = get_option('bp_config');
-$bp_initial_filter = $bp_config['initial_filter'];
-$bp_addthis_id     = $bp_config['addthis_profile_id'];
-$bp_about          = $bp_config['about'];
-$bp_tutorials      = $bp_config['tutorials'];
-$alternative_links = (bool)$bp_config['alternative_links'];
+$relatos_config         = get_option('relatos_config');
+$relatos_initial_filter = $relatos_config['initial_filter'];
+$relatos_addthis_id     = $relatos_config['addthis_profile_id'];
+$relatos_about          = $relatos_config['about'];
+$relatos_tutorials      = $relatos_config['tutorials'];
+$alternative_links = (bool)$relatos_config['alternative_links'];
 
 $referer = wp_get_referer();
 $path = parse_url($referer);
@@ -26,11 +26,11 @@ if ( array_key_exists( 'query', $path ) ) {
 
 $filter = '';
 $user_filter = stripslashes($output['filter']);
-if ($bp_initial_filter != ''){
+if ($relatos_initial_filter != ''){
     if ($user_filter != ''){
-        $filter = $bp_initial_filter . ' AND ' . $user_filter;
+        $filter = $relatos_initial_filter . ' AND ' . $user_filter;
     }else{
-        $filter = $bp_initial_filter;
+        $filter = $relatos_initial_filter;
     }
 }else{
     $filter = $user_filter;
@@ -51,20 +51,20 @@ $locale = array(
 
 // likert options
 $likert = array(
-    "A" => __("I fully agree",'bp'),
-    "B" => __("I agree",'bp'),
-    "C" => __("I can't say",'bp'),
-    "D" => __("I disagree",'bp'),
-    "E" => __("I totally disagree",'bp')
+    "A" => __("I fully agree",'relatos'),
+    "B" => __("I agree",'relatos'),
+    "C" => __("I can't say",'relatos'),
+    "D" => __("I disagree",'relatos'),
+    "E" => __("I totally disagree",'relatos')
 );
 
-// $bp_service_request = $solr_service_url . '/solr/best-practices/select/?q=id:' . $resource_id . '&wt=json';
+// $relatos_service_request = $solr_service_url . '/solr/relatoss/select/?q=id:' . $resource_id . '&wt=json';
 
-$bp_service_request = $bp_service_url . '/api/bp/' . $resource_id . '?lang=' . $locale[$lang];
+$relatos_service_request = $relatos_service_url . '/api/relatos/' . $resource_id . '?lang=' . $locale[$lang];
 
-// echo "<pre>"; print_r($bp_service_request); echo "</pre>"; die();
+// echo "<pre>"; print_r($relatos_service_request); echo "</pre>"; die();
 
-$response = @file_get_contents($bp_service_request);
+$response = @file_get_contents($relatos_service_request);
 
 if ($response){
     $response_json = json_decode($response);
@@ -80,7 +80,7 @@ if ($response){
     }
 
     $similar_docs_url = $similar_docs_url . '?adhocSimilarDocs=' . urlencode($similar_text);
-    $similar_docs_request = ( $bp_config['default_filter_db'] ) ? $similar_docs_url . '&sources=' . $bp_config['default_filter_db'] : $similar_docs_url;
+    $similar_docs_request = ( $relatos_config['default_filter_db'] ) ? $similar_docs_url . '&sources=' . $relatos_config['default_filter_db'] : $similar_docs_url;
     $similar_query = urlencode($similar_docs_request);
     $related_query = urlencode($similar_docs_url);
 
@@ -91,20 +91,20 @@ if ($response){
     }
 }
 
-$feed_url = real_site_url($bp_plugin_slug) . 'best-practices-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$feed_url = real_site_url($relatos_plugin_slug) . 'relatoss-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
 
-$home_url = ( $bp_config['home_url_' . $lang] ) ? $bp_config['home_url_' . $lang] : real_site_url();
-$plugin_breadcrumb = isset($bp_config['plugin_title_' . $lang]) ? $bp_config['plugin_title_' . $lang] : $bp_config['plugin_title'];
+$home_url = ( $relatos_config['home_url_' . $lang] ) ? $relatos_config['home_url_' . $lang] : real_site_url();
+$plugin_breadcrumb = isset($relatos_config['plugin_title_' . $lang]) ? $relatos_config['plugin_title_' . $lang] : $relatos_config['plugin_title'];
 if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 ?>
 
-<?php get_header('best-practices');?>
+<?php get_header('relatoss');?>
 
 <section id="sectionSearch" class="padding2">
 	<div class="container">
 		<div class="col-md-12">
-            <form role="search" method="get" name="formHome" id="searchForm" action="<?php echo real_site_url($bp_plugin_slug); ?>">
+            <form role="search" method="get" name="formHome" id="searchForm" action="<?php echo real_site_url($relatos_plugin_slug); ?>">
 				<div class="row g-3">
 					<div class="col-9 offset-1 text-right">
                         <input type="hidden" name="lang" id="lang" value="<?php echo $lang; ?>">
@@ -112,7 +112,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <input type="hidden" name="format" id="format" value="summary">
                         <input type="hidden" name="count" id="count" value="10">
                         <input type="hidden" name="page" id="page" value="1">
-                        <input value='' name="q" class="form-control input-search" id="fieldSearch" type="text" autocomplete="off" placeholder="<?php _e('Enter one or more words', 'bp'); ?>">
+                        <input value='' name="q" class="form-control input-search" id="fieldSearch" type="text" autocomplete="off" placeholder="<?php _e('Enter one or more words', 'relatos'); ?>">
 						<a id="speakBtn" href="#"><i class="fas fa-microphone-alt"></i></a>
 					</div>
 					<div class="col-1 float-end">
@@ -130,8 +130,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 	<div class="container viewBt">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<?php echo $home_url ?>"><?php _e('Home','bp'); ?></a></li>
-            <li class="breadcrumb-item"><a href="<?php echo real_site_url($bp_plugin_slug); ?>"><?php echo $plugin_breadcrumb; ?></a></li>
+            <li class="breadcrumb-item"><a href="<?php echo $home_url ?>"><?php _e('Home','relatos'); ?></a></li>
+            <li class="breadcrumb-item"><a href="<?php echo real_site_url($relatos_plugin_slug); ?>"><?php echo $plugin_breadcrumb; ?></a></li>
             <li class="breadcrumb-item active" aria-current="page"><?php echo ( strlen($resource->title) > 90 ) ? substr($resource->title,0,90) . '...' : $resource->title; ?></li>
           </ol>
         </nav>
@@ -144,12 +144,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <?php if ( !$resource ) : ?>
                 <div class="col-md-12 text-center">
                     <div class="alert alert-secondary" role="alert">
-                        <?php echo mb_strtoupper(__('Document not found','bp')); ?>
+                        <?php echo mb_strtoupper(__('Document not found','relatos')); ?>
                     </div>
                 </div>
             <?php else : ?>
                 <div class="col-md-9">
-    				<div class="bpBtAction">
+    				<div class="relatosBtAction">
                         <!-- AddThis Button BEGIN -->
                         <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
                             <a class="addthis_button_facebook"></a>
@@ -161,107 +161,107 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <a class="addthis_button_compact"></a>
                         </div>
                         <script type="text/javascript">var addthis_config = {"data_track_addressbar":false};</script>
-                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $bp_addthis_id; ?>"></script>
+                        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=<?php echo $relatos_addthis_id; ?>"></script>
                         <!-- AddThis Button END -->
     				</div>
-    				<div class="bp-data">
-    					<h3><i class="fas fa-caret-right"></i><b><?php echo __('Basic Information', 'bp'); ?></b></h3><br />
+    				<div class="relatos-data">
+    					<h3><i class="fas fa-caret-right"></i><b><?php echo __('Basic Information', 'relatos'); ?></b></h3><br />
                         <?php if ( $resource->introduction ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Brief Introduction', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Brief Introduction', 'relatos') . ':'; ?></b></h5>
         					<p><?php echo $resource->introduction; ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->objectives ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Objectives', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Objectives', 'relatos') . ':'; ?></b></h5>
         					<p><?php echo $resource->objectives; ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->activities ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Implementation', 'bp') . '/' . __('Activities', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Implementation', 'relatos') . '/' . __('Activities', 'relatos') . ':'; ?></b></h5>
         					<p><?php echo $resource->activities; ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->main_results ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'relatos') . ':'; ?></b></h5>
         					<p><?php echo $resource->main_results; ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->factors ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Limitations and Hindrances', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Limitations and Hindrances', 'relatos') . ':'; ?></b></h5>
         					<p><?php echo $resource->factors; ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->technical_matter ): ?>
-        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Topics', 'bp') . '/' . __('Themes', 'bp') . ':'; ?></b></h5>
+        					<h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Topics', 'relatos') . '/' . __('Themes', 'relatos') . ':'; ?></b></h5>
                             <?php $technical_matters = wp_list_pluck( $resource->technical_matter, 'name' ); ?>
         					<p><?php echo implode('; ', $technical_matters); ?></p>
         					<hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->outcome_information ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Effectiveness & Efficiency', 'bp') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Effectiveness & Efficiency', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->outcome_information; ?></p>
                             <hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->describe_how ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Adaptability & Replicability', 'bp') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Adaptability & Replicability', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->describe_how; ?></p>
                             <hr />
                         <?php endif; ?>
 
                         <?php if ( 'paho-who-technical-cooperation' == $resource->type->slug ): ?>
-                            <h3><i class="fas fa-caret-right"></i><b><?php echo __('Technical Cooperation', 'bp'); ?></b></h3><br />
+                            <h3><i class="fas fa-caret-right"></i><b><?php echo __('Technical Cooperation', 'relatos'); ?></b></h3><br />
                             <?php if ( $resource->public_health_issue ): ?>
-                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What public health issue (or opportunity) led PAHO to participate on this Technical Cooperation project/initiative', 'bp') . '?'; ?></b></h5>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What public health issue (or opportunity) led PAHO to participate on this Technical Cooperation project/initiative', 'relatos') . '?'; ?></b></h5>
                                 <p><?php echo $resource->public_health_issue; ?></p>
                                 <hr />
                             <?php endif; ?>
 
                             <?php if ( $resource->planning_information ): ?>
-                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Was the TC planned considering the health situation of the target population', 'bp') . '?'; ?></b></h5>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Was the TC planned considering the health situation of the target population', 'relatos') . '?'; ?></b></h5>
                                 <p><?php echo $resource->planning_information; ?></p>
                                 <hr />
                             <?php endif; ?>
 
                             <?php if ( $resource->recognition_information ): ?>
-                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __("Recognition of PAHO's Technical Cooperation Importance by the Counterpart", 'bp') . ':'; ?></b></h5>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __("Recognition of PAHO's Technical Cooperation Importance by the Counterpart", 'relatos') . ':'; ?></b></h5>
                                 <p><?php echo $resource->recognition_information; ?></p>
                                 <hr />
                             <?php endif; ?>
 
                             <?php if ( $resource->engagement_information ): ?>
-                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __("Engagement with the Priorities Organization's Cross-Cutting Themes", 'bp') . ':'; ?></b></h5>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __("Engagement with the Priorities Organization's Cross-Cutting Themes", 'relatos') . ':'; ?></b></h5>
                                 <p><?php echo $resource->engagement_information; ?></p>
                                 <hr />
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Conclusion', 'bp'); ?></b></h3><br />
+                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Conclusion', 'relatos'); ?></b></h3><br />
                         <?php if ( $resource->challenges_information ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What were the obstacles or challenges faced during the implementation of this best practice/initiative', 'bp') . '?'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What were the obstacles or challenges faced during the implementation of this experience', 'relatos') . '?'; ?></b></h5>
                             <p><?php echo $resource->challenges_information; ?></p>
                             <hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->lessons_information ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What were the lessons learned for that will improve our expertise and add value to the Organization', 'bp') . '?'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('What were the lessons learned for that will improve our expertise and add value to the Organization', 'relatos') . '?'; ?></b></h5>
                             <p><?php echo $resource->lessons_information; ?></p>
                             <hr />
                         <?php endif; ?>
 
-                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Multimedia', 'bp'); ?></b></h3><br />
+                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Multimedia', 'relatos'); ?></b></h3><br />
                         <?php if ( $resource->attachments ) : ?>
-                            <?php $bp_images = get_bp_images($response_json[0]); ?>
-                            <?php if ( $bp_images ) : ?>
-                                <div class="bpImg clearfix">
-                                    <?php foreach ($bp_images as $img): ?>
-                                        <div class="bp-thumb">
+                            <?php $relatos_images = get_relatos_images($response_json[0]); ?>
+                            <?php if ( $relatos_images ) : ?>
+                                <div class="relatosImg clearfix">
+                                    <?php foreach ($relatos_images as $img): ?>
+                                        <div class="relatos-thumb">
                                             <a href="<?php echo $img; ?>" target="_blank">
                                                 <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
                                                 <?php $img_name = explode('_', basename($img)); ?>
@@ -274,7 +274,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
                         <hr />
 
-                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Sources', 'bp'); ?></b></h3><br />
+                        <h3><i class="fas fa-caret-right"></i><b><?php echo __('Sources', 'relatos'); ?></b></h3><br />
                         <?php if ( $resource->products_information ) : $products_information = explode("\r\n", $resource->products_information); ?>
                             <?php foreach ($products_information as $link): ?>
                                 <a href="<?php echo $link; ?>" target="_blank">
@@ -298,60 +298,60 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
     				</div>
     			</div>
 
-                <div class="col-md-3 bp-filters">
+                <div class="col-md-3 relatos-filters">
     				<div class="box1 title1">
-    					<h4><?php echo mb_strtoupper(__('Dates', 'bp')); ?></h4>
+    					<h4><?php echo mb_strtoupper(__('Dates', 'relatos')); ?></h4>
                         <?php if ( $resource->start_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'bp') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
+                            <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
                         <?php endif; ?>
                         <?php if ( $resource->end_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'bp') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
                         <?php endif; ?>
     				</div>
                     <?php if ( $resource->type ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Type', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Type', 'relatos')); ?></h4>
         					<?php echo $resource->type->name; ?>
         				</div>
                     <?php endif; ?>
                     <?php if ( $resource->subregion ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Sub Region', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Sub Region', 'relatos')); ?></h4>
         					<?php echo $resource->subregion->name; ?>
         				</div>
                     <?php endif; ?>
                     <?php if ( $resource->country ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Country', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
         					<img src="https://www.countryflags.io/<?php echo $resource->country->code; ?>/shiny/32.png" alt="" style="width: 30px;">
                             <?php echo $resource->country->name; ?>
         				</div>
                     <?php endif; ?>
                     <?php if ( $resource->other_institution ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Institution', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Institution', 'relatos')); ?></h4>
         					<?php echo $resource->other_institution; ?>
         				</div>
                     <?php elseif ( $resource->institution ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Institution', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Institution', 'relatos')); ?></h4>
         					<?php echo $resource->institution->name; ?>
         				</div>
                     <?php endif; ?>
                     <?php if ( $resource->other_stakeholder ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Stakeholder', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Stakeholder', 'relatos')); ?></h4>
         					<?php echo $resource->other_stakeholder; ?>
         				</div>
                     <?php elseif ( $resource->stakeholder ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Stakeholder', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Stakeholder', 'relatos')); ?></h4>
         					<?php echo $resource->stakeholder->name; ?>
         				</div>
                     <?php endif; ?>
                     <?php if ( $resource->population_group ): ?>
                         <div class="box1 title1 text-center">
-                            <h4><?php echo mb_strtoupper(__('Population Group', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Population Group', 'relatos')); ?></h4>
                             <?php foreach ($resource->population_group as $population_group) : ?>
                                 <a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top"><?php echo $population_group->name; ?></a>
                             <?php endforeach; ?>
@@ -359,7 +359,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php endif; ?>
                     <?php if ( $resource->intervention ): ?>
                         <div class="box1 title1 text-center">
-                            <h4><?php echo mb_strtoupper(__('Intervention', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Intervention', 'relatos')); ?></h4>
                             <?php foreach ($resource->intervention as $intervention) : ?>
                                 <a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top"><?php echo $intervention->name; ?></a>
                             <?php endforeach; ?>
@@ -367,7 +367,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php endif; ?>
                     <?php if ( $resource->target ): ?>
                         <div class="box1 title1 text-center">
-                            <h4><?php echo mb_strtoupper(__('SDG', 'bp')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('SDG', 'relatos')); ?></h4>
                             <?php foreach ($resource->target as $target) : ?>
                                 <a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top" title="<?php echo $target->subtext; ?>"><?php echo $target->name; ?></a>
                             <?php endforeach; ?>

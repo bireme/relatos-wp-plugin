@@ -128,11 +128,11 @@ if ( !function_exists('get_publication_language') ) {
     }
 }
 
-if ( !function_exists('get_bp_images') ) {
-    function get_bp_images($resource){
-        global $bp_service_url;
+if ( !function_exists('get_relatos_images') ) {
+    function get_relatos_images($resource){
+        global $relatos_service_url;
 
-        $bp_images = array();
+        $relatos_images = array();
         $submission_id = $resource->main_submission->id;
         $submissions = wp_list_pluck( $resource->submission, 'id' );
         $attachments = $resource->main_submission->attachments;
@@ -141,18 +141,18 @@ if ( !function_exists('get_bp_images') ) {
             $upload_type = $file->upload_type->slug;
 
             if ( 'image' == $upload_type ) {
-                $img_src = $bp_service_url . '/uploads/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+                $img_src = $relatos_service_url . '/uploads/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
                 $img_type_check = @exif_imagetype($img_src);
 
                 if (strpos($http_response_header[0], "200")) {
-                    $bp_images[] = $img_src;
+                    $relatos_images[] = $img_src;
                 } else {
                     foreach ($submissions as $submission) {
-                        $img_src = $bp_service_url . '/uploads/' . str_pad($submission, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+                        $img_src = $relatos_service_url . '/uploads/' . str_pad($submission, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
                         $img_type_check = @exif_imagetype($img_src);
 
                         if (strpos($http_response_header[0], "200")) {
-                            $bp_images[] = $img_src;
+                            $relatos_images[] = $img_src;
                             break;
                         }
                     }
@@ -160,13 +160,13 @@ if ( !function_exists('get_bp_images') ) {
             }
         }
 
-        return $bp_images;
+        return $relatos_images;
     }
 }
 
-if ( !function_exists('get_bp_targets') ) {
-    function get_bp_targets($targets, $lang){
-        $bp_targets = array();
+if ( !function_exists('get_relatos_targets') ) {
+    function get_relatos_targets($targets, $lang){
+        $relatos_targets = array();
 
         $texts = array_map(function($val) {
             return explode('|', $val);
@@ -184,13 +184,13 @@ if ( !function_exists('get_bp_targets') ) {
             $t = array_combine($keys, $values);
 
             if ( array_key_exists($lang, $t) ) {
-                $bp_targets[] = $t[$lang];
+                $relatos_targets[] = $t[$lang];
             } else {
-                $bp_targets[] = $t['en'];
+                $relatos_targets[] = $t['en'];
             }
         }
 
-        return $bp_targets;
+        return $relatos_targets;
     }
 }
 
