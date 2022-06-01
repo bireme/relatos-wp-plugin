@@ -164,6 +164,37 @@ if ( !function_exists('get_relatos_images') ) {
     }
 }
 
+if ( !function_exists('get_responsible_image') ) {
+    function get_responsible_image($resource, $filename){
+        global $relatos_service_url;
+
+        $relatos_images = array();
+        $submission_id = $resource->main_submission->id;
+        $submissions = wp_list_pluck( $resource->submission, 'id' );
+        $attachments = $resource->main_submission->attachments;
+
+        $img_src = $relatos_service_url . '/uploads/images/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $filename;
+        $img_type_check = @exif_imagetype($img_src);
+
+        if (strpos($http_response_header[0], "200")) {
+            $relatos_images[] = $img_src;
+        } else {
+            foreach ($submissions as $submission) {
+                $img_src = $relatos_service_url . '/uploads/images/' . str_pad($submission, 5, '0', STR_PAD_LEFT) . '/' . $filename;
+                $img_type_check = @exif_imagetype($img_src);
+
+                if (strpos($http_response_header[0], "200")) {
+                    $relatos_images[] = $img_src;
+                    break;
+                }
+            }
+        }
+
+        return $relatos_images;
+    }
+}
+
+
 if ( !function_exists('get_relatos_targets') ) {
     function get_relatos_targets($targets, $lang){
         $relatos_targets = array();

@@ -1,296 +1,301 @@
 *{
-	font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 #header{
-	padding: 20px 0;
+    padding: 20px 0;
 }
 #logo{
-	width: 300px;
+    width: 300px;
 }
 #lang{
-	text-align: right;
-	margin-top: 20px;
+    text-align: right;
+    margin-top: 20px;
 }
 #lang ul{
-	list-style: none;
+    list-style: none;
 }
 #lang ul li{
-	display: inline-block;
-	font-size: 12px;
+    display: inline-block;
+    font-size: 12px;
 }
 #lang ul li a{
-	background: #0093d6;
-	margin: 0px;
-	padding: 5px;
-	color: #fff;
+    background: #0093d6;
+    margin: 0px;
+    padding: 5px;
+    color: #fff;
 }
 #lang ul li .active{
-	background: #39c0f0;
+    background: #39c0f0;
 }
 #nav{
-	background: #05548b!important;
-	padding: 10px;
+    background: #05548b!important;
+    padding: 10px;
 }
 #nav a{
-	color: #fff;
+    color: #fff;
 }
 #nav a:hover{
-	color: #aaa;
+    color: #aaa;
 }
 #nav ul li{
-	margin-right: 10px;
+    margin-right: 10px;
 }
 #footer{
-	background:#05548b;
-	border-top: 5px solid #ed742c;
-	color: #fff;
-	font-size: 13px;
+    background:#05548b;
+    border-top: 5px solid #ed742c;
+    color: #fff;
+    font-size: 13px;
 }
 #footer ul li a{
-	color: #fff;
+    color: #fff;
 }
 #logoFooter img{
-	width: 300px;
+    width: 300px;
 }
 #sectionSearch{
-	background: #0093d6;
+    background: #0093d6;
 }
 #speakBtn{
-	padding-left: 10px;
+    padding-left: 10px;
 }
 #assFooter{
-	background: #f8f9fa;
-	color: #51c6fb;
-	font-size: 12px;
+    background: #f8f9fa;
+    color: #51c6fb;
+    font-size: 12px;
 }
 #assFooter hr{
-	background: #cac3fd;
+    background: #cac3fd;
 }
 #assFooter img{
-	max-width: 500px!important;
+    max-width: 500px!important;
 }
 #footerTermos, #footerTermos a{
-	color: #157daf;
+    color: #157daf;
 }
 .padding1{
-	padding: 50px 0px;
+    padding: 50px 0px;
 }
 .padding2{
-	padding: 30px 0px;
+    padding: 30px 0px;
 }
 .padding3{
-	padding: 30px 0px 10px 0;
+    padding: 30px 0px 10px 0;
 }
 .img150{
-	width: 150px;
+    width: 150px;
 }
 .postNext{
-	text-align: right;
+    text-align: right;
 }
 .color1{
-	background: #f2f2f2;
+    background: #f2f2f2;
 }
 
 .box1{
-	border: 1px solid #00adef;
-	margin-bottom: 10px;
-	font-size: 13px;
-	padding: 10px 10px 5px 10px;
+    border: 1px solid #00adef;
+    margin-bottom: 10px;
+    font-size: 13px;
+    padding: 10px 10px 5px 10px;
 }
 .box1 h4{
-	background: #00adef;
-	padding: 5px;
-	font-size: 16px;
-	font-weight: bold;
-	color: #fff;
-	text-align: center;
+    background: #00adef;
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+}
+.box2 {
+	display: inline-block;
+	width: 17rem;
+	margin-top: 5px;
 }
 .title1{
-	font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 .viewBt h3 i{
-	padding-right: 10px;
-	color: #05548b;
-	font-size: 30px;
+    padding-right: 10px;
+    color: #05548b;
+    font-size: 30px;
 }
 .viewBt h5 i{
-	padding-right: 10px;
-	color: #0093d6;
-	font-size: 16px;
+    padding-right: 10px;
+    color: #0093d6;
+    font-size: 16px;
 }
 /*
 .slick-prev:before {
-	color: #0093d6;
+    color: #0093d6;
 }
 .slick-next {
-	right: 0;
+    right: 0;
 }
 .slick-next:before {
-	color: #0093d6;
+    color: #0093d6;
 }
 */
 /******************** Cores **************/
 .aSpan{
-	padding: 3px 5px;
-	border-radius: 3px;
-	min-width: 30px!important;
-	text-align: center;
-	color: #fff;
-	font-size: 12px;
-	margin-left: 0;
-	margin-bottom: 5px;
-	display: inline-block;
-	background:#4c9e38;
-	cursor: pointer;
+    padding: 3px 5px;
+    border-radius: 3px;
+    min-width: 30px!important;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    margin-left: 0;
+    margin-bottom: 5px;
+    display: inline-block;
+    background:#4c9e38;
+    cursor: pointer;
 }
 .aSpan:hover{
-	opacity: .8;
-	text-decoration: none;
-	color: #fff;
+    opacity: .8;
+    text-decoration: none;
+    color: #fff;
 }
 .bp-link { text-align: center; }
 
 /*********** HOME ***********/
 #banner{
-	height: 400px;
-	overflow:hidden;
-	text-align: center;
-	position: relative;
+    height: 400px;
+    overflow:hidden;
+    text-align: center;
+    position: relative;
 }
 .destaqueBP{
-	padding: 10px;
-	border:1px solid #eee;
-	border-left-width: 3px;
-	margin-bottom: 15px;
+    padding: 10px;
+    border:1px solid #eee;
+    border-left-width: 3px;
+    margin-bottom: 15px;
 }
 .destaqueBP p{
-	font-size: 14px;
+    font-size: 14px;
 }
 .tutorVideo{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 .tutorVideo:hover{
-	opacity: .8;
+    opacity: .8;
 }
 .tutorVideo img{
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 .bpImg img{
-	width: 250px;
-	float: left;
-	margin: 0 20px 20px 0;
+    width: 250px;
+    float: left;
+    margin: 0 20px 20px 0;
 }
 .bpSilimares{
-	padding: 20px 10px;
-	border:1px solid #ddd;
-	margin-top: 30px;
+    padding: 20px 10px;
+    border:1px solid #ddd;
+    margin-top: 30px;
 }
 .bpBtAction{
-	background-color: #f8f9fa;
-	color: #999;
-	margin-bottom: 30px;
-	padding: 10px 0;
+    background-color: #f8f9fa;
+    color: #999;
+    margin-bottom: 30px;
+    padding: 10px 0;
 }
 .addthis_toolbox span {
     display: flex;
 }
 .boxFiltros{
-	margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 #speakBtn{
-	position: absolute;
-	font-size: 20px;
-	top: 5px;
-	left: 15px;
-	z-index: 10;
-	color: #999;
+    position: absolute;
+    font-size: 20px;
+    top: 5px;
+    left: 15px;
+    z-index: 10;
+    color: #999;
 }
 #speakBtn:hover{
-	color: #000;
+    color: #000;
 }
 #fieldSearch{
     padding-left: 30px;
 }
 .btnA{
-	margin-top: 3px;
-	color: #fff;
+    margin-top: 3px;
+    color: #fff;
 }
 .border1{
-	margin-bottom: 1rem;
+    margin-bottom: 1rem;
     border: 1px solid #c3e6cb;
     border-radius: .25rem;
     padding: .75rem 1.25rem;
 }
 .carousel-caption{
-	bottom: 10px;
-	padding: 0;
+    bottom: 10px;
+    padding: 0;
 }
 .carousel-caption h5, .carousel-caption p{
-	color: #fff;
-	padding: 5px 20px;
-	margin-bottom: 0;
-	text-shadow: 0px 0px 5px #000;
+    color: #fff;
+    padding: 5px 20px;
+    margin-bottom: 0;
+    text-shadow: 0px 0px 5px #000;
 }
 .carousel-control-next-icon, .carousel-control-prev-icon{
-	width: 2rem;
-	height: 2rem;
+    width: 2rem;
+    height: 2rem;
 }
 .goalCheck{
-	position: static;
+    position: static;
     margin-top: auto;
- 	margin-left: auto;
-	vertical-align: middle;
+     margin-left: auto;
+    vertical-align: middle;
 }
 .flagsFiltros label{
-	border-bottom: 2px solid #ddd;
-	cursor: pointer;
+    border-bottom: 2px solid #ddd;
+    cursor: pointer;
 }
 .flagsFiltros img{
-	width: 30px;
+    width: 30px;
 }
 .bp-filters {
-	background-color: #f8f9fa;
-	padding: 20px 10px;
+    background-color: #f8f9fa;
+    padding: 20px 10px;
 }
 .bp-filters .badge {
-	font-size: 13px;
+    font-size: 13px;
 }
 .bp-filters .aSpan {
-	margin-top: 5px;
+    margin-top: 5px;
 }
 .bp-filters table {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 .bp-filters table tr td {
-	vertical-align: middle;
+    vertical-align: middle;
 }
 .filter-item-active {
-	display: block;
-	text-align: center;
-	text-transform: uppercase;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
 }
 .filter-item-del {
-	display: block;
+    display: block;
     text-align: center;
 }
 .filter-item-del i {
-	color: #808080;
+    color: #808080;
 }
 .filter-item-del i:hover {
-	color: #000;
+    color: #000;
 }
 .filter-item {
-	border-top: 1px solid rgba(0,0,0,.1);
-	display: block;
-	padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+    display: block;
+    padding: 10px 0;
 }
 /************************** Pagination *********************/
 .pagination {
-	margin: 20px 0 20px 0;
+    margin: 20px 0 20px 0;
 }
 .pagination-centered {
     /* text-align: center; */
-	justify-content: center;
+    justify-content: center;
 }
 .pagination ul {
     display: inline-block;
@@ -343,35 +348,35 @@
 }
 /************************** Breakpoints *********************/
 @media (max-width: 768px){
-	fieldset legend{
-		font-size: 14px;
-	}
-	#lang{
-		text-align: center;
+    fieldset legend{
+        font-size: 14px;
+    }
+    #lang{
+        text-align: center;
 
-	}
-	#lang ul li{
-		font-size: 10px;
-	}
-	#logoFooter{
-		margin-bottom: 20px;
-	}
-	#assFooter img {
-		max-width: 90%!important;
-	}
-	#banner{
-		display: none;
-	}
-	.homeBoxDestaque{
-		padding:10px 10%;
-	}
-	.padding1{
-		padding: auto!important;
-	}
-	#footerTermos div{
-		text-align: center!important;
-	}
-	.postPrev, .postNext{
-		text-align: center;
-	}
+    }
+    #lang ul li{
+        font-size: 10px;
+    }
+    #logoFooter{
+        margin-bottom: 20px;
+    }
+    #assFooter img {
+        max-width: 90%!important;
+    }
+    #banner{
+        display: none;
+    }
+    .homeBoxDestaque{
+        padding:10px 10%;
+    }
+    .padding1{
+        padding: auto!important;
+    }
+    #footerTermos div{
+        text-align: center!important;
+    }
+    .postPrev, .postNext{
+        text-align: center;
+    }
 }
