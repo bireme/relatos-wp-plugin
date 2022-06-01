@@ -8,14 +8,8 @@ function relatos_page_admin() {
         $available_filter_list = $relatos_texts['filter'];
     }else{
         $available_filter_list = array(
-                                    'type' =>  __('Type','relatos'),
-                                    'subregion' => __('Sub Region','relatos') ,
-                                    'country' =>  __('Country', 'relatos'),
-                                    'institution' =>  __('Institution','relatos'),
-                                    'stakeholder' =>  __('Stakeholder','relatos'),
+                                    'thematic_area' =>  __('Collection','relatos'),
                                     'population_group' =>  __('Population Group','relatos'),
-                                    'intervention' =>  __('Intervention','relatos'),
-                                    'target' =>  __('Target','relatos'),
         );
         $relatos_texts['filter'] = $available_filter_list;
     }
