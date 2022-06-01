@@ -51,7 +51,7 @@ if ($relatos_initial_filter != ''){
 
 $start = ($page * $count) - $count;
 
-$relatos_service_request = $solr_service_url . '/solr/best-practices/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json';
+$relatos_service_request = $solr_service_url . '/solr/relatos-experiencia/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json';
 
 // $relatos_service_request = $relatos_service_url . '/api/experience?offset=' . $start . '&limit=' . $count . '&lang=' . $locale[$lang];;
 
@@ -180,15 +180,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <article>
                             <div class="destaqueBP">
                                 <a href="<?php echo real_site_url($relatos_plugin_slug); ?>resource/?id=<?php echo $doc->id; ?>"><b><?php echo $doc->title; ?></b></a>
-                                <?php if ( $doc->introduction ): ?>
-                                    <p><?php echo wp_trim_words( $doc->introduction, 60, '...' ); ?></p>
-                                <?php endif; ?>
-                                <?php if ( $doc->target ): ?>
-                                    <b><?php _e('Goals','relatos'); ?>:</b>
-                                    <?php $targets = get_relatos_targets($doc->target, $lang); ?>
-                                    <?php foreach ( $targets as $target ) : ?>
-                                        <a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top"><?php echo $target; ?></a>
-                                    <?php endforeach; ?>
+                                <?php if ( $doc->notes ): ?>
+                                    <p><?php echo wp_trim_words( $doc->notes, 60, '...' ); ?></p>
                                 <?php endif; ?>
                             </div>
                         </article>
@@ -200,7 +193,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 </div>
             <?php endif; ?>
 
-            <div class="col-md-3 relatos-filters">
+            <div class="col-md-3 bp-filters">
                 <?php if (strval($total) > 0) : ?>
 
                     <?php dynamic_sidebar('relatos-home');?>
