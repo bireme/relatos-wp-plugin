@@ -9,15 +9,15 @@ class Relatos_Widget extends WP_Widget {
         $this->service_url = 'https://experiencias.bvsalud.org';
 
 		parent::__construct(
-			'best_practices_widget',
-			esc_html__( 'Best Practices', 'relatos' ),
-			array( 'description' => esc_html__( 'Display the lastest best practices', 'relatos' ), ) // Args
+			'relatos_widget',
+			esc_html__( 'Experience Reports', 'relatos' ),
+			array( 'description' => esc_html__( 'Display the lastest experiences', 'relatos' ), ) // Args
 		);
 	}
 
 	private $widget_fields = array(
 		array(
-			'label' => 'Number of best practices',
+			'label' => 'Number of experiences',
 			'id' => 'total',
 			'default' => '5',
 			'type' => 'number',
@@ -57,24 +57,16 @@ class Relatos_Widget extends WP_Widget {
                 echo '<article>';
     			echo '<div class="destaqueBP">';
                 echo '<a href="' . real_site_url($relatos_config['plugin_slug']) . 'resource/?id=' . $item->id . '"><b>' . $data->title . '</b></a>';
-                if ( $data->introduction ) {
-                    echo '<p>'. wp_trim_words( $data->introduction, 60, '...' ) . '</p>';
-                }
-                if ( $data->target ) {
-                    echo '<div class="relatos-target">';
-                    echo '<b>' . esc_html__( 'Goals', 'relatos' ) . ':</b>';
-                    foreach ( $data->target as $target ) {
-                        echo '<a href="javascript:void(0)" class="aSpan" data-toggle="tooltip" data-placement="top" title="' . $target->subtext . '">' . $target->name . '</a>';
-                    }
-                    echo '</div>';
+                if ( $data->notes ) {
+                    echo '<p>'. wp_trim_words( $data->notes, 60, '...' ) . '</p>';
                 }
                 echo '</div>';
                 echo '</article>';
             }
             echo '<br />';
-            echo '<div class="relatos-link"><a href="' . real_site_url($relatos_config['plugin_slug']) . '" class="btn btn-outline-primary" title="' . esc_html__( 'See more best practices', 'relatos' ) . '">' . esc_html__( 'See more Best Practices', 'relatos' ) . '</a></div>';
+            echo '<div class="bp-link"><a href="' . real_site_url($relatos_config['plugin_slug']) . '" class="btn btn-outline-primary" title="' . esc_html__( 'See more experiences', 'relatos' ) . '">' . esc_html__( 'See more Experience Reports', 'relatos' ) . '</a></div>';
         } else {
-            echo esc_html__( 'No best practices found', 'relatos' );
+            echo esc_html__( 'No experiences found', 'relatos' );
         }
 
 		echo $args['after_widget'];
@@ -124,7 +116,7 @@ class Relatos_Widget extends WP_Widget {
 }
 
 function register_relatos_widget() {
-	register_widget( 'Best_Practices_Widget' );
+	register_widget( 'Relatos_Widget' );
 }
 
 add_action( 'widgets_init', 'register_relatos_widget' );
