@@ -123,6 +123,9 @@
     color: #0093d6;
     font-size: 16px;
 }
+[class^='lang-item'] img {
+    display: none;
+}
 /*
 .slick-prev:before {
     color: #0093d6;

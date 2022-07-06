@@ -264,7 +264,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                                 <?php echo $responsible->phone; ?><br />
                                             <?php endif; ?>
                                             <?php if ( $responsible->curriculum ) : ?>
-                                                <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank"><?php echo __('Curriculum', 'relatos'); ?></a>
+                                                <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank"><?php echo __('Curriculum', 'relatos'); ?></a><br />
                                             <?php endif; ?>
                                             <?php if ( $responsible->orcid ) : ?>
                                                 <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank"><?php echo __('ORCID', 'relatos'); ?></a>
@@ -366,7 +366,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <?php if ( $resource->other_videos ) : $other_videos = explode("\r\n", $resource->videos); ?>
+                        <?php if ( $resource->other_videos ) : $other_videos = explode("\r\n", $resource->other_videos); ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($other_videos as $link): ?>
                                 <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
@@ -381,7 +381,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->attachments ) : ?>
-                            <?php $relatos_docs = get_relatos_attachment($response_json[0], 'others'); ?>
+                            <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
                             <?php if ( $relatos_medias ) : ?>
                                 <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Other medias', 'relatos') . ':'; ?></b></h5>
                                 <?php foreach ($relatos_medias as $uri): ?>
@@ -414,7 +414,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
                         <?php if ( $resource->products_information ): ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->products_information; ?></p>
+                            <p><?php echo nl2br($resource->products_information); ?></p>
                             <hr />
                         <?php endif; ?>
 
@@ -429,6 +429,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     </a>
                                 <?php endif; ?>
                             <?php endforeach; ?>
+                            <hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->notes ): ?>
@@ -446,7 +447,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
                         <?php endif; ?>
                         <?php if ( $resource->end_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . '/' . __('and/or current', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ' ' . __('and/or current', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
                         <?php endif; ?>
                     </div>
 
@@ -460,14 +461,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php if ( $resource->region ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
-                            <?php echo $$resource->region; ?>
+                            <?php echo $resource->region; ?>
                         </div>
                     <?php endif; ?>
 
                     <?php if ( $resource->city ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
-                            <?php echo $$resource->city; ?>
+                            <?php echo $resource->city; ?>
                         </div>
                     <?php endif; ?>
 
@@ -501,12 +502,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </div>
                     <?php endif; ?>
 
-                    <?php if ( $resource->other_population_group ): ?>
-                        <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                            <?php echo $resource->other_population_group; ?>
-                        </div>
-                    <?php elseif ( $resource->population_group ): ?>
+                    <?php if ( $resource->population_group ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
                             <table class="table table-sm">
@@ -518,6 +514,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     <?php endforeach; ?>
                                 </tbody>
                             </table>
+                        </div>
+                    <?php elseif ( $resource->other_population_group ): ?>
+                        <div class="box1 title1">
+                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                            <?php echo $resource->other_population_group; ?>
                         </div>
                     <?php endif; ?>
                 </div>

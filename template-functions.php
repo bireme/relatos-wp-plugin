@@ -129,7 +129,7 @@ if ( !function_exists('get_publication_language') ) {
 }
 
 if ( !function_exists('get_relatos_attachment') ) {
-    function get_relatos_attachment($resource, $type=''){
+    function get_relatos_attachment($resource, $upload_type=''){
         global $relatos_service_url;
 
         $relatos_files = array();
@@ -138,9 +138,7 @@ if ( !function_exists('get_relatos_attachment') ) {
         $attachments = $resource->main_submission->attachments;
 
         foreach ($attachments as $file) {
-            $upload_type = ( empty($type) ) ? $file->upload_type->slug : $type;
-
-            if ( in_array($upload_type, array('image', 'document', 'others')) ) {
+            if ( $upload_type == $file->upload_type->slug ) {
                 if ( 'image' == $upload_type ) {
                     $img_src = $relatos_service_url . '/uploads/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
                     $img_type_check = @exif_imagetype($img_src);
