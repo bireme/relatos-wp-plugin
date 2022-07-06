@@ -8,8 +8,10 @@ function relatos_page_admin() {
         $available_filter_list = $relatos_texts['filter'];
     }else{
         $available_filter_list = array(
-                                    'thematic_area' =>  __('Collection','relatos'),
+                                    'collection' =>  __('Collection','relatos'),
+                                    'thematic_area' =>  __('Thematic Area','relatos'),
                                     'population_group' =>  __('Population Group','relatos'),
+                                    'country' =>  __('Country','relatos'),
         );
         $relatos_texts['filter'] = $available_filter_list;
     }
@@ -153,6 +155,7 @@ function relatos_page_admin() {
                     var changedList = this.id;
                     var selected_filter = $j(this).sortable('toArray');
                     var selected_filter_list = selected_filter.join(';');
+                    if (!selected_filter_list) selected_filter_list = false;
                     $j('#available_filter_aux').val(selected_filter_list);
                 }
             });
