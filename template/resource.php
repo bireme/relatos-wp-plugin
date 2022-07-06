@@ -38,7 +38,7 @@ if ($relatos_initial_filter != ''){
 
 $request_uri   = $_SERVER["REQUEST_URI"];
 $request_parts = explode('/', $request_uri);
-$resource_id   = $_GET['id'];
+$resource_id   = sanitize_text_field($_GET['id']);
 
 $site_language = strtolower(get_bloginfo('language'));
 $lang = substr($site_language,0,2);
@@ -58,12 +58,10 @@ $language = array(
 
 // status options
 $status = array(
-    "A" => __("The practice is in the initial stage of implementation",'relatos'),
-    "B" => __("The practice is fully implemented and continues to operate",'relatos'),
-    "C" => __("The practice was discontinued before it was fully implemented",'relatos'),
-    "D" => __("The practice was discontinued after a period of operation",'relatos'),
-    "E" => __("The practice has not been implemented",'relatos'),
-    "F" => __("Other")
+    "A" => __("Under implementation",'relatos'),
+    "B" => __("Implemented and in regular operation",'relatos'),
+    "C" => __("Interrupted",'relatos'),
+    "D" => __("Completed",'relatos')
 );
 
 // $relatos_service_request = $solr_service_url . '/solr/relatos-experiencia/select/?q=id:' . $resource_id . '&wt=json';
@@ -174,30 +172,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                     <div class="relatos-data">
                         <h3><i class="fas fa-caret-right"></i><b><?php echo __('Experience Details', 'relatos'); ?></b></h3><br />
-                        <?php if ( $resource->notes ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->notes; ?></p>
-                            <hr />
-                        <?php endif; ?>
-
-                        <?php if ( $resource->other_status ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Experience Status', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $status[$resource->other_status]; ?></p>
-                            <hr />
-                        <?php elseif ( $resource->status ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Experience Status', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $status[$resource->status]; ?></p>
-                            <hr />
-                        <?php endif; ?>
-
-                        <?php if ( $resource->issue ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Issue', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->issue; ?></p>
+                        <?php if ( $resource->description ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Issue', 'relatos') . '/' . __('Situation', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo $resource->description; ?></p>
                             <hr />
                         <?php endif; ?>
 
                         <?php if ( $resource->objectives ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Objectives', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Objectives', 'relatos') . '/' . __('Expected results', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->objectives; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -214,6 +196,28 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         <?php endif; ?>
 
+                        <?php if ( $resource->status ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Experience Status', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo $status[$resource->status]; ?></p>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->keywords ) : ?>
+                            <?php $keywords = json_decode($resource->keywords, true); ?>
+                            <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Keywords', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo implode('; ', $keywords); ?></p>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->descriptors ) : ?>
+                            <?php $descriptors = json_decode($resource->descriptors, true); ?>
+                            <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Descriptors', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo implode('; ', $descriptors); ?></p>
+                            <hr />
+                        <?php endif; ?>
+
                         <?php if ( $resource->main_results ): ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->main_results; ?></p>
@@ -223,12 +227,6 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php if ( $resource->challenges_information ): ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Challenges', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->challenges_information; ?></p>
-                            <hr />
-                        <?php endif; ?>
-
-                        <?php if ( $resource->other_results ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Other Results', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->other_results; ?></p>
                             <hr />
                         <?php endif; ?>
 
@@ -253,6 +251,10 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                                 <b><?php echo __('Filiation', 'relatos'); ?></b><br />
                                                 <?php echo $responsible->filiation; ?><br />
                                             <?php endif; ?>
+                                            <?php if ( $responsible->job ) : ?>
+                                                <b><?php echo __('Job', 'relatos'); ?></b><br />
+                                                <?php echo $responsible->job; ?><br />
+                                            <?php endif; ?>
                                             <?php if ( $responsible->email ) : ?>
                                                 <b><?php echo __('Email', 'relatos'); ?></b><br />
                                                 <?php echo $responsible->email; ?><br />
@@ -262,7 +264,10 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                                 <?php echo $responsible->phone; ?><br />
                                             <?php endif; ?>
                                             <?php if ( $responsible->curriculum ) : ?>
-                                                <a href="<?php echo $responsible->curriculum; ?>" class="card-link"><?php echo __('Curriculum', 'relatos'); ?></a>
+                                                <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank"><?php echo __('Curriculum', 'relatos'); ?></a>
+                                            <?php endif; ?>
+                                            <?php if ( $responsible->orcid ) : ?>
+                                                <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank"><?php echo __('ORCID', 'relatos'); ?></a>
                                             <?php endif; ?>
                                         </p>
                                     </div>
@@ -278,21 +283,24 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $member->name; ?></h5>
                                         <p class="card-text">
+                                            <?php if ( $member->filiation ) : ?>
+                                                <b><?php echo __('Filiation', 'relatos'); ?></b><br />
+                                                <?php echo $member->filiation; ?><br />
+                                            <?php endif; ?>
+                                            <?php if ( $member->job ) : ?>
+                                                <b><?php echo __('Job', 'relatos'); ?></b><br />
+                                                <?php echo $member->job; ?><br />
+                                            <?php endif; ?>
                                             <?php if ( $member->academic_formation ) : ?>
                                                 <b><?php echo __('Academic Formation', 'relatos'); ?></b><br />
                                                 <?php echo $member->academic_formation; ?><br />
                                             <?php endif; ?>
-                                            <?php if ( $member->professional_category ) : ?>
-                                                <b><?php echo __('Professional Category', 'relatos'); ?></b><br />
-                                                <?php echo $member->professional_category; ?><br />
+                                            <?php if ( $member->email ) : ?>
+                                                <b><?php echo __('Email', 'relatos'); ?></b><br />
+                                                <?php echo $member->email; ?><br />
                                             <?php endif; ?>
-                                            <?php if ( $member->institution ) : ?>
-                                                <b><?php echo __('Institution', 'relatos'); ?></b><br />
-                                                <?php echo $member->institution; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $member->responsibility ) : ?>
-                                                <b><?php echo __('Responsibility', 'relatos'); ?></b><br />
-                                                <?php echo $member->responsibility; ?>
+                                            <?php if ( $member->curriculum ) : ?>
+                                                <a href="<?php echo $member->curriculum; ?>" class="card-link" target="_blank"><?php echo __('Curriculum', 'relatos'); ?></a>
                                             <?php endif; ?>
                                         </p>
                                     </div>
@@ -301,9 +309,118 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         <?php endif; ?>
 
+                        <?php if ( $resource->full_text ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Fulltext', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo $resource->full_text; ?></p>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->attachments ) : ?>
+                            <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
+                            <?php if ( $relatos_docs ) : ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Documents', 'relatos') . ':'; ?></b></h5>
+                                <?php foreach ($relatos_docs as $uri): ?>
+                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                        <a href="<?php echo $uri; ?>" target="_blank">
+                                            <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                            <?php $filename = explode('_', basename($uri)); ?>
+                                            <?php echo end($filename); ?>
+                                            <br />
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <hr />
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if ( $resource->other_docs ) : $other_docs = explode("\r\n", $resource->other_docs); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('More documents', 'relatos') . ':'; ?></b></h5>
+                            <?php foreach ($other_docs as $link): ?>
+                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $link; ?>" target="_blank">
+                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <?php echo $link; ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->attachments ) : ?>
+                            <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+                            <?php if ( $relatos_images ) : ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Images', 'relatos') . ':'; ?></b></h5><br />
+                                <div class="bpImg clearfix">
+                                    <?php foreach ($relatos_images as $img): ?>
+                                        <div class="relatos-thumb">
+                                            <a href="<?php echo $img; ?>" target="_blank">
+                                                <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
+                                                <?php // $img_name = explode('_', basename($img)); ?>
+                                                <?php // echo $img_name[1]; ?>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <hr />
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if ( $resource->other_videos ) : $other_videos = explode("\r\n", $resource->videos); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
+                            <?php foreach ($other_videos as $link): ?>
+                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $link; ?>" target="_blank">
+                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <?php echo $link; ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->attachments ) : ?>
+                            <?php $relatos_docs = get_relatos_attachment($response_json[0], 'others'); ?>
+                            <?php if ( $relatos_medias ) : ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Other medias', 'relatos') . ':'; ?></b></h5>
+                                <?php foreach ($relatos_medias as $uri): ?>
+                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                        <a href="<?php echo $uri; ?>" target="_blank">
+                                            <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                            <?php $filename = explode('_', basename($uri)); ?>
+                                            <?php echo end($filename); ?>
+                                            <br />
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <hr />
+                            <?php endif; ?>
+                        <?php endif; ?>
+
                         <?php if ( $resource->other_medias ) : $other_medias = explode("\r\n", $resource->other_medias); ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Other Medias', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('More medias', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($other_medias as $link): ?>
+                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $link; ?>" target="_blank">
+                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <?php echo $link; ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->products_information ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo $resource->products_information; ?></p>
+                            <hr />
+                        <?php endif; ?>
+
+                        <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Related Links', 'relatos') . ':'; ?></b></h5>
+                            <?php foreach ($related_links as $link): ?>
                                 <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
                                     <a href="<?php echo $link; ?>" target="_blank">
                                         <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
@@ -314,38 +431,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php endforeach; ?>
                         <?php endif; ?>
 
-                        <?php if ( $resource->products_information ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Products', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->products_information; ?></p>
+                        <?php if ( $resource->notes ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo $resource->notes; ?></p>
                             <hr />
                         <?php endif; ?>
-
-                        <?php if ( $resource->keywords ) : ?>
-                            <?php $keywords = json_decode($resource->keywords, true); ?>
-                            <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Keywords', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo implode('; ', $keywords); ?></p>
-                            <hr />
-                        <?php endif; ?>
-
-                        <?php if ( $resource->attachments ) : ?>
-                            <?php $relatos_images = get_relatos_images($response_json[0]); ?>
-                            <?php if ( $relatos_images ) : ?>
-                                <h3><i class="fas fa-caret-right"></i><b><?php echo __('Medias', 'relatos'); ?></b></h3><br />
-                                <div class="bpImg clearfix">
-                                    <?php foreach ($relatos_images as $img): ?>
-                                        <div class="relatos-thumb">
-                                            <a href="<?php echo $img; ?>" target="_blank">
-                                                <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
-                                                <?php $img_name = explode('_', basename($img)); ?>
-                                                <?php // echo $img_name[1]; ?>
-                                            </a>
-                                        </div>
-                                    <?php endforeach; ?>
-                                </div>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                        <hr />
                     </div>
                 </div>
 
@@ -356,24 +446,49 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
                         <?php endif; ?>
                         <?php if ( $resource->end_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
-                        <?php endif; ?>
-                        <?php if ( $resource->partial_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('Suspension', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->partial_date)); ?><br />
-                        <?php endif; ?>
-                        <?php if ( $resource->other_date ): ?>
-                            <?php echo __('Other', 'relatos') . ': ' . $resource->other_date; ?><br />
+                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . '/' . __('and/or current', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
                         <?php endif; ?>
                     </div>
+
                     <?php if ( $resource->language ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
                             <?php echo $language[$resource->language]; ?>
                         </div>
                     <?php endif; ?>
-                    <?php if ( $resource->thematic_area ): ?>
+
+                    <?php if ( $resource->region ): ?>
+                        <div class="box1 title1">
+                            <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
+                            <?php echo $$resource->region; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $resource->city ): ?>
+                        <div class="box1 title1">
+                            <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
+                            <?php echo $$resource->city; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $resource->collection ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Collection', 'relatos')); ?></h4>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <?php foreach ($resource->collection as $collection) : ?>
+                                    <tr>
+                                        <td><?php echo $collection->name; ?></td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $resource->thematic_area ): ?>
+                        <div class="box1 title1">
+                            <h4><?php echo mb_strtoupper(__('Thematic Area', 'relatos')); ?></h4>
                             <table class="table table-sm">
                                 <tbody>
                                     <?php foreach ($resource->thematic_area as $thematic_area) : ?>
@@ -385,6 +500,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             </table>
                         </div>
                     <?php endif; ?>
+
                     <?php if ( $resource->other_population_group ): ?>
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>

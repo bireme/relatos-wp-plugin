@@ -128,6 +128,59 @@ if ( !function_exists('get_publication_language') ) {
     }
 }
 
+if ( !function_exists('get_relatos_attachment') ) {
+    function get_relatos_attachment($resource, $type=''){
+        global $relatos_service_url;
+
+        $relatos_files = array();
+        $submission_id = $resource->main_submission->id;
+        $submissions = wp_list_pluck( $resource->submission, 'id' );
+        $attachments = $resource->main_submission->attachments;
+
+        foreach ($attachments as $file) {
+            $upload_type = ( empty($type) ) ? $file->upload_type->slug : $type;
+
+            if ( in_array($upload_type, array('image', 'document', 'others')) ) {
+                if ( 'image' == $upload_type ) {
+                    $img_src = $relatos_service_url . '/uploads/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+                    $img_type_check = @exif_imagetype($img_src);
+
+                    if (strpos($http_response_header[0], "200")) {
+                        $relatos_files[] = $img_src;
+                    } else {
+                        foreach ($submissions as $submission) {
+                            $img_src = $relatos_service_url . '/uploads/' . str_pad($submission, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+                            $img_type_check = @exif_imagetype($img_src);
+
+                            if (strpos($http_response_header[0], "200")) {
+                                $relatos_files[] = $img_src;
+                                break;
+                            }
+                        }
+                    }
+                } else {
+                    $uri = $relatos_service_url . '/uploads/' . str_pad($submission_id, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+
+                    if (is_uri($uri)) {
+                        $relatos_files[] = $uri;
+                    } else {
+                        foreach ($submissions as $submission) {
+                            $uri = $relatos_service_url . '/uploads/' . str_pad($submission, 5, '0', STR_PAD_LEFT) . '/' . $file->filename;
+
+                            if (is_uri($uri)) {
+                                $relatos_files[] = $uri;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        return $relatos_files;
+    }
+}
+
 if ( !function_exists('get_relatos_images') ) {
     function get_relatos_images($resource){
         global $relatos_service_url;
@@ -222,6 +275,23 @@ if ( !function_exists('get_relatos_targets') ) {
         }
 
         return $relatos_targets;
+    }
+}
+
+if ( !function_exists('is_uri') ) {
+    function is_uri($uri) {
+        $ch = curl_init($uri);
+        curl_setopt($ch, CURLOPT_NOBODY, true);
+        curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+
+        if ($code == 200) {
+            $status = true;
+        } else {
+            $status = false;
+        }
+        curl_close($ch);
+        return $status;
     }
 }
 
