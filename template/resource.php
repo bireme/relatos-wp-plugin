@@ -447,7 +447,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
                         <?php endif; ?>
                         <?php if ( $resource->end_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ' ' . __('and/or current', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                            <?php if ( $resource->is_current_date ): ?>
+                                <i class="fas fa-calendar-alt"></i> <?php echo __('Current', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                            <?php else: ?>
+                                <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
 
