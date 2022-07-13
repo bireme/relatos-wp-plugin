@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Best Practices WP Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2022-02-23 22:54-0300\n"
-"PO-Revision-Date: 2022-02-23 22:54-0300\n"
+"POT-Creation-Date: 2022-07-13 20:15-0300\n"
+"PO-Revision-Date: 2022-07-13 20:16-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -17,133 +17,117 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: best-practices.php:103
-msgid "Best Practices settings"
-msgstr "Boas Práticas - Configurações"
-
-#: best-practices.php:103 widgets.php:13
-msgid "Best Practices"
-msgstr "Boas Práticas"
-
-#: best-practices.php:118
-msgid "Settings"
-msgstr "Configurações"
-
-#: best-practices.php:172
-msgid "Best Practices sidebar"
-msgstr "Boas Práticas - Barra lateral"
-
-#: best-practices.php:182
-msgid "Best Practices header"
-msgstr "Boas Práticas - Cabeçalho"
-
 #: lib/Paginator.php:34 lib/Paginator.php:35 lib/Paginator.php:46
 #: lib/Paginator.php:52 lib/Paginator.php:61 lib/Paginator.php:62
 #: lib/Paginator.php:68 lib/Paginator.php:69
 msgid "go to page"
 msgstr "ir para a página"
 
-#: settings.php:11 template/resource.php:313
-msgid "Type"
-msgstr "Tipo"
+#: relatos.php:103
+msgid "Experience Reports settings"
+msgstr "Relatos de Experiência - ConfiguraçõesRelatos de Experiência"
 
-#: settings.php:12 template/resource.php:319
-msgid "Sub Region"
-msgstr "Sub-região"
+#: relatos.php:103 widgets.php:13
+msgid "Experience Reports"
+msgstr "Relatos de Experiência"
 
-#: settings.php:13 template/resource.php:325
-msgid "Country"
-msgstr "País"
+#: relatos.php:118
+msgid "Settings"
+msgstr "Configurações"
 
-#: settings.php:14 template/resource.php:332 template/resource.php:337
-msgid "Institution"
-msgstr "Instituição"
+#: relatos.php:173
+msgid "Relatos sidebar"
+msgstr "Relatos de Experiência - Barra lateral"
 
-#: settings.php:15 template/resource.php:343 template/resource.php:348
-msgid "Stakeholder"
-msgstr "Parte Interessada"
+#: relatos.php:183
+msgid "Relatos header"
+msgstr "Relatos de Experiência - Cabeçalho"
 
-#: settings.php:16 template/resource.php:354
+#: settings.php:11 template/resource.php:522
+msgid "Collection"
+msgstr "Coleção"
+
+#: settings.php:12
+msgid "Thematic Area"
+msgstr "Área Temática"
+
+#: settings.php:13
 msgid "Population Group"
 msgstr "Grupo Populacional"
 
-#: settings.php:17 template/resource.php:362
-msgid "Intervention"
-msgstr "Intervenção"
+#: settings.php:14 template/resource.php:494
+msgid "Country"
+msgstr "País"
 
-#: settings.php:18
-msgid "Target"
-msgstr "Objetivo"
+#: settings.php:27
+msgid "Experience Reports record settings"
+msgstr "Relatos de Experiência - Configurações"
 
-#: settings.php:31
-msgid "Best Practices record settings"
-msgstr "Boas Práticas - Configurações"
-
-#: settings.php:39
+#: settings.php:35
 msgid "Plugin page"
 msgstr "Página do plugin"
 
-#: settings.php:43
+#: settings.php:39
 msgid "Filter query"
 msgstr "Filtro de busca"
 
-#: settings.php:47
+#: settings.php:43
 msgid "AddThis profile ID"
 msgstr "ID do AddThis"
 
-#: settings.php:51
+#: settings.php:47
 msgid "Google Analytics code"
 msgstr "Código Google Analytics"
 
-#: settings.php:55
+#: settings.php:51 template/resource.php:323
 msgid "Fulltext"
 msgstr "Texto completo"
 
-#: settings.php:59
+#: settings.php:55
 msgid "Present alternative fulltext links"
 msgstr "Apresentar links de texto completo alternativos"
 
-#: settings.php:74
+#: settings.php:70
 msgid "Home URL"
 msgstr "Link homepage"
 
-#: settings.php:79 settings.php:86
+#: settings.php:75 settings.php:82
 msgid "Page title"
 msgstr "Título da página"
 
-#: settings.php:92
+#: settings.php:88
 msgid "Related Documents filter"
 msgstr "Filtros dos Documentos Relacionados"
 
-#: settings.php:95 settings.php:102
+#: settings.php:91 settings.php:98
 msgid "The filters must be separated by commas."
 msgstr "Os filtros devem ser separados por vírgulas."
 
-#: settings.php:99
+#: settings.php:95
 msgid "More Related filter"
 msgstr "Filtro dos Mais Relacionados"
 
-#: settings.php:106
+#: settings.php:102
 msgid "Search filters"
 msgstr "Filtros de pesquisa"
 
-#: settings.php:111
+#: settings.php:107
 msgid "Available"
 msgstr "Disponíveis"
 
-#: settings.php:124
+#: settings.php:120
 msgid "Selected"
 msgstr "Selecionados"
 
-#: settings.php:145
+#: settings.php:141
 msgid "Save changes"
 msgstr "Guardar alterações"
 
-#: template/home.php:127 template/resource.php:115
+#: template/home.php:127 template/resource.php:121
 msgid "Enter one or more words"
 msgstr "Entre uma ou mais palavras"
 
-#: template/home.php:152 template/resource.php:133
+#: template/home.php:152 template/resource.php:139
 msgid "Home"
 msgstr "Início"
 
@@ -163,15 +147,11 @@ msgstr "Total"
 msgid "No results found"
 msgstr "Nenhum resultado encontrado"
 
-#: template/home.php:187 widgets.php:56
-msgid "Goals"
-msgstr "Objetivos"
-
-#: template/home.php:209
+#: template/home.php:202
 msgid "Selected Filters"
 msgstr "Filtros Selecionados"
 
-#: template/home.php:256
+#: template/home.php:249
 msgid "Filters"
 msgstr "Filtros"
 
@@ -179,168 +159,325 @@ msgstr "Filtros"
 msgid "No related documents"
 msgstr "Nenhum relacionado encontrado"
 
+#: template/resource.php:53
+msgid "Portuguese"
+msgstr "Português"
+
 #: template/resource.php:54
-msgid "I fully agree"
-msgstr "Eu concordo totalmente"
+msgid "Spanish"
+msgstr "Espanhol"
 
 #: template/resource.php:55
-msgid "I agree"
-msgstr "Eu concordo"
+msgid "French"
+msgstr "Francês"
 
 #: template/resource.php:56
-msgid "I can't say"
-msgstr "Eu não sei dizer"
+msgid "English"
+msgstr "Inglês"
 
-#: template/resource.php:57
-msgid "I disagree"
-msgstr "Eu discordo"
+#: template/resource.php:61
+msgid "Under implementation"
+msgstr "Em implementação"
 
-#: template/resource.php:58
-msgid "I totally disagree"
-msgstr "Eu discordo totalmente"
+#: template/resource.php:62
+msgid "Implemented and in regular operation"
+msgstr "Implementada e em operação regular"
 
-#: template/resource.php:147
+#: template/resource.php:63
+msgid "Interrupted"
+msgstr "Interrompida"
+
+#: template/resource.php:64
+msgid "Completed"
+msgstr "Concluída"
+
+#: template/resource.php:153
 msgid "Document not found"
 msgstr "Documento não encontrado"
 
-#: template/resource.php:168
-msgid "Basic Information"
-msgstr "Informação básica"
-
-#: template/resource.php:170
-msgid "Brief Introduction"
-msgstr "Breve introdução"
+#: template/resource.php:174
+msgid "Experience Details"
+msgstr "Detalhes da Experiência"
 
 #: template/resource.php:176
-msgid "Main Objectives"
-msgstr "Principais Objetivos"
+msgid "Issue"
+msgstr "Problema"
+
+#: template/resource.php:176
+msgid "Situation"
+msgstr "Situação"
 
 #: template/resource.php:182
-msgid "Implementation"
-msgstr "Implementação"
+msgid "Objectives"
+msgstr "Objetivos"
 
 #: template/resource.php:182
-msgid "Activities"
-msgstr "Atividades"
+msgid "Expected results"
+msgstr "Resultado esperados"
 
 #: template/resource.php:188
-msgid "Main Results"
-msgstr "Resultados Principais"
+msgid "Resources"
+msgstr "Recursos"
 
 #: template/resource.php:194
-msgid "Limitations and Hindrances"
-msgstr "Limitações e Impedimentos"
+msgid "Context"
+msgstr "Contexto"
 
 #: template/resource.php:200
-msgid "Main Topics"
-msgstr "Tópicos Principais"
+msgid "Experience status"
+msgstr "Situação da experiência"
 
-#: template/resource.php:200
-msgid "Themes"
-msgstr "Temas"
+#: template/resource.php:208
+msgid "Descriptors"
+msgstr "Descritores"
 
-#: template/resource.php:207
-msgid "Effectiveness & Efficiency"
-msgstr "Eficiência & Eficácia"
+#: template/resource.php:216
+msgid "Keywords"
+msgstr "Palavras-chave"
 
-#: template/resource.php:213
-msgid "Adaptability & Replicability"
-msgstr "Adaptabilidade & Replicabilidade"
+#: template/resource.php:222
+msgid "Main results"
+msgstr "Resultados alcançados"
 
-#: template/resource.php:219
-msgid "Technical Cooperation"
-msgstr "Cooperação Técnica"
+#: template/resource.php:222
+msgid "Impacts"
+msgstr "Impactos"
 
-#: template/resource.php:221
-msgid ""
-"What public health issue (or opportunity) led PAHO to participate on this "
-"Technical Cooperation project/initiative"
-msgstr ""
-"Que problema (ou oportunidade) de saúde pública levou a OPAS a participar "
-"deste projeto/iniciativa de Cooperação Técnica"
+#: template/resource.php:228
+msgid "Challenges"
+msgstr "Desafios"
 
-#: template/resource.php:227
-msgid ""
-"Was the TC planned considering the health situation of the target population"
-msgstr "A CT foi planejada considerando a situação de saúde da população-alvo"
+#: template/resource.php:234
+msgid "Lessons learned"
+msgstr "Lições aprendidadas"
 
-#: template/resource.php:233
-msgid ""
-"Recognition of PAHO's Technical Cooperation Importance by the Counterpart"
-msgstr ""
-"Reconhecimento da importância da Cooperação Técnica da OPAS pela contraparte"
+#: template/resource.php:240
+msgid "Responsible"
+msgstr "Responsável"
 
-#: template/resource.php:239
-msgid "Engagement with the Priorities Organization's Cross-Cutting Themes"
-msgstr "Envolvimento com os temas transversais prioritários  da Organização"
+#: template/resource.php:251 template/resource.php:294
+msgid "Filiation"
+msgstr "Filiação"
 
-#: template/resource.php:245
-msgid "Conclusion"
-msgstr "Conclusão"
+#: template/resource.php:255 template/resource.php:298
+msgid "Job"
+msgstr "Cargo"
 
-#: template/resource.php:247
-msgid ""
-"What were the obstacles or challenges faced during the implementation of "
-"this best practice/initiative"
-msgstr ""
-"Quais foram os obstáculos ou desafios enfrentados durante a implementação "
-"desta boa prática/iniciativa"
+#: template/resource.php:259 template/resource.php:306
+msgid "Email"
+msgstr "E-mail"
 
-#: template/resource.php:253
-msgid ""
-"What were the lessons learned for that will improve our expertise and add "
-"value to the Organization"
-msgstr ""
-"Quais foram as lições aprendidas que irão aprimorar nossa expertise e "
-"agregar valor à Organização"
+#: template/resource.php:263
+msgid "Phone"
+msgstr "Telefone"
 
-#: template/resource.php:258
-msgid "Multimedia"
-msgstr "Multimídia"
+#: template/resource.php:269 template/resource.php:312
+msgid "Curriculum"
+msgstr "Currículo"
 
-#: template/resource.php:277
-msgid "Sources"
-msgstr "Fontes"
+#: template/resource.php:276
+msgid "ORCID"
+msgstr "ORCID"
 
-#: template/resource.php:303
+#: template/resource.php:287
+msgid "Members"
+msgstr "Membros"
+
+#: template/resource.php:302
+msgid "Academic formation"
+msgstr "Formação acadêmica"
+
+#: template/resource.php:330
+msgid "Document"
+msgstr "Documento"
+
+#: template/resource.php:345
+msgid "More documents"
+msgstr "Mais documentos"
+
+#: template/resource.php:360
+msgid "Images"
+msgstr "Imagens"
+
+#: template/resource.php:377
+msgid "Videos"
+msgstr "Vídeos"
+
+#: template/resource.php:403
+msgid "Video"
+msgstr "Vídeo"
+
+#: template/resource.php:418
+msgid "Other medias"
+msgstr "Outras mídias"
+
+#: template/resource.php:433
+msgid "More medias"
+msgstr "Mais mídias"
+
+#: template/resource.php:447
+msgid "Products, materials and publications"
+msgstr "Produtos, materiais e publicações"
+
+#: template/resource.php:453
+msgid "Related links"
+msgstr "Links relacionados"
+
+#: template/resource.php:467
+msgid "Notes"
+msgstr "Observações"
+
+#: template/resource.php:476
 msgid "Dates"
 msgstr "Datas"
 
-#: template/resource.php:305
+#: template/resource.php:478
 msgid "Start"
 msgstr "Início"
 
-#: template/resource.php:308
+#: template/resource.php:481
 msgid "End"
 msgstr "Fim"
 
-#: template/resource.php:370
-msgid "SDG"
-msgstr "ODS"
+#: template/resource.php:487
+msgid "Language"
+msgstr "Idioma"
+
+#: template/resource.php:508
+msgid "Region"
+msgstr "Estado/Região"
+
+#: template/resource.php:515
+msgid "City"
+msgstr "Cidade"
+
+#: template/resource.php:537
+msgid "Thematic area"
+msgstr "Área temática"
+
+#: template/resource.php:552 template/resource.php:565
+msgid "Population"
+msgstr "População"
 
 #: template/rss.php:52
-msgid "Best Practices records"
-msgstr "Boas Práticas - Registros"
+msgid "Experience Reports records"
+msgstr "Relatos de Experiência - Registros"
 
 #: widgets.php:14
-msgid "Display the lastest best practices"
-msgstr "Exibir as boas práticas mais recentes"
+msgid "Display the lastest experiences"
+msgstr "Exibir os relatos de experiência mais recentes"
 
-#: widgets.php:66
-msgid "See more best practices"
-msgstr "Ver mais boas práticas"
+#: widgets.php:67
+msgid "See more experiences"
+msgstr "Ver mais experiências"
 
-#: widgets.php:66
-msgid "See more Best Practices"
-msgstr "Ver mais Boas Práticas"
+#: widgets.php:67
+msgid "See more Experience Reports"
+msgstr "Ver mais Relatos de Experiência"
 
-#: widgets.php:68
-msgid "No best practices found"
-msgstr "Nenhuma boa prática encontrada"
+#: widgets.php:69
+msgid "No experiences found"
+msgstr "Nenhuma experiências encontrada"
 
-#: widgets.php:97
+#: widgets.php:98
 msgid "Title"
 msgstr "Título"
+
+#~ msgid "Best Practices settings"
+#~ msgstr "Boas Práticas - Configurações"
+
+#~ msgid "Best Practices"
+#~ msgstr "Boas Práticas"
+
+#~ msgid "Best Practices header"
+#~ msgstr "Boas Práticas - Cabeçalho"
+
+#~ msgid "Type"
+#~ msgstr "Tipo"
+
+#~ msgid "Stakeholder"
+#~ msgstr "Parte Interessada"
+
+#~ msgid "Intervention"
+#~ msgstr "Intervenção"
+
+#~ msgid "Target"
+#~ msgstr "Objetivo"
+
+#~ msgid "Goals"
+#~ msgstr "Objetivos"
+
+#~ msgid "I fully agree"
+#~ msgstr "Eu concordo totalmente"
+
+#~ msgid "I agree"
+#~ msgstr "Eu concordo"
+
+#~ msgid "I can't say"
+#~ msgstr "Eu não sei dizer"
+
+#~ msgid "I disagree"
+#~ msgstr "Eu discordo"
+
+#~ msgid "I totally disagree"
+#~ msgstr "Eu discordo totalmente"
+
+#~ msgid "Brief Introduction"
+#~ msgstr "Breve introdução"
+
+#~ msgid "Activities"
+#~ msgstr "Atividades"
+
+#~ msgid "Limitations and Hindrances"
+#~ msgstr "Limitações e Impedimentos"
+
+#~ msgid "Main Topics"
+#~ msgstr "Tópicos Principais"
+
+#~ msgid "Themes"
+#~ msgstr "Temas"
+
+#~ msgid "Effectiveness & Efficiency"
+#~ msgstr "Eficiência & Eficácia"
+
+#~ msgid "Adaptability & Replicability"
+#~ msgstr "Adaptabilidade & Replicabilidade"
+
+#~ msgid "Technical Cooperation"
+#~ msgstr "Cooperação Técnica"
+
+#~ msgid "What public health issue (or opportunity) led PAHO to participate on this Technical Cooperation project/initiative"
+#~ msgstr "Que problema (ou oportunidade) de saúde pública levou a OPAS a participar deste projeto/iniciativa de Cooperação Técnica"
+
+#~ msgid "Was the TC planned considering the health situation of the target population"
+#~ msgstr "A CT foi planejada considerando a situação de saúde da população-alvo"
+
+#~ msgid "Recognition of PAHO's Technical Cooperation Importance by the Counterpart"
+#~ msgstr "Reconhecimento da importância da Cooperação Técnica da OPAS pela contraparte"
+
+#~ msgid "Engagement with the Priorities Organization's Cross-Cutting Themes"
+#~ msgstr "Envolvimento com os temas transversais prioritários  da Organização"
+
+#~ msgid "Conclusion"
+#~ msgstr "Conclusão"
+
+#~ msgid "What were the obstacles or challenges faced during the implementation of this best practice/initiative"
+#~ msgstr "Quais foram os obstáculos ou desafios enfrentados durante a implementação desta boa prática/iniciativa"
+
+#~ msgid "What were the lessons learned for that will improve our expertise and add value to the Organization"
+#~ msgstr "Quais foram as lições aprendidas que irão aprimorar nossa expertise e agregar valor à Organização"
+
+#~ msgid "Multimedia"
+#~ msgstr "Multimídia"
+
+#~ msgid "SDG"
+#~ msgstr "ODS"
+
+#~ msgid "Best Practices records"
+#~ msgstr "Boas Práticas - Registros"
+
+#~ msgid "See more Best Practices"
+#~ msgstr "Ver mais Boas Práticas"
 
 #~ msgid "Number of best practices"
 #~ msgstr "Número de boas práticas"
@@ -350,9 +487,6 @@ msgstr "Título"
 
 #~ msgid "Database"
 #~ msgstr "Base de dados"
-
-#~ msgid "Language"
-#~ msgstr "Idioma"
 
 #~ msgid "Year"
 #~ msgstr "Ano"
@@ -375,25 +509,11 @@ msgstr "Título"
 #~ msgid "Publication year"
 #~ msgstr "Ano de publicação"
 
-#~ msgid ""
-#~ "Theses and dissertations in %pub_lang% presented to the %institution% to "
-#~ "obtain the academic title of %academic_title%. Leader: %leader%"
-#~ msgstr ""
-#~ "Teses e dissertações em %pub_lang% apresentado à %institution% para "
-#~ "obtenção do título de %academic_title%. Orientador: %leader%"
+#~ msgid "Theses and dissertations in %pub_lang% presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
+#~ msgstr "Teses e dissertações em %pub_lang% apresentado à %institution% para obtenção do título de %academic_title%. Orientador: %leader%"
 
-#~ msgid ""
-#~ "Theses and dissertations presented to the %institution% to obtain the "
-#~ "academic title of %academic_title%. Leader: %leader%"
-#~ msgstr ""
-#~ "Teses e dissertações apresentado à %institution% para obtenção do título "
-#~ "de %academic_title%. Orientador: %leader%"
-
-#~ msgid "More related"
-#~ msgstr "Mais relacionados"
-
-#~ msgid "Related"
-#~ msgstr "Relacionados"
+#~ msgid "Theses and dissertations presented to the %institution% to obtain the academic title of %academic_title%. Leader: %leader%"
+#~ msgstr "Teses e dissertações apresentado à %institution% para obtenção do título de %academic_title%. Orientador: %leader%"
 
 #~ msgid "Bibliographic"
 #~ msgstr "Registros bibliográficos"
@@ -412,21 +532,6 @@ msgstr "Título"
 
 #~ msgid "Abstract"
 #~ msgstr "Resumo"
-
-#~ msgid "Portuguese"
-#~ msgstr "Português"
-
-#~ msgid "Spanish"
-#~ msgstr "Espanhol"
-
-#~ msgid "English"
-#~ msgstr "Inglês"
-
-#~ msgid "French"
-#~ msgstr "Francês"
-
-#~ msgid "Records"
-#~ msgstr "Registros"
 
 #~ msgid " in "
 #~ msgstr "em"

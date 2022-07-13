@@ -197,7 +197,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->status ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Experience Status', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Experience status', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $status[$resource->status]; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -219,7 +219,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->main_results ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->main_results; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -231,7 +231,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->lessons_learned ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Lessons Learned', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Lessons learned', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->lessons_learned; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -299,7 +299,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                                 <?php echo $member->job; ?><br />
                                             <?php endif; ?>
                                             <?php if ( $member->academic_formation ) : ?>
-                                                <b><?php echo __('Academic Formation', 'relatos'); ?></b><br />
+                                                <b><?php echo __('Academic formation', 'relatos'); ?></b><br />
                                                 <?php echo $member->academic_formation; ?><br />
                                             <?php endif; ?>
                                             <?php if ( $member->email ) : ?>
@@ -450,7 +450,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Related Links', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Related links', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($related_links as $link): ?>
                                 <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
                                     <a href="<?php echo $link; ?>" target="_blank">
@@ -534,7 +534,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
                     <?php if ( $resource->thematic_area ): ?>
                         <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Thematic Area', 'relatos')); ?></h4>
+                            <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
                             <table class="table table-sm">
                                 <tbody>
                                     <?php foreach ($resource->thematic_area as $thematic_area) : ?>
