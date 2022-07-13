@@ -57,8 +57,8 @@ class Relatos_Widget extends WP_Widget {
                 echo '<article>';
     			echo '<div class="destaqueBP">';
                 echo '<a href="' . real_site_url($relatos_config['plugin_slug']) . 'resource/?id=' . $item->id . '"><b>' . $data->title . '</b></a>';
-                if ( $data->notes ) {
-                    echo '<p>'. wp_trim_words( $data->notes, 60, '...' ) . '</p>';
+                if ( $data->description ) {
+                    echo '<p>'. wp_trim_words( $data->description, 60, '...' ) . '</p>';
                 }
                 echo '</div>';
                 echo '</article>';

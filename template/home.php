@@ -180,8 +180,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <article>
                             <div class="destaqueBP">
                                 <a href="<?php echo real_site_url($relatos_plugin_slug); ?>resource/?id=<?php echo $doc->id; ?>"><b><?php echo $doc->title; ?></b></a>
-                                <?php if ( $doc->notes ): ?>
-                                    <p><?php echo wp_trim_words( $doc->notes, 60, '...' ); ?></p>
+                                <?php if ( $doc->description ): ?>
+                                    <p><?php echo wp_trim_words( $doc->description, 60, '...' ); ?></p>
                                 <?php endif; ?>
                             </div>
                         </article>

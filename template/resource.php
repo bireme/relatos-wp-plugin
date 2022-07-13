@@ -202,14 +202,6 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         <?php endif; ?>
 
-                        <?php if ( $resource->keywords ) : ?>
-                            <?php $keywords = json_decode($resource->keywords, true); ?>
-                            <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Keywords', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo implode('; ', $keywords); ?></p>
-                            <hr />
-                        <?php endif; ?>
-
                         <?php if ( $resource->descriptors ) : ?>
                             <?php $descriptors = json_decode($resource->descriptors, true); ?>
                             <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
@@ -218,8 +210,16 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         <?php endif; ?>
 
+                        <?php if ( $resource->keywords ) : ?>
+                            <?php $keywords = json_decode($resource->keywords, true); ?>
+                            <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Keywords', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo implode('; ', $keywords); ?></p>
+                            <hr />
+                        <?php endif; ?>
+
                         <?php if ( $resource->main_results ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'relatos') . ':'; ?></b></h5>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Main Results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->main_results; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -318,7 +318,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php if ( $resource->attachments ) : ?>
                             <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
                             <?php if ( $relatos_docs ) : ?>
-                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Documents', 'relatos') . ':'; ?></b></h5>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Document', 'relatos') . ':'; ?></b></h5>
                                 <?php foreach ($relatos_docs as $uri): ?>
                                     <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
                                         <a href="<?php echo $uri; ?>" target="_blank">
@@ -332,7 +332,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <hr />
                             <?php endif; ?>
                         <?php endif; ?>
-
+<!--
                         <?php if ( $resource->other_docs ) : $other_docs = explode("\r\n", $resource->other_docs); ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('More documents', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($other_docs as $link): ?>
@@ -346,7 +346,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php endforeach; ?>
                             <hr />
                         <?php endif; ?>
-
+-->
                         <?php if ( $resource->attachments ) : ?>
                             <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
                             <?php if ( $relatos_images ) : ?>
@@ -366,17 +366,59 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php endif; ?>
                         <?php endif; ?>
 
-                        <?php if ( $resource->other_videos ) : $other_videos = explode("\r\n", $resource->other_videos); ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
-                            <?php foreach ($other_videos as $link): ?>
-                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
-                                    <a href="<?php echo $link; ?>" target="_blank">
-                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                                        <?php echo $link; ?>
-                                        <br />
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+                        <?php if ( $resource->attachments ) : ?>
+                            <?php $relatos_docs = get_relatos_attachment($response_json[0], 'video'); ?>
+                            <?php if ( $relatos_docs ) : ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
+                                <?php foreach ($relatos_docs as $uri): ?>
+                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                        <div class="embed-responsive embed-responsive-4by3">
+                                            <iframe class="embed-responsive-item" src="<?php echo $uri; ?>" allowfullscreen></iframe>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                                <hr />
+                            <?php endif; ?>
+                        <?php endif; ?>
+
+                        <?php if ( $resource->attachments ) : ?>
+                            <?php $relatos_docs = get_relatos_attachment($response_json[0], 'video'); ?>
+                            <?php if ( $relatos_docs ) : $count = 0; ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
+                                <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <?php foreach ($relatos_docs as $uri): ?>
+                                        <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                                            <div class="carousel-item <?php if ( $count == 1 ) echo 'active'; ?>">
+                                              <div class="embed-responsive embed-responsive-21by9">
+                                                <iframe class="embed-responsive-item" src="<?php echo $uri; ?>" allowfullscreen></iframe>
+                                              </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                  </div>
+                                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                  </a>
+                                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                  </a>
+                                </div>
+                                <hr />
+                            <?php endif; ?>
+                        <?php elseif ( $resource->other_videos ): ?>
+                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Video', 'relatos') . ':'; ?></b></h5>
+                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <div class="embed-responsive embed-responsive-21by9">
+                                        <?php echo $resource->other_videos; ?>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
                             <hr />
                         <?php endif; ?>
 
@@ -397,7 +439,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <hr />
                             <?php endif; ?>
                         <?php endif; ?>
-
+<!--
                         <?php if ( $resource->other_medias ) : $other_medias = explode("\r\n", $resource->other_medias); ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('More medias', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($other_medias as $link): ?>
@@ -411,7 +453,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php endforeach; ?>
                             <hr />
                         <?php endif; ?>
-
+-->
                         <?php if ( $resource->products_information ): ?>
                             <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo nl2br($resource->products_information); ?></p>
@@ -459,6 +501,20 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <div class="box1 title1">
                             <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
                             <?php echo $language[$resource->language]; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if ( $resource->country ): ?>
+                        <div class="box1 title1">
+                            <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" style="width: 30px;"></td>
+                                        <td><?php echo $resource->country->name; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     <?php endif; ?>
 
