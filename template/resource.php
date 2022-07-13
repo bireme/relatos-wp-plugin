@@ -400,17 +400,20 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             </div>
                             <hr />
                         <?php elseif ( $resource->other_videos ): ?>
-                            <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Video', 'relatos') . ':'; ?></b></h5>
-                            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="embed-responsive embed-responsive-21by9">
-                                        <?php echo $resource->other_videos; ?>
+                            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+                            <?php if ( $other_videos ) : ?>
+                                <h5><i class="fas fa-chevron-right"></i><b><?php echo __('Video', 'relatos') . ':'; ?></b></h5>
+                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                  <div class="carousel-inner">
+                                    <div class="carousel-item active">
+                                        <div class="embed-responsive embed-responsive-21by9">
+                                            <?php echo $resource->other_videos; ?>
+                                        </div>
                                     </div>
+                                  </div>
                                 </div>
-                              </div>
-                            </div>
-                            <hr />
+                                <hr />
+                            <?php endif; ?>
                         <?php endif; ?>
 
                         <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
