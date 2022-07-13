@@ -331,7 +331,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php foreach ($relatos_docs as $uri): ?>
                                 <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
                                     <a href="<?php echo $uri; ?>" target="_blank">
-                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
                                         <?php $filename = explode('_', basename($uri)); ?>
                                         <?php echo end($filename); ?>
                                         <br />
@@ -419,7 +419,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <?php foreach ($relatos_medias as $uri): ?>
                                 <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
                                     <a href="<?php echo $uri; ?>" target="_blank">
-                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
                                         <?php $filename = explode('_', basename($uri)); ?>
                                         <?php echo end($filename); ?>
                                         <br />
