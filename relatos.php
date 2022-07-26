@@ -91,9 +91,12 @@ if(!class_exists('Relatos_Plugin')) {
                 $site_language = strtolower(get_bloginfo('language'));
                 $lang = substr($site_language,0,2);
 
-                $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_" . $lang . ".ini", true);
+                $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_".$lang.".ini", true);
                 if ( !$relatos_texts ) {
-                    $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_en.ini", true);
+                    $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_".$lang."-SAMPLE.ini", true);
+                    if ( !$relatos_texts ) {
+                        $relatos_texts = @parse_ini_file(RELATOS_PLUGIN_PATH . "/languages/texts_en-SAMPLE.ini", true);
+                    }
                 }
             }
 

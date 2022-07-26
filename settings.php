@@ -4,16 +4,18 @@ function relatos_page_admin() {
 
     $config = get_option('relatos_config');
 
+    $available_filter_list = array(
+                                'collection' =>  __('Collection','relatos'),
+                                'thematic_area' =>  __('Thematic Area','relatos'),
+                                'population_group' =>  __('Population Group','relatos'),
+                                'country' =>  __('Country','relatos'),
+    );
+
     if ($relatos_texts['filter']){
-        $available_filter_list = $relatos_texts['filter'];
+        $available_filter_list = array_merge($relatos_texts['filter'], $default_filter_list);
     }else{
-        $available_filter_list = array(
-                                    'collection' =>  __('Collection','relatos'),
-                                    'thematic_area' =>  __('Thematic Area','relatos'),
-                                    'population_group' =>  __('Population Group','relatos'),
-                                    'country' =>  __('Country','relatos'),
-        );
-        $relatos_texts['filter'] = $available_filter_list;
+        $available_filter_list   = $default_filter_list;
+        $relatos_texts['filter'] = $default_filter_list;
     }
 
     if ( $config['available_filter'] ){
@@ -121,7 +123,7 @@ function relatos_page_admin() {
                                           <ul id="sortable2" class="connectedSortable">
                                               <?php
                                                 foreach ($config_filter_list as $selected_filter) {
-                                                    $filter_title = $relatos_texts['filter'][$selected_filter];
+                                                    $filter_title = $available_filter_list[$selected_filter];
                                                     if ($filter_title != ''){
                                                         echo '<li class="ui-state-default" id="' . $selected_filter . '">' . $filter_title . '</li>';
                                                     }
