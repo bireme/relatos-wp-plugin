@@ -4,7 +4,7 @@ function relatos_page_admin() {
 
     $config = get_option('relatos_config');
 
-    $available_filter_list = array(
+    $default_filter_list = array(
                                 'collection' =>  __('Collection','relatos'),
                                 'thematic_area' =>  __('Thematic Area','relatos'),
                                 'population_group' =>  __('Population Group','relatos'),
