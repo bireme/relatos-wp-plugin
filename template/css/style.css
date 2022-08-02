@@ -93,8 +93,8 @@
 .ast-container {
     display: inline !important;
 }
-header[class^='ast-'] {
-	display: none;
+header[class*='ast-'] {
+    display: none;
 }
 
 .box1{
