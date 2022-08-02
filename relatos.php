@@ -268,14 +268,18 @@ if(!class_exists('Relatos_Plugin')) {
         }
 
         function page_template_styles_scripts(){
-            wp_enqueue_script ('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
-            wp_enqueue_script ('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
-            wp_enqueue_script ('relatos', RELATOS_PLUGIN_URL . 'template/js/functions.js', array(), RELATOS_PLUGIN_VERSION);
-            wp_enqueue_style ('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
-            wp_enqueue_style ('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/css/tooltipster.css');
-            wp_enqueue_style ('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
-            wp_enqueue_style ('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
-            wp_enqueue_style ('relatos-styles',  RELATOS_PLUGIN_URL . 'template/css/style.css', array(), RELATOS_PLUGIN_VERSION);
+            wp_enqueue_script('bootstrap-popper', '//cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array(), '1.14.7', true);
+            wp_enqueue_script('bootstrap-js', '//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', array(), '4.3.1', true);
+            wp_enqueue_script('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
+            wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
+            wp_enqueue_script('relatos', RELATOS_PLUGIN_URL . 'template/js/functions.js', array(), RELATOS_PLUGIN_VERSION);
+
+            wp_enqueue_style('bootstrap-css', '//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
+            wp_enqueue_style('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
+            wp_enqueue_style('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/css/tooltipster.css');
+            wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
+            wp_enqueue_style('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+            wp_enqueue_style('relatos-styles',  RELATOS_PLUGIN_URL . 'template/css/style.css', array(), RELATOS_PLUGIN_VERSION);
         }
 
         function register_settings(){

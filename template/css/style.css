@@ -90,6 +90,9 @@
 .color1{
     background: #f2f2f2;
 }
+.ast-container {
+    display: inline;
+}
 
 .box1{
     border: 1px solid #00adef;
