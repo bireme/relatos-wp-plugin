@@ -277,6 +277,7 @@ header[class*='ast-'] {
 }
 .bp-filters table {
     margin-bottom: 0;
+    border:  0;
 }
 .bp-filters table tr td {
     vertical-align: middle;
