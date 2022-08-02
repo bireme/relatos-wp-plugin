@@ -93,6 +93,9 @@
 .ast-container {
     display: inline !important;
 }
+header[class^='ast-'] {
+	display: none;
+}
 
 .box1{
     border: 1px solid #00adef;
