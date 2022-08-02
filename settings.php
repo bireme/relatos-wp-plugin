@@ -18,10 +18,9 @@ function relatos_page_admin() {
         $relatos_texts['filter'] = $default_filter_list;
     }
 
+    $config_filter_list = array();
     if ( $config['available_filter'] ){
         $config_filter_list = explode(';', $config['available_filter']);
-    }else{
-        $config_filter_list = array_keys($available_filter_list);
     }
 ?>
     <div class="wrap">
