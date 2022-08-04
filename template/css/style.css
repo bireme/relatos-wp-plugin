@@ -230,6 +230,7 @@ header[class*='ast-'] {
 }
 #fieldSearch{
     padding-left: 30px;
+    height: calc(1.5em + 0.75rem + 2px);
 }
 .btnA{
     margin-top: 3px;
