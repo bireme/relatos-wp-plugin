@@ -93,6 +93,9 @@
 .ast-container {
     display: inline !important;
 }
+.ast-separate-container {
+    background-color: #fff;
+}
 header[class*='ast-'] {
     display: none;
 }
