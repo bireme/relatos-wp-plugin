@@ -119,6 +119,9 @@ header[class*='ast-'] {
 	width: 17rem;
 	margin-top: 5px;
 }
+.card-box {
+	background: #f8f8ff;
+}
 .title1{
     font-family: 'Roboto', sans-serif;
 }

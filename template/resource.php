@@ -239,7 +239,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php if ( $resource->responsible ): ?>
                             <h5><b><?php echo __('Responsible', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($resource->responsible as $responsible) : ?>
-                                <div class="card box2">
+                                <div class="card box2 card-box">
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
                                     <?php if ( $responsible_image ) : ?>
                                         <img class="resp-avatar card-img-top" src="<?php echo $responsible_image[0]; ?>" loading="lazy" alt="">
@@ -286,7 +286,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php if ( $resource->members ): ?>
                             <h5><b><?php echo __('Members', 'relatos') . ':'; ?></b></h5>
                             <?php foreach ($resource->members as $member) : ?>
-                                <div class="card box2">
+                                <div class="card box2 card-box">
                                     <div class="card-body">
                                         <h5 class="card-title"><?php echo $member->name; ?></h5>
                                         <p class="card-text">
@@ -536,38 +536,47 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php endif; ?>
 
                     <?php if ( $resource->thematic_area ): ?>
-                        <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
-                            <table class="table table-sm">
-                                <tbody>
-                                    <?php foreach ($resource->thematic_area as $thematic_area) : ?>
-                                    <tr>
-                                        <td><?php echo $thematic_area->name; ?></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
+                        <?php if ( count($resource->thematic_area) == 1 && $resource->other_thematic_area ): ?>
+                            <div class="box1 title1">
+                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                                <?php echo $resource->other_thematic_area; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="box1 title1">
+                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <?php foreach ($resource->thematic_area as $thematic_area) : ?>
+                                        <tr>
+                                            <td><?php echo $thematic_area->name; ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
 
                     <?php if ( $resource->population_group ): ?>
-                        <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                            <table class="table table-sm">
-                                <tbody>
-                                    <?php foreach ($resource->population_group as $population_group) : ?>
-                                    <tr>
-                                        <td><?php echo $population_group->name; ?></td>
-                                    </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    <?php elseif ( $resource->other_population_group ): ?>
-                        <div class="box1 title1">
-                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                            <?php echo $resource->other_population_group; ?>
-                        </div>
+                        <?php if ( count($resource->population_group) == 1 && $resource->other_population_group ): ?>
+                            <div class="box1 title1">
+                                <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                                <?php echo $resource->other_population_group; ?>
+                            </div>
+                        <?php else: ?>
+                            <div class="box1 title1">
+                                <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <?php foreach ($resource->population_group as $population_group) : ?>
+                                        <tr>
+                                            <td><?php echo $population_group->name; ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             <?php endif; ?>
