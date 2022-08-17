@@ -273,9 +273,11 @@ if(!class_exists('Relatos_Plugin')) {
             wp_enqueue_script('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
             wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
             wp_enqueue_script('relatos', RELATOS_PLUGIN_URL . 'template/js/functions.js', array(), RELATOS_PLUGIN_VERSION);
+            wp_enqueue_script('fontawesome-js', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js');
 
+            // wp_enqueue_style('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
+            wp_enqueue_style('fontawesome-css', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
             wp_enqueue_style('bootstrap-css', '//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css');
-            wp_enqueue_style('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
             wp_enqueue_style('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/css/tooltipster.css');
             wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
             wp_enqueue_style('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
