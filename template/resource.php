@@ -238,84 +238,88 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
                         <?php if ( $resource->responsible ): ?>
                             <h5><b><?php echo __('Responsible', 'relatos') . ':'; ?></b></h5>
-                            <?php foreach ($resource->responsible as $responsible) : ?>
-                                <div class="card box2 card-box">
-                                    <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
-                                    <?php if ( $responsible_image ) : ?>
-                                        <img class="resp-avatar card-img-top" src="<?php echo $responsible_image[0]; ?>" loading="lazy" alt="">
-                                    <?php endif; ?>
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $responsible->name; ?></h5>
-                                        <p class="card-text">
-                                            <?php if ( $responsible->filiation ) : ?>
-                                                <b><?php echo __('Filiation', 'relatos'); ?></b><br />
-                                                <?php echo $responsible->filiation; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $responsible->job ) : ?>
-                                                <b><?php echo __('Job', 'relatos'); ?></b><br />
-                                                <?php echo $responsible->job; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $responsible->email ) : ?>
-                                                <b><?php echo __('Email', 'relatos'); ?></b><br />
-                                                <?php echo $responsible->email; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $responsible->phone ) : ?>
-                                                <b><?php echo __('Phone', 'relatos'); ?></b><br />
-                                                <?php echo $responsible->phone; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $responsible->curriculum ) : ?>
-                                                <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank">
-                                                    <i class="far fa-file" aria-hidden="true"> </i>
-                                                    <?php echo __('Curriculum', 'relatos'); ?>
-                                                </a>
-                                                <br />
-                                            <?php endif; ?>
-                                            <?php if ( $responsible->orcid ) : ?>
-                                                <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank">
-                                                    <i class="fa fa-external-link-alt" aria-hidden="true"> </i>
-                                                    <?php echo __('ORCID', 'relatos'); ?>
-                                                </a>
-                                            <?php endif; ?>
-                                        </p>
+                            <div class="card-grid">
+                                <?php foreach ($resource->responsible as $responsible) : ?>
+                                    <div class="card box2 card-box">
+                                        <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
+                                        <?php if ( $responsible_image ) : ?>
+                                            <img class="resp-avatar card-img-top" src="<?php echo $responsible_image[0]; ?>" loading="lazy" alt="">
+                                        <?php endif; ?>
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $responsible->name; ?></h5>
+                                            <p class="card-text">
+                                                <?php if ( $responsible->filiation ) : ?>
+                                                    <b><?php echo __('Filiation', 'relatos'); ?></b><br />
+                                                    <?php echo $responsible->filiation; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $responsible->job ) : ?>
+                                                    <b><?php echo __('Job', 'relatos'); ?></b><br />
+                                                    <?php echo $responsible->job; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $responsible->email ) : ?>
+                                                    <b><?php echo __('Email', 'relatos'); ?></b><br />
+                                                    <?php echo $responsible->email; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $responsible->phone ) : ?>
+                                                    <b><?php echo __('Phone', 'relatos'); ?></b><br />
+                                                    <?php echo $responsible->phone; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $responsible->curriculum ) : ?>
+                                                    <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank">
+                                                        <i class="far fa-file" aria-hidden="true"> </i>
+                                                        <?php echo __('Curriculum', 'relatos'); ?>
+                                                    </a>
+                                                    <br />
+                                                <?php endif; ?>
+                                                <?php if ( $responsible->orcid ) : ?>
+                                                    <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank">
+                                                        <i class="fa fa-external-link-alt" aria-hidden="true"> </i>
+                                                        <?php echo __('ORCID', 'relatos'); ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                             <hr />
                         <?php endif; ?>
 
-                        <?php if ( $resource->members ): ?>
+                        <?php if ( $resource->members ): $count = 0; ?>
                             <h5><b><?php echo __('Members', 'relatos') . ':'; ?></b></h5>
-                            <?php foreach ($resource->members as $member) : ?>
-                                <div class="card box2 card-box">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?php echo $member->name; ?></h5>
-                                        <p class="card-text">
-                                            <?php if ( $member->filiation ) : ?>
-                                                <b><?php echo __('Filiation', 'relatos'); ?></b><br />
-                                                <?php echo $member->filiation; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $member->job ) : ?>
-                                                <b><?php echo __('Job', 'relatos'); ?></b><br />
-                                                <?php echo $member->job; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $member->academic_formation ) : ?>
-                                                <b><?php echo __('Academic formation', 'relatos'); ?></b><br />
-                                                <?php echo $member->academic_formation; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $member->email ) : ?>
-                                                <b><?php echo __('Email', 'relatos'); ?></b><br />
-                                                <?php echo $member->email; ?><br />
-                                            <?php endif; ?>
-                                            <?php if ( $member->curriculum ) : ?>
-                                                <a href="<?php echo $member->curriculum; ?>" class="card-link" target="_blank">
-                                                    <i class="far fa-file" aria-hidden="true"> </i>
-                                                    <?php echo __('Curriculum', 'relatos'); ?>
-                                                </a>
-                                            <?php endif; ?>
-                                        </p>
+                            <div class="card-grid">
+                                <?php foreach ($resource->members as $member) : $count++; ?>
+                                    <div class="card box2 card-box">
+                                        <div class="card-body">
+                                            <h5 class="card-title"><?php echo $member->name; ?></h5>
+                                            <p class="card-text">
+                                                <?php if ( $member->filiation ) : ?>
+                                                    <b><?php echo __('Filiation', 'relatos'); ?></b><br />
+                                                    <?php echo $member->filiation; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $member->job ) : ?>
+                                                    <b><?php echo __('Job', 'relatos'); ?></b><br />
+                                                    <?php echo $member->job; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $member->academic_formation ) : ?>
+                                                    <b><?php echo __('Academic formation', 'relatos'); ?></b><br />
+                                                    <?php echo $member->academic_formation; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $member->email ) : ?>
+                                                    <b><?php echo __('Email', 'relatos'); ?></b><br />
+                                                    <?php echo $member->email; ?><br />
+                                                <?php endif; ?>
+                                                <?php if ( $member->curriculum ) : ?>
+                                                    <a href="<?php echo $member->curriculum; ?>" class="card-link" target="_blank">
+                                                        <i class="far fa-file" aria-hidden="true"> </i>
+                                                        <?php echo __('Curriculum', 'relatos'); ?>
+                                                    </a>
+                                                <?php endif; ?>
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                            <?php endforeach; ?>
+                                <?php endforeach; ?>
+                            </div>
                             <hr />
                         <?php endif; ?>
 
@@ -375,42 +379,22 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
                         <?php if ( $relatos_videos ) : $count = 0; ?>
                             <h5><b><?php echo __('Videos', 'relatos') . ':'; ?></b></h5>
-                            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-                              <div class="carousel-inner">
-                                <?php foreach ($relatos_videos as $uri): ?>
-                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
-                                        <div class="carousel-item <?php if ( $count == 1 ) echo 'active'; ?>">
-                                          <div class="embed-responsive embed-responsive-21by9">
-                                            <iframe class="embed-responsive-item" src="<?php echo $uri; ?>" allowfullscreen></iframe>
-                                          </div>
-                                        </div>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                              </div>
-                              <?php if ( count($relatos_videos) > 1 ) : ?>
-                                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Previous</span>
-                                  </a>
-                                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="sr-only">Next</span>
-                                  </a>
-                              <?php endif; ?>
-                            </div>
-                            <hr />
+                            <?php foreach ($relatos_videos as $uri): ?>
+                                <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                                    <div class="embed-responsive embed-responsive-21by9">
+                                        <video src="<?php echo $uri; ?>" controls="controls">
+                                            <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
+                                        </video>
+                                    </div>
+                                    <hr />
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         <?php elseif ( $resource->other_videos ): ?>
                             <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
                             <?php if ( $other_videos ) : ?>
                                 <h5><b><?php echo __('Video', 'relatos') . ':'; ?></b></h5>
-                                <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-                                  <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <div class="embed-responsive embed-responsive-21by9">
-                                            <?php echo $resource->other_videos; ?>
-                                        </div>
-                                    </div>
-                                  </div>
+                                <div class="embed-responsive embed-responsive-21by9">
+                                    <?php echo $resource->other_videos; ?>
                                 </div>
                                 <hr />
                             <?php endif; ?>

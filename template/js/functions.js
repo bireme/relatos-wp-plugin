@@ -76,6 +76,15 @@ $j(document).ready(function(){
     });
 });
 
+$j(document).ready(function(){
+    $j("video").click(function() {
+        var video = $j(this).get(0);
+        $j("video").not(this).each(function() {
+            $j(this).get(0).pause();
+        });
+    });
+});
+
 function change_count(elem) {
     var form = document.searchForm;
     form.count.value = elem.value;
