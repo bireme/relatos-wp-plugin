@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Best Practices WP Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2022-07-13 20:17-0300\n"
-"PO-Revision-Date: 2022-07-13 20:17-0300\n"
+"POT-Creation-Date: 2022-08-25 00:42-0300\n"
+"PO-Revision-Date: 2022-08-25 00:42-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -23,103 +23,103 @@ msgstr ""
 msgid "go to page"
 msgstr "ir a la página"
 
-#: relatos.php:103
+#: relatos.php:106
 msgid "Experience Reports settings"
 msgstr ""
 
-#: relatos.php:103 widgets.php:13
+#: relatos.php:106 widgets.php:13
 msgid "Experience Reports"
 msgstr ""
 
-#: relatos.php:118
+#: relatos.php:121
 msgid "Settings"
 msgstr "Configuración"
 
-#: relatos.php:173
+#: relatos.php:176
 msgid "Relatos sidebar"
 msgstr ""
 
-#: relatos.php:183
+#: relatos.php:186
 msgid "Relatos header"
 msgstr ""
 
-#: settings.php:11 template/resource.php:522
+#: settings.php:8 template/resource.php:515
 msgid "Collection"
 msgstr ""
 
-#: settings.php:12
+#: settings.php:9
 msgid "Thematic Area"
 msgstr ""
 
-#: settings.php:13
+#: settings.php:10
 msgid "Population Group"
 msgstr "Grupo Poblacional"
 
-#: settings.php:14 template/resource.php:494
+#: settings.php:11 template/resource.php:487
 msgid "Country"
 msgstr "País"
 
-#: settings.php:27
+#: settings.php:28
 msgid "Experience Reports record settings"
 msgstr ""
 
-#: settings.php:35
+#: settings.php:36
 msgid "Plugin page"
 msgstr "Pagina del plugin"
 
-#: settings.php:39
+#: settings.php:40
 msgid "Filter query"
 msgstr "Filtro de búsqueda"
 
-#: settings.php:43
+#: settings.php:44
 msgid "AddThis profile ID"
 msgstr "ID de AddThis"
 
-#: settings.php:47
+#: settings.php:48
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:51 template/resource.php:323
+#: settings.php:52 template/resource.php:327
 msgid "Fulltext"
 msgstr "Texto completo"
 
-#: settings.php:55
+#: settings.php:56
 msgid "Present alternative fulltext links"
 msgstr "Presentar enlaces alternativo del  texto completo"
 
-#: settings.php:70
+#: settings.php:71
 msgid "Home URL"
 msgstr "Inicio"
 
-#: settings.php:75 settings.php:82
+#: settings.php:76 settings.php:83
 msgid "Page title"
 msgstr "Título de la página"
 
-#: settings.php:88
+#: settings.php:89
 msgid "Related Documents filter"
 msgstr "Filtro de Documentos Relacionados"
 
-#: settings.php:91 settings.php:98
+#: settings.php:92 settings.php:99
 msgid "The filters must be separated by commas."
 msgstr "Los filtros deben estar separados por comas."
 
-#: settings.php:95
+#: settings.php:96
 msgid "More Related filter"
 msgstr "Filtro de Más Relacionados"
 
-#: settings.php:102
+#: settings.php:103
 msgid "Search filters"
 msgstr "Filtros de búsqueda"
 
-#: settings.php:107
+#: settings.php:108
 msgid "Available"
 msgstr "Disponible"
 
-#: settings.php:120
+#: settings.php:121
 msgid "Selected"
 msgstr "Seleccionados"
 
-#: settings.php:141
+#: settings.php:142
 msgid "Save changes"
 msgstr "Guardar cambios"
 
@@ -154,6 +154,10 @@ msgstr "Filtros Seleccionados"
 #: template/home.php:249
 msgid "Filters"
 msgstr "Filtros"
+
+#: template/home.php:302
+msgid "show more"
+msgstr ""
 
 #: template/related.php:64 template/similar.php:49
 msgid "No related documents"
@@ -220,7 +224,7 @@ msgid "Resources"
 msgstr ""
 
 #: template/resource.php:194
-msgid "Context"
+msgid "Location"
 msgstr ""
 
 #: template/resource.php:200
@@ -255,107 +259,115 @@ msgstr ""
 msgid "Responsible"
 msgstr ""
 
-#: template/resource.php:251 template/resource.php:294
+#: template/resource.php:252 template/resource.php:297
 msgid "Filiation"
 msgstr ""
 
-#: template/resource.php:255 template/resource.php:298
+#: template/resource.php:256 template/resource.php:301
 msgid "Job"
 msgstr ""
 
-#: template/resource.php:259 template/resource.php:306
+#: template/resource.php:260 template/resource.php:309
 msgid "Email"
 msgstr ""
 
-#: template/resource.php:263
+#: template/resource.php:264
 msgid "Phone"
 msgstr ""
 
-#: template/resource.php:269 template/resource.php:312
+#: template/resource.php:270 template/resource.php:315
 msgid "Curriculum"
 msgstr ""
 
-#: template/resource.php:276
+#: template/resource.php:277
 msgid "ORCID"
 msgstr ""
 
-#: template/resource.php:287
+#: template/resource.php:289
 msgid "Members"
 msgstr ""
 
-#: template/resource.php:302
+#: template/resource.php:305
 msgid "Academic formation"
 msgstr ""
 
-#: template/resource.php:330
+#: template/resource.php:334
 msgid "Document"
 msgstr ""
 
-#: template/resource.php:345
+#: template/resource.php:349
 msgid "More documents"
 msgstr ""
 
-#: template/resource.php:360
+#: template/resource.php:364
 msgid "Images"
 msgstr ""
 
-#: template/resource.php:377
+#: template/resource.php:381
 msgid "Videos"
 msgstr ""
 
-#: template/resource.php:403
+#: template/resource.php:386
+msgid "Your browser does not support the video tag."
+msgstr ""
+
+#: template/resource.php:395
 msgid "Video"
 msgstr ""
 
-#: template/resource.php:418
+#: template/resource.php:405
 msgid "Other medias"
 msgstr ""
 
-#: template/resource.php:433
+#: template/resource.php:420
 msgid "More medias"
 msgstr ""
 
-#: template/resource.php:447
+#: template/resource.php:434
+msgid "Event where the experience was presented"
+msgstr ""
+
+#: template/resource.php:440
 msgid "Products, materials and publications"
 msgstr ""
 
-#: template/resource.php:453
+#: template/resource.php:446
 msgid "Related links"
 msgstr ""
 
-#: template/resource.php:467
+#: template/resource.php:460
 msgid "Notes"
 msgstr ""
 
-#: template/resource.php:476
+#: template/resource.php:469
 msgid "Dates"
 msgstr "Fechas"
 
-#: template/resource.php:478
+#: template/resource.php:471
 msgid "Start"
 msgstr "Inicio"
 
-#: template/resource.php:481
+#: template/resource.php:474
 msgid "End"
 msgstr "Fin"
 
-#: template/resource.php:487
+#: template/resource.php:480
 msgid "Language"
 msgstr "Idioma"
 
-#: template/resource.php:508
+#: template/resource.php:501
 msgid "Region"
 msgstr ""
 
-#: template/resource.php:515
+#: template/resource.php:508
 msgid "City"
 msgstr ""
 
-#: template/resource.php:537
+#: template/resource.php:531 template/resource.php:536
 msgid "Thematic area"
 msgstr ""
 
-#: template/resource.php:552 template/resource.php:565
+#: template/resource.php:553 template/resource.php:558
 msgid "Population"
 msgstr ""
 
