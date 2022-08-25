@@ -191,7 +191,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php if ( $resource->context ): ?>
-                            <h5><b><?php echo __('Context', 'relatos') . ':'; ?></b></h5>
+                            <h5><b><?php echo __('Location', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo $resource->context; ?></p>
                             <hr />
                         <?php endif; ?>
@@ -430,6 +430,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         <?php endif; ?>
 -->
+                        <?php if ( $resource->event ): ?>
+                            <h5><b><?php echo __('Event where the experience was presented', 'relatos') . ':'; ?></b></h5>
+                            <p><?php echo nl2br($resource->event); ?></p>
+                            <hr />
+                        <?php endif; ?>
+
                         <?php if ( $resource->products_information ): ?>
                             <h5><b><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></b></h5>
                             <p><?php echo nl2br($resource->products_information); ?></p>
