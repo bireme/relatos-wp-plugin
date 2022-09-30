@@ -256,7 +256,7 @@ if ( !function_exists('get_relatos_targets') ) {
 
         foreach ($texts as $text) {
             $keys = array_map(function($val) {
-                return explode('^', $val){0};
+                return explode('^', $val)[0];
             }, $text);
 
             $values = array_map(function($val) {
