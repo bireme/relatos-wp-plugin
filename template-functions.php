@@ -260,7 +260,7 @@ if ( !function_exists('get_relatos_targets') ) {
             }, $text);
 
             $values = array_map(function($val) {
-                return explode('^', $val){1};
+                return explode('^', $val)[1];
             }, $text);
 
             $t = array_combine($keys, $values);
