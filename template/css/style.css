@@ -90,6 +90,9 @@
 .color1{
     background: #f2f2f2;
 }
+.color2{
+    background-color: #f8f9fa;
+}
 .ast-container {
     display: inline !important;
 }
@@ -101,22 +104,29 @@ header[class*='ast-'] {
 }
 
 .box1{
-    border: 1px solid #00adef;
     margin-bottom: 10px;
     font-size: 13px;
     padding: 10px 10px 5px 10px;
+    background: #fff;
+    transition: background .5s ease;
+}
+.box1:hover{
+    background: #eee;
 }
 .box1 h4{
-    background: #00adef;
+    font-family: sans-serif;
+    background: linear-gradient(328deg, rgba(35,130,160,1) 0%, rgba(115,160,190,1) 100%);
+    b/*ackground: linear-gradient(328deg, rgba(45,35,75,1) 0%, rgba(150,140,180,1) 100%);
+*/    border-radius: 5px;
     padding: 5px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     color: #fff;
     text-align: center;
 }
 .box2 {
 	display: inline-block;
-	width: 16.5rem;
+	width: 48.5%;
     margin-right: 10px;
     margin-top: 10px;
 }
@@ -127,6 +137,21 @@ header[class*='ast-'] {
 	display: flex;
     flex-wrap: wrap;
 }
+.card-grid-2 {
+    flex-wrap: wrap;
+}
+.box3 {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.box3 .card-body{
+    padding: 10px 10px 5px 10px;
+}
+.box3 .card-title{
+    line-height: 0;
+    margin-bottom: 5px;
+}
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%2305548b' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
 }
@@ -135,6 +160,26 @@ header[class*='ast-'] {
 }
 .title1{
     font-family: 'Roboto', sans-serif;
+}
+.title2{
+    color: #13b5b5;
+    position: relative;
+    margin-bottom: 40px;
+}
+.session1:hover .title2::after{
+    width: 150px;
+    margin-left: 10px;
+}
+.title2::after{
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    height: 7px;
+    width: 80px;
+    background: linear-gradient(328deg, rgba(210,210,210,1) 0%, rgba(115,160,190,1) 100%);
+    border-radius: 5px;
+    transition: all .5s ease;
 }
 .viewBt h3 i{
     padding-right: 10px;
@@ -223,7 +268,8 @@ header[class*='ast-'] {
     background-color: #f8f9fa;
     color: #999;
     margin-bottom: 30px;
-    padding: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
 }
 .addthis_toolbox span {
     display: flex;
@@ -273,7 +319,7 @@ header[class*='ast-'] {
 .goalCheck{
     position: static;
     margin-top: auto;
-     margin-left: auto;
+    margin-left: auto;
     vertical-align: middle;
 }
 .flagsFiltros label{
@@ -285,6 +331,7 @@ header[class*='ast-'] {
 }
 .bp-filters {
     background-color: #f8f9fa;
+    border-radius: 5px;
     padding: 20px 10px;
 }
 .bp-filters .badge {
@@ -322,6 +369,7 @@ header[class*='ast-'] {
     display: block;
     padding: 10px 0;
 }
+
 /************************** Pagination *********************/
 .pagination {
     margin: 20px 0 20px 0;
@@ -378,6 +426,55 @@ header[class*='ast-'] {
     border-top-left-radius: 4px;
     -moz-border-radius-bottomleft: 4px;
     -moz-border-radius-topleft: 4px;
+}
+.title-cover{
+   background: linear-gradient(328deg, rgba(35,130,160,1) 0%, rgba(115,160,190,1) 100%);
+   border-radius: 10px;
+   color: #fff;
+   padding: 20px;
+   margin-bottom: 15px;
+   font-size: 35px;
+   border: 5px solid rgba(35,130,160,.5);
+   font-family: sans-serif;
+}
+.card-resp{
+    border-left: 5px solid #ffa500;
+}
+.card-memb{
+    border-left: 5px solid #00FFFF;
+}
+.card-resp:hover, .card-memb:hover{
+    border-left-color: #999;
+}
+.avatar{
+    width: 50px;
+}
+.box3 {
+    margin-right: 10px;
+    margin-top: 10px;
+}
+.margin1{
+    margin-bottom: 10px;
+}
+.relatos-thumb{
+    border: 1px solid #ddd;
+    width: 150px;
+    height:150px ;
+    float: left;
+    margin:1%;
+    overflow: hidden;
+    position: relative;
+    transition: all .5s ease;
+}
+.relatos-thumb:hover{
+    border:1px solid #999;
+}
+.relatos-thumb img{
+    padding: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 /************************** Breakpoints *********************/
 @media (max-width: 768px){
