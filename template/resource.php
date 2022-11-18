@@ -357,7 +357,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="bpImg clearfix">
                     <?php foreach ($relatos_images as $img): ?>
                         <div class="relatos-thumb">
-                            <a href="<?php echo $img; ?>">
+                            <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
                                 <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
                                 <?php // $img_name = explode('_', basename($img)); ?>
                                 <?php // echo $img_name[1]; ?>
@@ -681,4 +681,10 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <?php endif; ?>
             </div>
         </section>
+
+        <script type="text/javascript">
+            lightbox.option({
+                'albumLabel': "<?php echo __('Image'); ?> %1 <?php echo __('of'); ?> %2",
+            });
+        </script>
         <?php get_footer(); ?>

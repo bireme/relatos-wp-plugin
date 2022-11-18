@@ -274,6 +274,7 @@ if(!class_exists('Relatos_Plugin')) {
             wp_enqueue_script('slick-js', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js');
             wp_enqueue_script('relatos', RELATOS_PLUGIN_URL . 'template/js/functions.js', array(), RELATOS_PLUGIN_VERSION);
             wp_enqueue_script('fontawesome-js', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/js/all.min.js');
+            wp_enqueue_script('lightbox-js', '//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js');
 
             // wp_enqueue_style('fontawesome', RELATOS_PLUGIN_URL . 'template/css/font-awesome/css/font-awesome.min.css');
             wp_enqueue_style('fontawesome-css', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
@@ -281,6 +282,7 @@ if(!class_exists('Relatos_Plugin')) {
             wp_enqueue_style('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/css/tooltipster.css');
             wp_enqueue_style('slick-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css');
             wp_enqueue_style('slick-theme-css', '//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css');
+            wp_enqueue_style('lightbox-css', '//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css');
             wp_enqueue_style('relatos-styles',  RELATOS_PLUGIN_URL . 'template/css/style.css', array(), RELATOS_PLUGIN_VERSION);
         }
 
