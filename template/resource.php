@@ -193,7 +193,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <div style="display:inline-block; margin-left: 10px;">
                                     <span class="custom-control custom-switch">
                                       <input type="checkbox" class="custom-control-input" id="customSwitch1" href="#fulltext" data-toggle="collapse">
-                                      <label class="custom-control-label" for="customSwitch1" style=" color: #666;text-transform: capitalize;">Mostrar</label>
+                                      <label class="custom-control-label" for="customSwitch1" style="color: #666; text-transform: capitalize;"><?php echo __('Show', 'relatos'); ?></label>
                                   </span>
                               </div>
                           </h5>
