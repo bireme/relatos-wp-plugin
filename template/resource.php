@@ -718,11 +718,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <?php if ( $relatos_config['custom_color'] ) : ?>
 <style type="text/css">
-    .box1 h4 { background: linear-gradient(328deg, <?php echo $relatos_config['custom_color']; ?> 0%, #73a0be 100%); }
-    .title2 { color: <?php echo $relatos_config['custom_color']; ?>; }
-    .title2::after { background: linear-gradient(328deg, #d2d2d2 0%, <?php echo $relatos_config['custom_color']; ?> 100%); }
+    .box1 h4 { background: linear-gradient(328deg, <?php echo stripslashes($relatos_config['custom_color']); ?> 0%, #73a0be 100%); }
+    .title2 { color: <?php echo stripslashes($relatos_config['custom_color']); ?>; }
+    .title2::after { background: linear-gradient(328deg, #d2d2d2 0%, <?php echo stripslashes($relatos_config['custom_color']); ?> 100%); }
     #title-relatos { background: <?php echo $relatos_config['custom_color']; ?>; }
-    #accordionArchive .card-header { border-left: 3px solid <?php echo $relatos_config['custom_color']; ?>; }
+    #accordionArchive .card-header { border-left: 3px solid <?php echo stripslashes($relatos_config['custom_color']); ?>; }
 </style>
 <?php endif; ?>
 

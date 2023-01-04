@@ -313,7 +313,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <?php if ( $relatos_config['custom_color'] ) : ?>
 <style type="text/css">
-    .box1 h4 { background: linear-gradient(328deg, <?php echo $relatos_config['custom_color']; ?> 0%, #73a0be 100%); }
+    .box1 h4 { background: linear-gradient(328deg, <?php echo stripslashes($relatos_config['custom_color']); ?> 0%, #73a0be 100%); }
 </style>
 <?php endif; ?>
 
