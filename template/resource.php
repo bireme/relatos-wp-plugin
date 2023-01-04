@@ -467,7 +467,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <?php echo __('Fulltext', 'relatos'); ?>
+                            <i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?>
                         </button>
                     </h2>
                 </div>
@@ -489,7 +489,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-header" id="headingTwo">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            <?php echo __('Document', 'relatos'); ?>
+                            <i class="fas fa-file"></i> <?php echo __('Document', 'relatos'); ?>
                         </button>
                     </h2>
                 </div>
@@ -536,7 +536,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-header" id="headingThree">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <?php echo __('Images', 'relatos'); ?>
+                            <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
                         </button>
                     </h2>
                 </div>
@@ -554,6 +554,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
             </div>
@@ -564,7 +565,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-header" id="headingFour">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <?php echo __('Videos', 'relatos'); ?>
+                            <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
                         </button>
                     </h2>
                 </div>
@@ -608,7 +609,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-header" id="headingFive">
                     <h2 class="mb-0">
                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <?php echo __('Other medias', 'relatos'); ?>
+                            <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
                         </button>
                     </h2>
                 </div>
