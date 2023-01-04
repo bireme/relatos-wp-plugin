@@ -478,15 +478,16 @@ header[class*='ast-'] {
 .relatos-thumb img{
     padding: 10px;
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 #header-title{
-    background: #ddd;
-    height: 240px;
-    background: red url("../images/foto1.jpg") no-repeat center top;
+    background: url("../images/foto1.jpg") no-repeat center top;
     background-size: 100%;
+}
+#header-title .row{
+    height: 240px;
     position: relative;
     margin-top: 30px;
     margin-bottom: 15px;
@@ -501,6 +502,7 @@ header[class*='ast-'] {
     padding: 10px 15px;
     position: absolute;
     top: -20px;
+    left: 15px;
 }
 #header-title h1 {
     position: absolute;
@@ -529,13 +531,19 @@ header[class*='ast-'] {
 .card-header .svg-inline--fa{
     margin-right: 10px;
 }
+#accordionArchive .btn-link:hover{
+    text-decoration: none;
+}
 /************************** Breakpoints *********************/
 @media (max-width: 1200px){
     #header-title{
         max-height: 200px;
+        font-size: 22px;
+        margin-bottom: 10px;
     }
     #header-title h1{
-        font-size: 24px;
+        font-size: 20px;
+        top: 40%;
     }
 }
 @media (max-width: 992px){
@@ -545,17 +553,13 @@ header[class*='ast-'] {
         background-size: cover;
     }
     #header-title h1{
-        font-size: 20px;
-    }
-}
-@media (max-width: 768px){
-    #header-title h1{
         background: rgba(255, 255, 255, 0.7);
         padding: 10px;
-        border-radius: 10px;
         font-weight: bold;
         font-size: 16px;
     }
+}
+@media (max-width: 768px){
     fieldset legend{
         font-size: 14px;
     }

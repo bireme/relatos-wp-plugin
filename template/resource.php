@@ -143,13 +143,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         </nav>
 
         <?php if ( $resource ) : ?>
-
-            <div class="row" id="header-title">
-                <div id="title-relatos">
-                    Relatos de Expêriencia
-                </div>
-                <div class="offset-md-5 col-md-7 align-items-center">
-                    <h1 class=""><?php echo $resource->title; ?></h1>  
+            <div id="header-title">
+                <div class="row">
+                    <div id="title-relatos">
+                        Relatos de Expêriencia
+                    </div>
+                    <div class="offset-lg-5 col-lg-7 align-items-center">
+                        <h1 class="title-teste"><?php echo $resource->title; ?></h1>  
+                    </div>
                 </div>
             </div>
         <?php endif; ?>
@@ -497,16 +498,16 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <div class="card-body">
                         <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
                         <?php if ( $relatos_docs ) : ?>
-                                <?php foreach ($relatos_docs as $uri): ?>
-                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                        <a href="<?php echo $uri; ?>" target="_blank">
-                                            <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                            <?php $filename = explode('_', basename($uri)); ?>
-                                            <?php echo end($filename); ?>
-                                            <br />
-                                        </a>
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
+                            <?php foreach ($relatos_docs as $uri): ?>
+                                <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $uri; ?>" target="_blank">
+                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
+                                        <?php $filename = explode('_', basename($uri)); ?>
+                                        <?php echo end($filename); ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         <?php endif; ?>
                         <!--
                         <?php if ( $resource->other_docs ) : $other_docs = explode("\r\n", $resource->other_docs); ?>
@@ -524,118 +525,118 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <hr />
                         </div>
                         <?php endif; ?>
-                        -->
-                    </div>
+                    -->
                 </div>
             </div>
+        </div>
 
 
 
 
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
-                        <?php if ( $relatos_images ) : ?>
-                            <?php foreach ($relatos_images as $img): ?>
-                                <div class="relatos-thumb">
-                                    <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
-                                        <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
-                                        <?php // $img_name = explode('_', basename($img)); ?>
-                                        <?php // echo $img_name[1]; ?>
-                                    </a>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
+                    </button>
+                </h2>
             </div>
-
-
-
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
-                        <?php if ( $relatos_videos ) : $count = 0; ?>
-                            <div class="session1">
-                                <div class="row">
-                                    <?php foreach ($relatos_videos as $uri): ?>
-                                        <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
-                                            <div class="col-12 col-md">
-                                                <div class="embed-responsive embed-responsive-21by9">
-                                                    <video src="<?php echo $uri; ?>" controls="controls">
-                                                        <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
-                                                    </video>
-                                                </div>
-                                            </div>
-
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </div>
-                                <hr />
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+                    <?php if ( $relatos_images ) : ?>
+                        <?php foreach ($relatos_images as $img): ?>
+                            <div class="relatos-thumb">
+                                <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
+                                    <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
+                                    <?php // $img_name = explode('_', basename($img)); ?>
+                                    <?php // echo $img_name[1]; ?>
+                                </a>
                             </div>
-                        <?php elseif ( $resource->other_videos ): ?>
-                            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
-                            <?php if ( $other_videos ) : ?>
-                                    <div class="embed-responsive embed-responsive-21by9">
-                                        <?php echo $resource->other_videos; ?>
-                                    </div>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <div class="clearfix"></div>
                 </div>
             </div>
+        </div>
 
 
 
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
+                    <?php if ( $relatos_videos ) : $count = 0; ?>
+                        <div class="session1">
+                            <div class="row">
+                                <?php foreach ($relatos_videos as $uri): ?>
+                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                                        <div class="col-12 col-md">
+                                            <div class="embed-responsive embed-responsive-21by9">
+                                                <video src="<?php echo $uri; ?>" controls="controls">
+                                                    <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
+                                                </video>
+                                            </div>
+                                        </div>
 
-            <div class="card">
-                <div class="card-header" id="headingFive">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
-                        <?php if ( $relatos_medias ) : ?>
-                                <?php foreach ($relatos_medias as $uri): ?>
-                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                        <a href="<?php echo $uri; ?>" target="_blank">
-                                            <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                            <?php $filename = explode('_', basename($uri)); ?>
-                                            <?php echo end($filename); ?>
-                                            <br />
-                                        </a>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
+                            </div>
+                            <hr />
+                        </div>
+                    <?php elseif ( $resource->other_videos ): ?>
+                        <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+                        <?php if ( $other_videos ) : ?>
+                            <div class="embed-responsive embed-responsive-21by9">
+                                <?php echo $resource->other_videos; ?>
+                            </div>
                         <?php endif; ?>
-
-                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
-
-
         </div>
+
+
+
+
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
+                    <?php if ( $relatos_medias ) : ?>
+                        <?php foreach ($relatos_medias as $uri): ?>
+                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $uri; ?>" target="_blank">
+                                    <i class="far fa-file-alt" aria-hidden="true"> </i>
+                                    <?php $filename = explode('_', basename($uri)); ?>
+                                    <?php echo end($filename); ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
+</div>
 </section>
 
 
