@@ -22,6 +22,8 @@ function relatos_page_admin() {
     if ( $config['available_filter'] ){
         $config_filter_list = explode(';', $config['available_filter']);
     }
+
+    $custom_color = ( $config['custom_color'] ) ? sanitize_text_field($config['custom_color']) : '#2482A0';
 ?>
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
@@ -136,6 +138,16 @@ function relatos_page_admin() {
                             </table>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row">
+                            <label for="custom-color"><?php _e('Custom Color', 'relatos'); ?></label>
+                        </th>
+                        <td>
+                            <input type="text" id="custom-color" name="relatos_config[custom_color]" value="<?php echo $config['custom_color']; ?>" class="regular-text input-custom-color" data-color="#2482A0">
+                            <div class="custom-color" style="height: 30px; width: 30px; float: left; margin-right: 8px; background: <?php echo $custom_color; ?>; "></div>
+                            <p class="description"><?php _e('Example', 'relatos'); ?>: #2482A0</p>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <p class="submit">
@@ -161,7 +173,16 @@ function relatos_page_admin() {
                 }
             });
 
-        } );
+            $j('.input-custom-color').on( "blur", function(){
+                var bgcolor = $j(this).val();
+                if ( bgcolor ) {
+                    $j(this).next().css('background-color', bgcolor);
+                } else {
+                    bgcolor = $j(this).data('color');
+                    $j(this).next().css('background-color', bgcolor);                
+                }
+            });
+        });
     </script>
 
     <?php

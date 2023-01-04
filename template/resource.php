@@ -16,7 +16,7 @@ $referer = wp_get_referer();
 $path = parse_url($referer);
 if ( array_key_exists( 'query', $path ) ) {
     $path = parse_str($path['query'], $output);
-// echo "<pre>"; print_r($output); echo "</pre>";
+    // echo "<pre>"; print_r($output); echo "</pre>";
     if ( array_key_exists( 'q', $output ) && !empty( $output['q'] ) ) {
         $query = $output['q'];
         $q = ( strlen($output['q']) > 10 ? substr($output['q'],0,10) . '...' : $output['q'] );
@@ -75,11 +75,11 @@ $response = @file_get_contents($relatos_service_request);
 if ($response){
     $response_json = json_decode($response);
     $resource = $response_json[0]->main_submission;
-// $resource = $response_json->response->docs[0];
+    // $resource = $response_json->response->docs[0];
 
-// echo "<pre>"; print_r($response_json); echo "</pre>"; die();
+    // echo "<pre>"; print_r($response_json); echo "</pre>"; die();
 
-// create param to find similars
+    // create param to find similars
     $similar_text = $resource->title;
     if (isset($resource->mj)){
         $similar_text .= ' ' . implode(' ', $resource->mj);
@@ -90,7 +90,7 @@ if ($response){
     $similar_query = urlencode($similar_docs_request);
     $related_query = urlencode($similar_docs_url);
 
-// create param to find publication language
+    // create param to find publication language
     if (isset($resource->publication_language[0])){
         $publication_language = explode('|', $resource->publication_language[0]);
         $publication_language = get_publication_language($publication_language, $lang);
@@ -181,7 +181,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
 
                     <div class="relatos-data">
-                        <h3><b><?php echo __('Experience Details', 'relatos'); ?></b></h3><br />
+                        <h3><b><?php echo __('Experience Details', 'relatos'); ?></b></h3>
+                        <br />
                         <?php if ( $resource->description ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Issue', 'relatos') . '/' . __('Situation', 'relatos') . ':'; ?></b></h5>
@@ -192,7 +193,6 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
                         <?php if ( $resource->full_text ): ?>
                             <div class="session1 d-none">
-
                                 <h5 class="title2">
                                     <b><?php echo __('Fulltext', 'relatos') . ':'; ?></b>
                                     <!--a href="#fulltext" data-toggle="collapse" class="btn btn-sm btn-outline-primary">Exibir/Ocultar</a-->
@@ -249,21 +249,140 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="padding1 color1">
-        <div class="container">
-            <h3><b>Outras Informações</b></h3> <br>
-            <div class="row">
-                <?php if ( $resource->collection ): ?>
+<section class="padding1 color1">
+    <div class="container">
+        <h3><b>Outras Informações</b></h3>
+        <br />
+        <div class="row">
+            <?php if ( $resource->collection ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Collection', 'relatos')); ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <?php foreach ($resource->collection as $collection) : ?>
+                                    <tr>
+                                        <td><?php echo $collection->name; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->thematic_area ): ?>
+                <?php if ( count($resource->thematic_area) == 1 && $resource->other_thematic_area ): ?>
                     <div class="col-md-4 margin1">
                         <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Collection', 'relatos')); ?></h4>
+                            <div class="box1-overflow">
+                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                                <?php echo $resource->other_thematic_area; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                            <div class="box1-overflow">
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <?php foreach ($resource->thematic_area as $thematic_area) : ?>
+                                            <tr>
+                                                <td><?php echo $thematic_area->name; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ( $resource->status ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Experience status', 'relatos') . ':'; ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $status[$resource->status]; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="col-md-4 margin1">
+                <div class="box1 title1 h-100">
+                    <h4><?php echo mb_strtoupper(__('Dates', 'relatos')); ?></h4>
+                    <?php if ( $resource->start_date ): ?>
+                        <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
+                    <?php endif; ?>
+                    <?php if ( $resource->end_date && !$resource->is_current_date ): ?>
+                        <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if ( $resource->country ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" crossorigin="anonymous" style="width: 30px;"></td>
+                                    <td><?php echo $resource->country->name; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->region ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
+                        <?php echo $resource->region; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->city ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
+                        <?php echo $resource->city; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->context ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Location', 'relatos') . ':'; ?></h4>
+                        <?php echo $resource->context; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->population_group ): ?>
+                <?php if ( count($resource->population_group) == 1 && $resource->other_population_group ): ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                            <?php echo $resource->other_population_group; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
                             <table class="table table-sm">
                                 <tbody>
-                                    <?php foreach ($resource->collection as $collection) : ?>
+                                    <?php foreach ($resource->population_group as $population_group) : ?>
                                         <tr>
-                                            <td><?php echo $collection->name; ?></td>
+                                            <td><?php echo $population_group->name; ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -271,183 +390,64 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </div>
                     </div>
                 <?php endif; ?>
-                <?php if ( $resource->thematic_area ): ?>
-                    <?php if ( count($resource->thematic_area) == 1 && $resource->other_thematic_area ): ?>
-                        <div class="col-md-4 margin1">
-                            <div class="box1 title1 h-100">
-                                <div class="box1-overflow">
-                                    <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
-                                    <?php echo $resource->other_thematic_area; ?>
-                                </div>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <div class="col-md-4 margin1">
-                            <div class="box1 title1 h-100">
-                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
-                                <div class="box1-overflow">
-                                    <table class="table table-sm">
-                                        <tbody>
-                                            <?php foreach ($resource->thematic_area as $thematic_area) : ?>
-                                                <tr>
-                                                    <td><?php echo $thematic_area->name; ?></td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <?php if ( $resource->status ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Experience status', 'relatos') . ':'; ?></h4>
-                            <table class="table table-sm">
-                                <tbody>
-                                    <tr>
-                                        <td><?php echo $status[$resource->status]; ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <div class="col-md-4 margin1">
+            <?php endif; ?>
+            <?php if ( $resource->language ): ?>
+                <div class="col-md-4 margin1 d-none">
                     <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('Dates', 'relatos')); ?></h4>
-                        <?php if ( $resource->start_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
-                        <?php endif; ?>
-                        <?php if ( $resource->end_date && !$resource->is_current_date ): ?>
-                            <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
-                        <?php endif; ?>
+                        <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
+                        <?php echo $language[$resource->language]; ?>
                     </div>
                 </div>
-                <?php if ( $resource->country ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
-                            <table class="table table-sm">
-                                <tbody>
-                                    <tr>
-                                        <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" crossorigin="anonymous" style="width: 30px;"></td>
-                                        <td><?php echo $resource->country->name; ?></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+            <?php endif; ?>
+            <?php if ( $resource->descriptors ) : ?>
+                <?php $descriptors = json_decode($resource->descriptors, true); ?>
+                <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Descriptors', 'relatos') . ':'; ?></h4>
+                        <?php echo implode('<br />', $descriptors); ?>
                     </div>
-                <?php endif; ?>
-                <?php if ( $resource->region ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
-                            <?php echo $resource->region; ?>
-                        </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->keywords ) : ?>
+                <?php $keywords = json_decode($resource->keywords, true); ?>
+                <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Keywords', 'relatos') . ':'; ?></h4>
+                        <?php echo implode('<br />', $keywords); ?>
                     </div>
-                <?php endif; ?>
-                <?php if ( $resource->city ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
-                            <?php echo $resource->city; ?>
-                        </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
+                <div class="col-md-4 margin1 boxs-links">
+                    <div class="box1 title1 h-100">
+                        <h4><b><?php echo __('Related links', 'relatos') . ':'; ?></b></h4>
+                        <?php foreach ($related_links as $link): ?>
+                            <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $link; ?>" target="_blank">
+                                    <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                    <?php echo $link; ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
-                <?php endif; ?>
-                <?php if ( $resource->context ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Location', 'relatos') . ':'; ?></h4>
-                            <?php echo $resource->context; ?>
-                        </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->products_information ): ?>
+                <div class="col-md-12 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></h4>
+                        <?php echo nl2br($resource->products_information); ?>
                     </div>
-                <?php endif; ?>
-                <?php if ( $resource->population_group ): ?>
-                    <?php if ( count($resource->population_group) == 1 && $resource->other_population_group ): ?>
-                        <div class="col-md-4 margin1">
-                            <div class="box1 title1 h-100">
-                                <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                                <?php echo $resource->other_population_group; ?>
-                            </div>
-                        </div>
-                    <?php else: ?>
-                        <div class="col-md-4 margin1">
-                            <div class="box1 title1 h-100">
-                                <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                                <table class="table table-sm">
-                                    <tbody>
-                                        <?php foreach ($resource->population_group as $population_group) : ?>
-                                            <tr>
-                                                <td><?php echo $population_group->name; ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    <?php endif; ?>
-                <?php endif; ?>
-                <?php if ( $resource->language ): ?>
-                    <div class="col-md-4 margin1 d-none">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
-                            <?php echo $language[$resource->language]; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if ( $resource->descriptors ) : ?>
-                    <?php $descriptors = json_decode($resource->descriptors, true); ?>
-                    <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Descriptors', 'relatos') . ':'; ?></h4>
-                            <?php echo implode('<br />', $descriptors); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if ( $resource->keywords ) : ?>
-                    <?php $keywords = json_decode($resource->keywords, true); ?>
-                    <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Keywords', 'relatos') . ':'; ?></h4>
-                            <?php echo implode('<br />', $keywords); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
-                    <div class="col-md-4 margin1 boxs-links">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Related links', 'relatos') . ':'; ?></b></h4>
-                            <?php foreach ($related_links as $link): ?>
-                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
-                                    <a href="<?php echo $link; ?>" target="_blank">
-                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                                        <?php echo $link; ?>
-                                        <br />
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                
-                <?php if ( $resource->products_information ): ?>
-                    <div class="col-md-12 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></h4>
-                            <?php echo nl2br($resource->products_information); ?>
-                        </div>
-                    </div>
-                <?php endif; ?>
-                <?php if ( $resource->notes ): ?>
-                    <div class="col-md-12 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h4>
-                            <p><?php echo $resource->notes; ?></p>
-                        </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->notes ): ?>
+                <div class="col-md-12 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h4>
+                        <p><?php echo $resource->notes; ?></p>
                     </div>
                 </div>
             <?php endif; ?>
@@ -457,13 +457,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <section class="padding1">
     <div class="container">
-        <h3><b>Arquivos</b></h3> <br>
-
-        
+        <h3><b>Arquivos</b></h3>
+        <br />
         <div class="accordion" id="accordionArchive">
-
-
-
             <div class="card">
                 <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
@@ -472,19 +468,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </button>
                     </h2>
                 </div>
-
                 <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionArchive">
                     <div class="card-body">
                         <?php if ( $resource->full_text ): ?>
-
                             <p><?php echo $resource->full_text; ?></p>
-
                         <?php endif; ?>
                     </div>
                 </div>
             </div>
-
-
 
             <div class="card">
                 <div class="card-header" id="headingTwo">
@@ -512,137 +503,125 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <!--
                         <?php if ( $resource->other_docs ) : $other_docs = explode("\r\n", $resource->other_docs); ?>
                         <div class="session1">
-                        <h5 class="title2"><b><?php echo __('More documents', 'relatos') . ':'; ?></b></h5>
-                        <?php foreach ($other_docs as $link): ?>
-                        <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
-                        <a href="<?php echo $link; ?>" target="_blank">
-                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                        <?php echo $link; ?>
-                        <br />
-                        </a>
-                        <?php endif; ?>
-                        <?php endforeach; ?>
-                        <hr />
-                        </div>
-                        <?php endif; ?>
-                    -->
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="card">
-            <div class="card-header" id="headingThree">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
-                <div class="card-body">
-                    <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
-                    <?php if ( $relatos_images ) : ?>
-                        <?php foreach ($relatos_images as $img): ?>
-                            <div class="relatos-thumb">
-                                <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
-                                    <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
-                                    <?php // $img_name = explode('_', basename($img)); ?>
-                                    <?php // echo $img_name[1]; ?>
-                                </a>
-                            </div>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="card">
-            <div class="card-header" id="headingFour">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
-                    </button>
-                </h2>
-            </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
-                <div class="card-body">
-                    <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
-                    <?php if ( $relatos_videos ) : $count = 0; ?>
-                        <div class="session1">
-                            <div class="row">
-                                <?php foreach ($relatos_videos as $uri): ?>
-                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
-                                        <div class="col-12 col-md">
-                                            <div class="embed-responsive embed-responsive-21by9">
-                                                <video src="<?php echo $uri; ?>" controls="controls">
-                                                    <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
-                                                </video>
-                                            </div>
-                                        </div>
-
-                                    <?php endif; ?>
-                                <?php endforeach; ?>
-                            </div>
+                            <h5 class="title2"><b><?php echo __('More documents', 'relatos') . ':'; ?></b></h5>
+                            <?php foreach ($other_docs as $link): ?>
+                                <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $link; ?>" target="_blank">
+                                        <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                        <?php echo $link; ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                             <hr />
                         </div>
-                    <?php elseif ( $resource->other_videos ): ?>
-                        <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
-                        <?php if ( $other_videos ) : ?>
-                            <div class="embed-responsive embed-responsive-21by9">
-                                <?php echo $resource->other_videos; ?>
-                            </div>
                         <?php endif; ?>
-                    <?php endif; ?>
+                        -->
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-
-
-        <div class="card">
-            <div class="card-header" id="headingFive">
-                <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
-                    </button>
-                </h2>
+            <div class="card">
+                <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
+                    <div class="card-body">
+                        <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+                        <?php if ( $relatos_images ) : ?>
+                            <?php foreach ($relatos_images as $img): ?>
+                                <div class="relatos-thumb">
+                                    <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
+                                        <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
+                                        <?php // $img_name = explode('_', basename($img)); ?>
+                                        <?php // echo $img_name[1]; ?>
+                                    </a>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
             </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
-                <div class="card-body">
-                    <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
-                    <?php if ( $relatos_medias ) : ?>
-                        <?php foreach ($relatos_medias as $uri): ?>
-                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                <a href="<?php echo $uri; ?>" target="_blank">
-                                    <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                    <?php $filename = explode('_', basename($uri)); ?>
-                                    <?php echo end($filename); ?>
-                                    <br />
-                                </a>
+
+            <div class="card">
+                <div class="card-header" id="headingFour">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                            <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
+                    <div class="card-body">
+                        <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
+                        <?php if ( $relatos_videos ) : $count = 0; ?>
+                            <div class="session1">
+                                <div class="row">
+                                    <?php foreach ($relatos_videos as $uri): ?>
+                                        <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                                            <div class="col-12 col-md">
+                                                <div class="embed-responsive embed-responsive-21by9">
+                                                    <video src="<?php echo $uri; ?>" controls="controls">
+                                                        <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                                <hr />
+                            </div>
+                        <?php elseif ( $resource->other_videos ): ?>
+                            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+                            <?php if ( $other_videos ) : ?>
+                                <div class="embed-responsive embed-responsive-21by9">
+                                    <?php echo $resource->other_videos; ?>
+                                </div>
                             <?php endif; ?>
-                        <?php endforeach; ?>
-                    <?php endif; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+            </div>
 
+            <div class="card">
+                <div class="card-header" id="headingFive">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                            <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
+                        </button>
+                    </h2>
+                </div>
+                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
+                    <div class="card-body">
+                        <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
+                        <?php if ( $relatos_medias ) : ?>
+                            <?php foreach ($relatos_medias as $uri): ?>
+                                <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <a href="<?php echo $uri; ?>" target="_blank">
+                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
+                                        <?php $filename = explode('_', basename($uri)); ?>
+                                        <?php echo end($filename); ?>
+                                        <br />
+                                    </a>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
                 </div>
             </div>
         </div>
-
-
     </div>
-</div>
 </section>
-
 
 <section class="padding1 color1">
     <div class="container">
-        <h3><b>Equipe</b></h3> <br>
+        <h3><b>Equipe</b></h3>
+        <br />
         <?php if ( $resource->responsible ): ?>
             <div class="session1">
                 <h5 class="title2"><b><?php echo __('Responsible', 'relatos') . ':'; ?></b></h5>
@@ -653,8 +632,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <h5 class="card-title">
                                     <?php echo $responsible->name; ?>
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
-
-                                    <hr class="border-primary">
+                                    <hr class="border-primary" />
                                 </h5>
                                 <p class="card-text">
                                     <?php if ( $responsible->filiation ) : ?>
@@ -700,7 +678,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <h5 class="title2"><b><?php echo __('Members', 'relatos') . ':'; ?></b></h5>
                 <div class="card-grid-2">
                     <?php foreach ($resource->members as $member) : $count++; ?>
-                        <div class="card card-box box3 card-memb">
+                        <div class="card card-box box3 card-member">
                             <div class="card-body">
                                 <h6 class="card-title"><?php echo $member->name; ?> <a href="#div_<?=$count ?>" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a></h6>
                                 <div class="collapse" id="div_<?=$count ?>">
@@ -738,11 +716,20 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
     </div>
 </section>
 
-
+<?php if ( $relatos_config['custom_color'] ) : ?>
+<style type="text/css">
+    .box1 h4 { background: linear-gradient(328deg, <?php echo $relatos_config['custom_color']; ?> 0%, #73a0be 100%); }
+    .title2 { color: <?php echo $relatos_config['custom_color']; ?>; }
+    .title2::after { background: linear-gradient(328deg, #d2d2d2 0%, <?php echo $relatos_config['custom_color']; ?> 100%); }
+    #title-relatos { background: <?php echo $relatos_config['custom_color']; ?>; }
+    #accordionArchive .card-header { border-left: 3px solid <?php echo $relatos_config['custom_color']; ?>; }
+</style>
+<?php endif; ?>
 
 <script type="text/javascript">
     lightbox.option({
         'albumLabel': "<?php echo __('Image'); ?> %1 <?php echo __('of'); ?> %2",
     });
 </script>
+
 <?php get_footer(); ?>
