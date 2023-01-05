@@ -534,6 +534,14 @@ header[class*='ast-'] {
 #accordionArchive .btn-link:focus,
 #accordionArchive .btn-link:hover{
     text-decoration: none;
+    background:none;
+    border-color:#f7f7f7;
+}
+#accordionArchive .btn-link{
+    color:#007bff;
+}
+#accordionArchive .btn-link:hover{
+    color:#194575;
 }
 /************************** Breakpoints *********************/
 @media (max-width: 1200px){
