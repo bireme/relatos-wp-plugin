@@ -143,9 +143,9 @@ function relatos_page_admin() {
                             <label for="custom-color"><?php _e('Custom Color', 'relatos'); ?></label>
                         </th>
                         <td>
-                            <input type="text" id="custom-color" name="relatos_config[custom_color]" value="<?php echo $config['custom_color']; ?>" class="regular-text input-custom-color" data-color="#2482A0">
-                            <div class="custom-color" style="height: 30px; width: 30px; float: left; margin-right: 8px; background: <?php echo $custom_color; ?>; "></div>
-                            <p class="description"><?php _e('Example', 'relatos'); ?>: #2482A0</p>
+                            <input type="color" id="custom-color" name="relatos_config[custom_color]" value="<?php echo $config['custom_color']; ?>" class="regular-text" data-color="#2482A0" style="width: 235px;">
+                            <!-- <div class="custom-color" style="height: 30px; width: 30px; float: left; margin-right: 8px; background: <?php echo $custom_color; ?>; "></div> -->
+                            <!-- <p class="description"><?php _e('Example', 'relatos'); ?>: #2482A0</p> -->
                         </td>
                     </tr>
                 </tbody>
