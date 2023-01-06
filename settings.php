@@ -143,7 +143,8 @@ function relatos_page_admin() {
                             <label for="custom-color"><?php _e('Custom Color', 'relatos'); ?></label>
                         </th>
                         <td>
-                            <input type="color" id="custom-color" name="relatos_config[custom_color]" value="<?php echo $config['custom_color']; ?>" class="regular-text" data-color="#2482A0" style="width: 235px;">
+                            <input type="color" id="custom-color" name="relatos_config[custom_color]" value="<?php echo ( $config['custom_color'] ) ? $config['custom_color'] : '#2482A0'; ?>" class="regular-text input-custom-color" data-color="#2482A0" style="width: 235px;">
+                            <p class="description hex-color" style="display: inline; text-transform: uppercase;"><?php echo ( $config['custom_color'] ) ? $config['custom_color'] : '#2482A0'; ?></p>
                             <!-- <div class="custom-color" style="height: 30px; width: 30px; float: left; margin-right: 8px; background: <?php echo $custom_color; ?>; "></div> -->
                             <!-- <p class="description"><?php _e('Example', 'relatos'); ?>: #2482A0</p> -->
                         </td>
@@ -173,15 +174,26 @@ function relatos_page_admin() {
                 }
             });
 
+            $j('.input-custom-color').on( "change", function(){
+                var bgcolor = $j(this).val();
+                if ( bgcolor ) {
+                    $j(this).next().text(bgcolor);
+                } else {
+                    bgcolor = $j(this).data('color');
+                    $j(this).next().text(bgcolor);
+                }
+            });
+/*
             $j('.input-custom-color').on( "blur", function(){
                 var bgcolor = $j(this).val();
                 if ( bgcolor ) {
                     $j(this).next().css('background-color', bgcolor);
                 } else {
                     bgcolor = $j(this).data('color');
-                    $j(this).next().css('background-color', bgcolor);                
+                    $j(this).next().css('background-color', bgcolor);
                 }
             });
+*/
         });
     </script>
 
