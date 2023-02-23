@@ -315,106 +315,106 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             <hr />
                         </div>
                         <?php endif; ?>
-                        -->
-                    </div>
+                    -->
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-header" id="headingThree">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
-                        <?php if ( $relatos_images ) : ?>
-                            <?php foreach ($relatos_images as $img): ?>
-                                <div class="relatos-thumb">
-                                    <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
-                                        <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
-                                        <?php // $img_name = explode('_', basename($img)); ?>
-                                        <?php // echo $img_name[1]; ?>
-                                    </a>
-                                </div>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+        <div class="card">
+            <div class="card-header" id="headingThree">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
+                    </button>
+                </h2>
             </div>
-
-            <div class="card">
-                <div class="card-header" id="headingFour">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                            <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
-                        <?php if ( $relatos_videos ) : $count = 0; ?>
-                            <div class="session1">
-                                <div class="row">
-                                    <?php foreach ($relatos_videos as $uri): ?>
-                                        <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
-                                            <div class="col-12 col-md">
-                                                <div class="embed-responsive embed-responsive-21by9">
-                                                    <video src="<?php echo $uri; ?>" controls="controls">
-                                                        <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
-                                                    </video>
-                                                </div>
-                                            </div>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
-                                </div>
-                                <hr />
+            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+                    <?php if ( $relatos_images ) : ?>
+                        <?php foreach ($relatos_images as $img): ?>
+                            <div class="relatos-thumb">
+                                <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
+                                    <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
+                                    <?php // $img_name = explode('_', basename($img)); ?>
+                                    <?php // echo $img_name[1]; ?>
+                                </a>
                             </div>
-                        <?php elseif ( $resource->other_videos ): ?>
-                            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
-                            <?php if ( $other_videos ) : ?>
-                                <div class="embed-responsive embed-responsive-21by9">
-                                    <?php echo $resource->other_videos; ?>
-                                </div>
-                            <?php endif; ?>
-                        <?php endif; ?>
-                    </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    <div class="clearfix"></div>
                 </div>
             </div>
+        </div>
 
-            <div class="card">
-                <div class="card-header" id="headingFive">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                            <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
-                        </button>
-                    </h2>
-                </div>
-                <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
-                    <div class="card-body">
-                        <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
-                        <?php if ( $relatos_medias ) : ?>
-                            <?php foreach ($relatos_medias as $uri): ?>
-                                <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                    <a href="<?php echo $uri; ?>" target="_blank">
-                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                        <?php $filename = explode('_', basename($uri)); ?>
-                                        <?php echo end($filename); ?>
-                                        <br />
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
+        <div class="card">
+            <div class="card-header" id="headingFour">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
+                    <?php if ( $relatos_videos ) : $count = 0; ?>
+                        <div class="session1">
+                            <div class="row">
+                                <?php foreach ($relatos_videos as $uri): ?>
+                                    <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                                        <div class="col-12 col-md">
+                                            <div class="embed-responsive embed-responsive-21by9">
+                                                <video src="<?php echo $uri; ?>" controls="controls">
+                                                    <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
+                                                </video>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </div>
+                            <hr />
+                        </div>
+                    <?php elseif ( $resource->other_videos ): ?>
+                        <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+                        <?php if ( $other_videos ) : ?>
+                            <div class="embed-responsive embed-responsive-21by9">
+                                <?php echo $resource->other_videos; ?>
+                            </div>
                         <?php endif; ?>
-                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header" id="headingFive">
+                <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                        <i class="far fa-folder"></i> <?php echo __('Other medias', 'relatos'); ?>
+                    </button>
+                </h2>
+            </div>
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
+                <div class="card-body">
+                    <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
+                    <?php if ( $relatos_medias ) : ?>
+                        <?php foreach ($relatos_medias as $uri): ?>
+                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $uri; ?>" target="_blank">
+                                    <i class="far fa-file-alt" aria-hidden="true"> </i>
+                                    <?php $filename = explode('_', basename($uri)); ?>
+                                    <?php echo end($filename); ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </section>
 
 <section class="padding1 color1">
@@ -431,39 +431,41 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <h5 class="card-title">
                                     <?php echo $responsible->name; ?>
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
-                                    <hr class="border-primary" />
+                                    <hr class="border-primary" /> <a href="#div_<?=$count ?>" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a>
                                 </h5>
-                                <p class="card-text">
-                                    <?php if ( $responsible->filiation ) : ?>
-                                        <b><?php echo __('Filiation', 'relatos'); ?></b><br />
-                                        <?php echo $responsible->filiation; ?><br />
-                                    <?php endif; ?>
-                                    <?php if ( $responsible->job ) : ?>
-                                        <b><?php echo __('Job', 'relatos'); ?></b><br />
-                                        <?php echo $responsible->job; ?><br />
-                                    <?php endif; ?>
-                                    <?php if ( $responsible->email ) : ?>
-                                        <b><?php echo __('Email', 'relatos'); ?></b><br />
-                                        <?php echo $responsible->email; ?><br />
-                                    <?php endif; ?>
-                                    <?php if ( $responsible->phone ) : ?>
-                                        <b><?php echo __('Phone', 'relatos'); ?></b><br />
-                                        <?php echo $responsible->phone; ?><br />
-                                    <?php endif; ?>
-                                    <?php if ( $responsible->curriculum ) : ?>
-                                        <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank">
-                                            <i class="far fa-file" aria-hidden="true"> </i>
-                                            <?php echo __('Curriculum', 'relatos'); ?>
-                                        </a>
-                                        <br />
-                                    <?php endif; ?>
-                                    <?php if ( $responsible->orcid ) : ?>
-                                        <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank">
-                                            <i class="fa fa-external-link-alt" aria-hidden="true"> </i>
-                                            <?php echo __('ORCID', 'relatos'); ?>
-                                        </a>
-                                    <?php endif; ?>
-                                </p>
+                                <div class="collapse" id="div_<?=$count ?>">
+                                    <p class="card-text">
+                                        <?php if ( $responsible->filiation ) : ?>
+                                            <b><?php echo __('Filiation', 'relatos'); ?></b><br />
+                                            <?php echo $responsible->filiation; ?><br />
+                                        <?php endif; ?>
+                                        <?php if ( $responsible->job ) : ?>
+                                            <b><?php echo __('Job', 'relatos'); ?></b><br />
+                                            <?php echo $responsible->job; ?><br />
+                                        <?php endif; ?>
+                                        <?php if ( $responsible->email ) : ?>
+                                            <b><?php echo __('Email', 'relatos'); ?></b><br />
+                                            <?php echo $responsible->email; ?><br />
+                                        <?php endif; ?>
+                                        <?php if ( $responsible->phone ) : ?>
+                                            <b><?php echo __('Phone', 'relatos'); ?></b><br />
+                                            <?php echo $responsible->phone; ?><br />
+                                        <?php endif; ?>
+                                        <?php if ( $responsible->curriculum ) : ?>
+                                            <a href="<?php echo $responsible->curriculum; ?>" class="card-link" target="_blank">
+                                                <i class="far fa-file" aria-hidden="true"> </i>
+                                                <?php echo __('Curriculum', 'relatos'); ?>
+                                            </a>
+                                            <br />
+                                        <?php endif; ?>
+                                        <?php if ( $responsible->orcid ) : ?>
+                                            <a href="https://orcid.org/<?php echo $responsible->orcid; ?>" class="card-link" target="_blank">
+                                                <i class="fa fa-external-link-alt" aria-hidden="true"> </i>
+                                                <?php echo __('ORCID', 'relatos'); ?>
+                                            </a>
+                                        <?php endif; ?>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -515,7 +517,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
     </div>
 </section>
 
-<section class="padding1 color1">
+<section class="padding1">
     <div class="container">
         <h3><b>Outras Informações</b></h3>
         <br />
@@ -719,13 +721,13 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 </section>
 
 <?php if ( $relatos_config['custom_color'] ) : ?>
-<style type="text/css">
-    .box1 h4 { background: linear-gradient(328deg, <?php echo stripslashes($relatos_config['custom_color']); ?> 0%, #73a0be 100%); }
-    .title2 { color: <?php echo stripslashes($relatos_config['custom_color']); ?>; }
-    .title2::after { background: linear-gradient(328deg, #d2d2d2 0%, <?php echo stripslashes($relatos_config['custom_color']); ?> 100%); }
-    #title-relatos { background: <?php echo $relatos_config['custom_color']; ?>; }
-    #accordionArchive .card-header { border-left: 3px solid <?php echo stripslashes($relatos_config['custom_color']); ?>; }
-</style>
+    <style type="text/css">
+        .box1 h4 { background: linear-gradient(328deg, <?php echo stripslashes($relatos_config['custom_color']); ?> 0%, #73a0be 100%); }
+        .title2 { color: <?php echo stripslashes($relatos_config['custom_color']); ?>; }
+        .title2::after { background: linear-gradient(328deg, #d2d2d2 0%, <?php echo stripslashes($relatos_config['custom_color']); ?> 100%); }
+        #title-relatos { background: <?php echo $relatos_config['custom_color']; ?>; }
+        #accordionArchive .card-header { border-left: 3px solid <?php echo stripslashes($relatos_config['custom_color']); ?>; }
+    </style>
 <?php endif; ?>
 
 <script type="text/javascript">
