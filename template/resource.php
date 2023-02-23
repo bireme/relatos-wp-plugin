@@ -146,7 +146,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <div id="header-title">
                 <div class="row">
                     <div id="title-relatos">
-                        Relatos de Expêriencia
+                        Relato de Expêriencia
                     </div>
                     <div class="offset-lg-5 col-lg-7 align-items-center">
                         <h1 class="title-teste"><?php echo $resource->title; ?></h1>  
@@ -252,208 +252,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
     </div>
 </section>
 
-<section class="padding1 color1">
-    <div class="container">
-        <h3><b>Outras Informações</b></h3>
-        <br />
-        <div class="row">
-            <?php if ( $resource->collection ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('Collection', 'relatos')); ?></h4>
-                        <table class="table table-sm">
-                            <tbody>
-                                <?php foreach ($resource->collection as $collection) : ?>
-                                    <tr>
-                                        <td><?php echo $collection->name; ?></td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->thematic_area ): ?>
-                <?php if ( count($resource->thematic_area) == 1 && $resource->other_thematic_area ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <div class="box1-overflow">
-                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
-                                <?php echo $resource->other_thematic_area; ?>
-                            </div>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
-                            <div class="box1-overflow">
-                                <table class="table table-sm">
-                                    <tbody>
-                                        <?php foreach ($resource->thematic_area as $thematic_area) : ?>
-                                            <tr>
-                                                <td><?php echo $thematic_area->name; ?></td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            <?php endif; ?>
-            <?php if ( $resource->status ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo __('Experience status', 'relatos') . ':'; ?></h4>
-                        <table class="table table-sm">
-                            <tbody>
-                                <tr>
-                                    <td><?php echo $status[$resource->status]; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <div class="col-md-4 margin1">
-                <div class="box1 title1 h-100">
-                    <h4><?php echo mb_strtoupper(__('Dates', 'relatos')); ?></h4>
-                    <?php if ( $resource->start_date ): ?>
-                        <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
-                    <?php endif; ?>
-                    <?php if ( $resource->end_date && !$resource->is_current_date ): ?>
-                        <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
-                    <?php endif; ?>
-                </div>
-            </div>
-            <?php if ( $resource->country ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
-                        <table class="table table-sm">
-                            <tbody>
-                                <tr>
-                                    <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" crossorigin="anonymous" style="width: 30px;"></td>
-                                    <td><?php echo $resource->country->name; ?></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->region ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
-                        <?php echo $resource->region; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->city ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
-                        <?php echo $resource->city; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->context ): ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo __('Location', 'relatos') . ':'; ?></h4>
-                        <?php echo $resource->context; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->population_group ): ?>
-                <?php if ( count($resource->population_group) == 1 && $resource->other_population_group ): ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                            <?php echo $resource->other_population_group; ?>
-                        </div>
-                    </div>
-                <?php else: ?>
-                    <div class="col-md-4 margin1">
-                        <div class="box1 title1 h-100">
-                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
-                            <table class="table table-sm">
-                                <tbody>
-                                    <?php foreach ($resource->population_group as $population_group) : ?>
-                                        <tr>
-                                            <td><?php echo $population_group->name; ?></td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                <?php endif; ?>
-            <?php endif; ?>
-            <?php if ( $resource->language ): ?>
-                <div class="col-md-4 margin1 d-none">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
-                        <?php echo $language[$resource->language]; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->descriptors ) : ?>
-                <?php $descriptors = json_decode($resource->descriptors, true); ?>
-                <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo __('Descriptors', 'relatos') . ':'; ?></h4>
-                        <?php echo implode('<br />', $descriptors); ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->keywords ) : ?>
-                <?php $keywords = json_decode($resource->keywords, true); ?>
-                <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
-                <div class="col-md-4 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo __('Keywords', 'relatos') . ':'; ?></h4>
-                        <?php echo implode('<br />', $keywords); ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
-                <div class="col-md-4 margin1 boxs-links">
-                    <div class="box1 title1 h-100">
-                        <h4><b><?php echo __('Related links', 'relatos') . ':'; ?></b></h4>
-                        <?php foreach ($related_links as $link): ?>
-                            <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
-                                <a href="<?php echo $link; ?>" target="_blank">
-                                    <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                                    <?php echo $link; ?>
-                                    <br />
-                                </a>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->products_information ): ?>
-                <div class="col-md-12 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></h4>
-                        <?php echo nl2br($resource->products_information); ?>
-                    </div>
-                </div>
-            <?php endif; ?>
-            <?php if ( $resource->notes ): ?>
-                <div class="col-md-12 margin1">
-                    <div class="box1 title1 h-100">
-                        <h4><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h4>
-                        <p><?php echo $resource->notes; ?></p>
-                    </div>
-                </div>
-            <?php endif; ?>
-        </div>
-    </div>
-</section>
+
 
 <section class="padding1">
     <div class="container">
@@ -713,6 +512,209 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 </div>
             </div>
         <?php endif; ?>
+    </div>
+</section>
+
+<section class="padding1 color1">
+    <div class="container">
+        <h3><b>Outras Informações</b></h3>
+        <br />
+        <div class="row">
+            <?php if ( $resource->collection ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Collection', 'relatos')); ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <?php foreach ($resource->collection as $collection) : ?>
+                                    <tr>
+                                        <td><?php echo $collection->name; ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->thematic_area ): ?>
+                <?php if ( count($resource->thematic_area) == 1 && $resource->other_thematic_area ): ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <div class="box1-overflow">
+                                <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                                <?php echo $resource->other_thematic_area; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Thematic area', 'relatos')); ?></h4>
+                            <div class="box1-overflow">
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <?php foreach ($resource->thematic_area as $thematic_area) : ?>
+                                            <tr>
+                                                <td><?php echo $thematic_area->name; ?></td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ( $resource->status ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Experience status', 'relatos'); ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td><?php echo $status[$resource->status]; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="col-md-4 margin1">
+                <div class="box1 title1 h-100">
+                    <h4><?php echo mb_strtoupper(__('Dates', 'relatos')); ?></h4>
+                    <?php if ( $resource->start_date ): ?>
+                        <i class="fas fa-calendar-alt"></i> <?php echo __('Start', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->start_date)); ?><br />
+                    <?php endif; ?>
+                    <?php if ( $resource->end_date && !$resource->is_current_date ): ?>
+                        <i class="fas fa-calendar-alt"></i> <?php echo __('End', 'relatos') . ': ' . date('Y-m-d', strtotime($resource->end_date)); ?><br />
+                    <?php endif; ?>
+                </div>
+            </div>
+            <?php if ( $resource->country ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Country', 'relatos')); ?></h4>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr>
+                                    <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" crossorigin="anonymous" style="width: 30px;"></td>
+                                    <td><?php echo $resource->country->name; ?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->region ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Region', 'relatos')); ?></h4>
+                        <?php echo $resource->region; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->city ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('City', 'relatos')); ?></h4>
+                        <?php echo $resource->city; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->context ): ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Location', 'relatos'); ?></h4>
+                        <?php echo $resource->context; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->population_group ): ?>
+                <?php if ( count($resource->population_group) == 1 && $resource->other_population_group ): ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                            <?php echo $resource->other_population_group; ?>
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="col-md-4 margin1">
+                        <div class="box1 title1 h-100">
+                            <h4><?php echo mb_strtoupper(__('Population', 'relatos')); ?></h4>
+                            <table class="table table-sm">
+                                <tbody>
+                                    <?php foreach ($resource->population_group as $population_group) : ?>
+                                        <tr>
+                                            <td><?php echo $population_group->name; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endif; ?>
+            <?php if ( $resource->language ): ?>
+                <div class="col-md-4 margin1 d-none">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo mb_strtoupper(__('Language', 'relatos')); ?></h4>
+                        <?php echo $language[$resource->language]; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->descriptors ) : ?>
+                <?php $descriptors = json_decode($resource->descriptors, true); ?>
+                <?php $descriptors = wp_list_pluck( $descriptors, 'value' ); ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Descriptors', 'relatos'); ?></h4>
+                        <?php echo implode('<br />', $descriptors); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->keywords ) : ?>
+                <?php $keywords = json_decode($resource->keywords, true); ?>
+                <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
+                <div class="col-md-4 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Keywords', 'relatos') . ':'; ?></h4>
+                        <?php echo implode('<br />', $keywords); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
+                <div class="col-md-4 margin1 boxs-links">
+                    <div class="box1 title1 h-100">
+                        <h4><b><?php echo __('Related links', 'relatos'); ?></b></h4>
+                        <?php foreach ($related_links as $link): ?>
+                            <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $link; ?>" target="_blank">
+                                    <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                    <?php echo $link; ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->products_information ): ?>
+                <div class="col-md-12 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><?php echo __('Products, materials and publications', 'relatos') . ':'; ?></h4>
+                        <?php echo nl2br($resource->products_information); ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <?php if ( $resource->notes ): ?>
+                <div class="col-md-12 margin1">
+                    <div class="box1 title1 h-100">
+                        <h4><b><?php echo __('Notes', 'relatos') . ':'; ?></b></h4>
+                        <p><?php echo $resource->notes; ?></p>
+                    </div>
+                </div>
+            <?php endif; ?>
+        </div>
     </div>
 </section>
 
