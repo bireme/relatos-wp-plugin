@@ -267,7 +267,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </button>
                     </h2>
                 </div>
-                <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionArchive">
+                <div id="collapseOne" class="collapse " aria-labelledby="headingOne">
                     <div class="card-body">
                         <?php if ( $resource->full_text ): ?>
                             <p><?php echo $resource->full_text; ?></p>
@@ -284,7 +284,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </button>
                     </h2>
                 </div>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionArchive">
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
                     <div class="card-body">
                         <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
                         <?php if ( $relatos_docs ) : ?>
@@ -323,12 +323,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         <div class="card">
             <div class="card-header" id="headingThree">
                 <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
                         <i class="fas fa-images"></i> <?php echo __('Images', 'relatos'); ?>
                     </button>
                 </h2>
             </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionArchive">
+            <div id="collapseThree" class="collapse show" aria-labelledby="headingThree">
                 <div class="card-body">
                     <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
                     <?php if ( $relatos_images ) : ?>
@@ -350,12 +350,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         <div class="card">
             <div class="card-header" id="headingFour">
                 <h2 class="mb-0">
-                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
                         <i class="fas fa-video"></i> <?php echo __('Videos', 'relatos'); ?>
                     </button>
                 </h2>
             </div>
-            <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionArchive">
+            <div id="collapseFour" class="collapse show" aria-labelledby="headingFour">
                 <div class="card-body">
                     <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
                     <?php if ( $relatos_videos ) : $count = 0; ?>
@@ -395,7 +395,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </button>
                 </h2>
             </div>
-            <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionArchive">
+            <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
                 <div class="card-body">
                     <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
                     <?php if ( $relatos_medias ) : ?>
