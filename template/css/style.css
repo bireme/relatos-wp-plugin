@@ -1,6 +1,9 @@
 *{
     font-family: 'Open Sans', sans-serif;
 }
+a:focus{
+    text-decoration: none;
+}
 #header{
     padding: 20px 0;
 }
@@ -87,7 +90,7 @@
 .postNext{
     text-align: right;
 }
-.color1{
+.color1p:nth-child(even){
     background: #f2f2f2;
 }
 .color2{
@@ -129,16 +132,16 @@ header[class*='ast-'] {
     text-transform: uppercase;
 }
 .box2 {
-	display: inline-block;
-	width: 48.5%;
+    display: inline-block;
+    width: 48.5%;
     margin-right: 10px;
     margin-top: 10px;
 }
 .card-box {
-	background: #f8f8ff;
+    background: #f8f8ff;
 }
 .card-grid {
-	display: flex;
+    display: flex;
     flex-wrap: wrap;
 }
 .card-grid-2 {
@@ -164,6 +167,8 @@ header[class*='ast-'] {
 }
 .title1{
     font-family: 'Roboto', sans-serif;
+    border-color: #ddd;
+    color: #333;
 }
 .title2{
     color: #2482a0;
@@ -197,7 +202,7 @@ header[class*='ast-'] {
     font-size: 16px;
 }
 .show-more {
-	margin: 6px 0;
+    margin: 6px 0;
 }
 [class^='lang-item'] img {
     display: none;
@@ -542,6 +547,23 @@ header[class*='ast-'] {
 }
 #accordionArchive .btn-link:hover{
     color:#194575;
+}
+.breadcrumb{
+    background: #fff;
+}
+#title-header, .title-header{
+    border-bottom:2px solid #ddd;
+    padding: 5px 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.title-result{
+    background: #ddd;
+    margin: -15px 0 20px 0;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    border-radius: 0 0 10px 10px;
+    display: inline-block;
 }
 /************************** Breakpoints *********************/
 @media (max-width: 1200px){

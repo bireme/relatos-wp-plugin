@@ -114,8 +114,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 <?php get_header('relatos');?>
 
 <section id="sectionSearch" class="padding2">
-	<div class="container">
-		<div class="col-md-12">
+    <div class="container">
+        <div class="col-md-12">
             <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($relatos_plugin_slug); ?>">
                 <div class="row g-3">
                     <div class="col-9 offset-1 text-right">
@@ -134,8 +134,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                 </div>
             </form>
-		</div>
-	</div>
+        </div>
+    </div>
 </section>
 
 <!-- Start sidebar relatos-header -->
@@ -146,7 +146,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 <!-- end sidebar relatos-header -->
 
 <section class="padding1">
-	<div class="container">
+    <div class="container">
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo $home_url ?>"><?php _e('Home','relatos'); ?></a></li>
@@ -158,12 +158,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <?php endif; ?>
           </ol>
         </nav>
-
+        <h1 id="title-header">Relatos de Experiências</h1>
         <?php if ( $total ) : ?>
             <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
-                <h3 class="title1"><?php _e('Results', 'relatos'); echo ': ' . $total; ?></h3>
+                <span class="title-result"><?php _e('Results', 'relatos'); echo ': ' . $total; ?></span>
             <?php else: ?>
-                <h3 class="title1"><?php _e('Total', 'relatos'); echo ': ' . $total; ?></h3>
+                <span class="title-result"><?php _e('Total', 'relatos'); echo ': ' . $total; ?></span>
             <?php endif; ?>
         <?php endif; ?>
 
@@ -306,7 +306,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php endforeach; ?>
 
                 <?php endif; ?>
-			</div>
+            </div>
         </div>
     </div>
 </section>
