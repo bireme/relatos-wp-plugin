@@ -158,7 +158,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <?php endif; ?>
           </ol>
         </nav>
-        <h1 id="title-header">Relatos de Experiências</h1>
+
+        <h1 id="title-header"><?php _e('Experience Reports','relatos'); ?></h1>
+        
         <?php if ( $total ) : ?>
             <?php if ( ( $query != '' || $user_filter != '' ) && strval($total) > 0) :?>
                 <span class="title-result"><?php _e('Results', 'relatos'); echo ': ' . $total; ?></span>

@@ -146,7 +146,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <div id="header-title">
                 <div class="row">
                     <div id="title-relatos">
-                        Relato de Expêriencia
+                        <?php _e('Experience Reports','relatos'); ?>
                     </div>
                     <div class="offset-lg-5 col-lg-7 align-items-center">
                         <h1 class="title-teste"><?php echo $resource->title; ?></h1>  
@@ -209,73 +209,69 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                 <hr />
                             </div>
                         <?php endif; ?>
-                    <?php endif; ?>
 
-                    <?php if ( $resource->objectives ): ?>
-                        <div class="session1">
-                            <h5 class="title2"><b><?php echo __('Objectives', 'relatos') . '/' . __('Expected results', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->objectives; ?></p>
-                            <hr />
-                        </div>
-                    <?php endif; ?>
-                    <?php if ( $resource->resources ): ?>
-                        <div class="session1">
-                            <h5 class="title2"><b><?php echo __('Resources', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->resources; ?></p>
-                            <hr />
-                        </div>
-                    <?php endif; ?>
-                    <?php if ( $resource->main_results ): ?>
-                        <div class="session1">
-                            <h5 class="title2"><b><?php echo __('Main results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->main_results; ?></p>
-                            <hr />
-                        </div>
-                    <?php endif; ?>
-                    <?php if ( $resource->challenges_information ): ?>
-                        <div class="session1">
-                            <h5 class="title2"><b><?php echo __('Challenges', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->challenges_information; ?></p>
-                            <hr />
-                        </div>
-                    <?php endif; ?>
-                    <?php if ( $resource->lessons_learned ): ?>
-                        <div class="session1">
-                            <h5 class="title2"><b><?php echo __('Lessons learned', 'relatos') . ':'; ?></b></h5>
-                            <p><?php echo $resource->lessons_learned; ?></p>
-                            <hr />
-                        </div>
-                    <?php endif; ?>
-
-                    <div class="session1">
-                        Acesse o relato em texto completo
-                        <div class="btn-group" role="group" aria-label="Basic outlined example">
-                            <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?></a>
-                            <a type="button" href="#!" download class="btn btn-outline-primary"><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
-                        </div>
-                    </div>
-
-                    <div class="session1">
-                        <div id="fulltext" class="collapse">
-                        <hr />
-                        <h5 class="title2"><?php echo __('Fulltext', 'relatos'); ?></h5>
-                        <?php if ( $resource->full_text ): ?>
-                            <p><?php echo $resource->full_text; ?></p>
+                        <?php if ( $resource->objectives ): ?>
+                            <div class="session1">
+                                <h5 class="title2"><b><?php echo __('Objectives', 'relatos') . '/' . __('Expected results', 'relatos') . ':'; ?></b></h5>
+                                <p><?php echo $resource->objectives; ?></p>
+                                <hr />
+                            </div>
                         <?php endif; ?>
+                        <?php if ( $resource->resources ): ?>
+                            <div class="session1">
+                                <h5 class="title2"><b><?php echo __('Resources', 'relatos') . ':'; ?></b></h5>
+                                <p><?php echo $resource->resources; ?></p>
+                                <hr />
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $resource->main_results ): ?>
+                            <div class="session1">
+                                <h5 class="title2"><b><?php echo __('Main results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
+                                <p><?php echo $resource->main_results; ?></p>
+                                <hr />
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $resource->challenges_information ): ?>
+                            <div class="session1">
+                                <h5 class="title2"><b><?php echo __('Challenges', 'relatos') . ':'; ?></b></h5>
+                                <p><?php echo $resource->challenges_information; ?></p>
+                                <hr />
+                            </div>
+                        <?php endif; ?>
+                        <?php if ( $resource->lessons_learned ): ?>
+                            <div class="session1">
+                                <h5 class="title2"><b><?php echo __('Lessons learned', 'relatos') . ':'; ?></b></h5>
+                                <p><?php echo $resource->lessons_learned; ?></p>
+                                <hr />
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="session1">
+                            Acesse o relato em texto completo
+                            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?></a>
+                                <a type="button" href="#!" download class="btn btn-outline-primary"><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
+                            </div>
+                        </div>
+
+                        <div class="session1">
+                            <div id="fulltext" class="collapse">
+                            <hr />
+                            <h5 class="title2"><?php echo __('Fulltext', 'relatos'); ?></h5>
+                            <?php if ( $resource->full_text ): ?>
+                                <p><?php echo $resource->full_text; ?></p>
+                            <?php endif; ?>
+                            </div>
                         </div>
                     </div>
-
                 </div>
-            </div>
+            <?php endif; ?>
         </div>
     </div>
 </section>
 
-
-
 <section class="padding1 color1p">
     <div class="container">
-
         <div class="session1">
             <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
             <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
@@ -322,18 +318,12 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
             <?php endif; ?>
             <div class="clearfix"></div>
         </div>
-
-
-
-
-
-
     </div>
 </section>
 
 <section class="padding1 color1p">
     <div class="container">
-        <h3><b>Equipe</b></h3>
+        <h3><b><?php _e('Team','relatos'); ?></b></h3>
         <br />
         <?php if ( $resource->responsible ): ?>
             <div class="session1">
@@ -432,7 +422,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <section class="padding1 color1p">
     <div class="container">
-        <h3><b>Outras Informações</b></h3>
+        <h3><b><?php _e('Other Information','relatos'); ?></b></h3>
         <br />
         <div class="row">
             <?php if ( $resource->collection ): ?>
