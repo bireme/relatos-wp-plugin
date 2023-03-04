@@ -107,7 +107,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <?php get_header('relatos');?>
 
-<section id="sectionSearch color1p" class="padding2">
+<div id="wp-relatos">
+
+<section id="sectionSearch" class="padding2 color1p">
     <div class="container">
         <div class="col-md-12">
             <form role="search" method="get" name="formHome" id="searchForm" action="<?php echo real_site_url($relatos_plugin_slug); ?>">
@@ -333,10 +335,10 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <div class="card box2 card-box card-resp">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <?php echo $responsible->name; ?> <small><a href="#Resp" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a></small>
+                                    <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a></small>
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
                                 </h5>
-                                <div class="collapse" id="Resp">
+                                <div class="collapse" id="resp">
                                     <p class="card-text">
                                         <?php if ( $responsible->filiation ) : ?>
                                             <b><?php echo __('Filiation', 'relatos'); ?></b><br />
@@ -644,6 +646,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         </div>
     </div>
 </section>
+
+</div>
 
 <?php if ( $relatos_config['custom_color'] ) : ?>
     <style type="text/css">
