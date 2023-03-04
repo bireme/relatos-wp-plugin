@@ -107,8 +107,6 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <?php get_header('relatos');?>
 
-<div id="wp-relatos">
-
 <section id="sectionSearch" class="padding2 color1p">
     <div class="container">
         <div class="col-md-12">
@@ -646,8 +644,6 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         </div>
     </div>
 </section>
-
-</div>
 
 <?php if ( $relatos_config['custom_color'] ) : ?>
     <style type="text/css">
