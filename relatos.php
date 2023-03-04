@@ -268,6 +268,7 @@ if(!class_exists('Relatos_Plugin')) {
         }
 
         function page_template_styles_scripts(){
+            wp_enqueue_script('jquery');
             wp_enqueue_script('bootstrap-popper', '//cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js', array(), '1.14.7', true);
             wp_enqueue_script('bootstrap-js', '//cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js', array(), '4.3.1', true);
             wp_enqueue_script('relatos-tooltipster', RELATOS_PLUGIN_URL . 'template/js/jquery.tooltipster.min.js');
