@@ -113,7 +113,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <?php get_header('relatos');?>
 
-<section id="sectionSearch" class="padding2">
+<section id="sectionSearch" class="padding2 relatos-search">
     <div class="container">
         <div class="col-md-12">
             <form role="search" method="get" name="searchForm" id="searchForm" action="<?php echo real_site_url($relatos_plugin_slug); ?>">
@@ -145,9 +145,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 <div class="spacer"></div>
 <!-- end sidebar relatos-header -->
 
-<section class="padding1">
+<section class="padding1 relatos-section">
     <div class="container">
-        <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb" class="relatos-breadcrumb">
           <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<?php echo $home_url ?>"><?php _e('Home','relatos'); ?></a></li>
             <?php if ($query == '' && $filter == ''): ?>
