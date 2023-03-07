@@ -565,6 +565,13 @@ header[class*='ast-'] {
     border-radius: 0 0 10px 10px;
     display: inline-block;
 }
+.relatos-search .container{
+    background:none!important;
+}
+.relatos-breadcrumb .breadcrumb{
+    margin-top:10px!important;
+    height:auto!important;
+}
 /************************** Breakpoints *********************/
 @media (max-width: 1200px){
     #header-title{
