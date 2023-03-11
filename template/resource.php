@@ -246,23 +246,34 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                             </div>
                         <?php endif; ?>
 
-                        <div class="session1">
-                            Acesse o relato em texto completo
-                            <div class="btn-group" role="group" aria-label="Basic outlined example">
-                                <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?></a>
-                                <a type="button" href="#!" download class="btn btn-outline-primary"><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
+                        <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
+                        <?php if ( $resource->full_text || $relatos_docs  ) : ?>
+                            <div class="session1">
+                                <?php echo __('Access the experience in fulltext:', 'relatos'); ?>
+                                <div class="btn-group" role="group" aria-label="Basic outlined example">
+                                    <?php if ( $resource->full_text ) : ?>
+                                        <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?></a>
+                                    <?php endif; ?>
+                                    <?php if ( $relatos_docs ) : ?>
+                                        <?php foreach ($relatos_docs as $uri) : ?>
+                                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                                <a type="button" href="<?php echo $uri; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="session1">
-                            <div id="fulltext" class="collapse">
-                            <hr />
-                            <h5 class="title2"><?php echo __('Fulltext', 'relatos'); ?></h5>
-                            <?php if ( $resource->full_text ): ?>
-                                <p><?php echo $resource->full_text; ?></p>
+                            <?php if ( $resource->full_text ) : ?>
+                                <div class="session1">
+                                    <div id="fulltext" class="collapse">
+                                    <hr />
+                                    <h5 class="title2"><?php echo __('Fulltext', 'relatos'); ?></h5>
+                                    <p><?php echo $resource->full_text; ?></p>
+                                    </div>
+                                </div>
                             <?php endif; ?>
-                            </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             <?php endif; ?>
@@ -272,14 +283,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 <section class="padding1 color1p">
     <div class="container">
-        <div class="session1">
-            <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
-            <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
-            <?php if ( $relatos_videos ) : $count = 0; ?>
+        <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
+        <?php if ( $relatos_videos ) : ?>
+            <div class="session1">
+                <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
                 <div class="session1">
                     <div class="row">
                         <?php foreach ($relatos_videos as $uri): ?>
-                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : $count++; ?>
+                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
                                 <div class="col-12 col-md">
                                     <div class="embed-responsive embed-responsive-21by9">
                                         <video src="<?php echo $uri; ?>" controls="controls">
@@ -292,20 +303,23 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                     <hr />
                 </div>
-            <?php elseif ( $resource->other_videos ): ?>
-                <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
-                <?php if ( $other_videos ) : ?>
+            </div>
+        <?php elseif ( $resource->other_videos ): ?>
+            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+            <?php if ( $other_videos ) : ?>
+                <div class="session1">
+                    <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
                     <div class="embed-responsive embed-responsive-21by9">
                         <?php echo $resource->other_videos; ?>
                     </div>
-                <?php endif; ?>
+                </div>
             <?php endif; ?>
-        </div>
+        <?php endif; ?>
 
-        <div class="session1">
-            <h5 class="title2"><?php echo __('Images', 'relatos'); ?></h5>
-            <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
-            <?php if ( $relatos_images ) : ?>
+        <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+        <?php if ( $relatos_images ) : ?>
+            <div class="session1">
+                <h5 class="title2"><?php echo __('Images', 'relatos'); ?></h5>
                 <?php foreach ($relatos_images as $img): ?>
                     <div class="relatos-thumb">
                         <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
@@ -315,9 +329,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         </a>
                     </div>
                 <?php endforeach; ?>
-            <?php endif; ?>
-            <div class="clearfix"></div>
-        </div>
+                <div class="clearfix"></div>
+            </div>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -603,25 +617,21 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                 </div>
             <?php endif; ?>
-            <?php if ( $resource->keywords ) : ?>
-                <?php $keywords = json_decode($resource->keywords, true); ?>
-                <?php $keywords = wp_list_pluck( $keywords, 'value' ); ?>
+            <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
+            <?php if ( $relatos_medias ) : ?>
                 <div class="col-md-4 margin1">
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Other medias', 'relatos'); ?></h4>
-                        <?php $relatos_medias = get_relatos_attachment($response_json[0], 'others'); ?>
-                        <?php if ( $relatos_medias ) : ?>
-                            <?php foreach ($relatos_medias as $uri): ?>
-                                <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                    <a href="<?php echo $uri; ?>" target="_blank">
-                                        <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                        <?php $filename = explode('_', basename($uri)); ?>
-                                        <?php echo end($filename); ?>
-                                        <br />
-                                    </a>
-                                <?php endif; ?>
-                            <?php endforeach; ?>
-                        <?php endif; ?>
+                        <?php foreach ($relatos_medias as $uri): ?>
+                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $uri; ?>" target="_blank">
+                                    <i class="far fa-file-alt" aria-hidden="true"> </i>
+                                    <?php $filename = explode('_', basename($uri)); ?>
+                                    <?php echo end($filename); ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
                     </div>
                 </div>
             <?php endif; ?>
