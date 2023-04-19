@@ -347,7 +347,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <div class="card box2 card-box card-resp">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a></small>
+                                    <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></small>
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
                                 </h5>
                                 <div class="collapse" id="resp">
@@ -398,7 +398,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php foreach ($resource->members as $member) : $count++; ?>
                         <div class="card card-box box3 card-member">
                             <div class="card-body">
-                                <h6 class="card-title"><?php echo $member->name; ?> <a href="#div_<?=$count ?>" data-toggle="collapse"><i class="fa-solid fa-circle-info"></i></a></h6>
+                                <h6 class="card-title"><?php echo $member->name; ?> <a href="#div_<?=$count ?>" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></h6>
                                 <div class="collapse" id="div_<?=$count ?>">
                                     <p class="card-text">
                                         <?php if ( $member->filiation ) : ?>
