@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Best Practices WP Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
 "POT-Creation-Date: 2023-03-11 05:52-0300\n"
-"PO-Revision-Date: 2023-03-11 05:56-0300\n"
+"PO-Revision-Date: 2023-04-19 14:40-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: pt_BR\n"
@@ -251,7 +251,7 @@ msgstr "Desafios"
 
 #: template/resource.php:243
 msgid "Lessons learned"
-msgstr "Lições aprendidadas"
+msgstr "Lições aprendidas"
 
 #: template/resource.php:252
 msgid "Access the experience in fulltext:"
