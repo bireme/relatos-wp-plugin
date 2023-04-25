@@ -181,12 +181,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
 
                     <div class="relatos-data">
-                        <h3><b><?php echo __('Experience Details', 'relatos'); ?></b></h3>
-                        <br />
+                        <!-- <h3><b><?php echo __('Experience Details', 'relatos'); ?></b></h3><br /> -->
                         <?php if ( $resource->description ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Issue', 'relatos') . '/' . __('Situation', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->description; ?></p>
+                                <p><?php echo nl2br($resource->description); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
@@ -204,7 +203,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     </div>
                                 </h5>
                                 <div class="collapse" id="fulltext">
-                                    <p><?php echo $resource->full_text; ?></p>
+                                    <p><?php echo nl2br($resource->full_text); ?></p>
                                 </div>
                                 <hr />
                             </div>
@@ -213,35 +212,35 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php if ( $resource->objectives ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Objectives', 'relatos') . '/' . __('Expected results', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->objectives; ?></p>
+                                <p><?php echo nl2br($resource->objectives); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
                         <?php if ( $resource->resources ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Resources', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->resources; ?></p>
+                                <p><?php echo nl2br($resource->resources); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
                         <?php if ( $resource->main_results ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Main results', 'relatos') . '/' . __('Impacts', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->main_results; ?></p>
+                                <p><?php echo nl2br($resource->main_results); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
                         <?php if ( $resource->challenges_information ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Challenges', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->challenges_information; ?></p>
+                                <p><?php echo nl2br($resource->challenges_information); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
                         <?php if ( $resource->lessons_learned ): ?>
                             <div class="session1">
                                 <h5 class="title2"><b><?php echo __('Lessons learned', 'relatos') . ':'; ?></b></h5>
-                                <p><?php echo $resource->lessons_learned; ?></p>
+                                <p><?php echo nl2br($resource->lessons_learned); ?></p>
                                 <hr />
                             </div>
                         <?php endif; ?>
@@ -639,7 +638,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="col-md-12 margin1">
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Products, materials and publications', 'relatos'); ?></h4>
-                        <p><?php echo nl2br($resource->products_information); ?></p>
+                        <?php $products_information = preg_replace( "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~", "<a href=\"\\0\" target=\"_blank\"><i class=\"fa fa-external-link-square-alt\" aria-hidden=\"true\"> </i> \\0</a>", $resource->products_information); // linkify ?>
+                        <p><?php echo nl2br($products_information); ?></p>
                     </div>
                 </div>
             <?php endif; ?>
@@ -647,7 +647,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="col-md-12 margin1">
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Notes', 'relatos'); ?></h4>
-                        <p><?php echo $resource->notes; ?></p>
+                        <p><?php echo nl2br($resource->notes); ?></p>
                     </div>
                 </div>
             <?php endif; ?>
