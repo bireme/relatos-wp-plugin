@@ -48,7 +48,7 @@ function relatos_page_admin() {
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Google Analytics code', 'relatos'); ?>:</th>
-                        <td><input type="text" name="relatos_config[google_analytics_code]" value="<?php echo $config['google_analytics_code'] ?>" class="regular-text code"></td>
+                        <td><textarea name="relatos_config[google_analytics_code]" rows="3" class="regular-text code"><?php echo $config['google_analytics_code'] ?></textarea></td>
                     </tr>
                     <tr valign="top">
                         <th scope="row"><?php _e('Fulltext', 'relatos'); ?>:</th>
