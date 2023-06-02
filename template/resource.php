@@ -268,7 +268,7 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     <div id="fulltext" class="collapse">
                                     <hr />
                                     <h5 class="title2"><?php echo __('Fulltext', 'relatos'); ?></h5>
-                                    <p><?php echo $resource->full_text; ?></p>
+                                    <p><?php echo nl2br($resource->full_text); ?></p>
                                     </div>
                                 </div>
                             <?php endif; ?>
