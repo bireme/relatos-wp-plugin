@@ -253,10 +253,15 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     <?php if ( $resource->full_text ) : ?>
                                         <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Fulltext', 'relatos'); ?></a>
                                     <?php endif; ?>
-                                    <?php if ( $relatos_docs ) : ?>
-                                        <?php foreach ($relatos_docs as $uri) : ?>
-                                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                                <a type="button" href="<?php echo $uri; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
+                                    <?php if ( $relatos_docs ) : $dcount = 0; ?>
+                                        <?php foreach ($relatos_docs as $uri) : $dcount++; ?>
+                                            <?php $_uri = strpos($uri, 'http') === 0 ? $uri : "https://".$uri; ?>
+                                            <?php if (filter_var($_uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                                <?php if ( count($relatos_docs) > 1 ) : ?>
+                                                    <a type="button" href="<?php echo $_uri; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Document', 'relatos') . ' ' . $dcount; ?></a>
+                                                <?php else : ?>
+                                                    <a type="button" href="<?php echo $_uri; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Document', 'relatos'); ?></a>
+                                                <?php endif; ?>
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
@@ -280,59 +285,62 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
     </div>
 </section>
 
-<section class="padding1 color1p">
-    <div class="container">
-        <?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
-        <?php if ( $relatos_videos ) : ?>
-            <div class="session1">
-                <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
-                <div class="session1">
-                    <div class="row">
-                        <?php foreach ($relatos_videos as $uri): ?>
-                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                <div class="col-12 col-md">
-                                    <div class="embed-responsive embed-responsive-21by9">
-                                        <video src="<?php echo $uri; ?>" controls="controls">
-                                            <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
-                                        </video>
-                                    </div>
-                                </div>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </div>
-                    <hr />
-                </div>
-            </div>
-        <?php elseif ( $resource->other_videos ): ?>
-            <?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
-            <?php if ( $other_videos ) : ?>
+<?php $relatos_videos = get_relatos_attachment($response_json[0], 'video'); ?>
+<?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
+<?php $other_videos = get_media_embedded_in_content($resource->other_videos); ?>
+<?php if ( $relatos_videos || $other_videos || $relatos_images ) : ?>
+    <section class="padding1 color1p">
+        <div class="container">
+            <?php if ( $relatos_videos ) : ?>
                 <div class="session1">
                     <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
-                    <div class="embed-responsive embed-responsive-21by9">
-                        <?php echo $resource->other_videos; ?>
+                    <div class="session1">
+                        <div class="row">
+                            <?php foreach ($relatos_videos as $uri): ?>
+                                <?php $_uri = strpos($uri, 'http') === 0 ? $uri : "https://".$uri; ?>
+                                <?php if (filter_var($_uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                    <div class="col-12 col-md">
+                                        <div class="embed-responsive embed-responsive-21by9">
+                                            <video src="<?php echo $_uri; ?>" controls="controls">
+                                                <?php echo __('Your browser does not support the video tag.', 'relatos'); ?>
+                                            </video>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
+                        </div>
+                        <hr />
                     </div>
                 </div>
-            <?php endif; ?>
-        <?php endif; ?>
-
-        <?php $relatos_images = get_relatos_attachment($response_json[0], 'image'); ?>
-        <?php if ( $relatos_images ) : ?>
-            <div class="session1">
-                <h5 class="title2"><?php echo __('Images', 'relatos'); ?></h5>
-                <?php foreach ($relatos_images as $img): ?>
-                    <div class="relatos-thumb">
-                        <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
-                            <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
-                            <?php // $img_name = explode('_', basename($img)); ?>
-                            <?php // echo $img_name[1]; ?>
-                        </a>
+            <?php elseif ( $resource->other_videos ): ?>
+                <?php if ( $other_videos ) : ?>
+                    <div class="session1">
+                        <h5 class="title2"><?php echo __('Videos', 'relatos'); ?></h5>
+                        <div class="embed-responsive embed-responsive-21by9">
+                            <?php echo $resource->other_videos; ?>
+                        </div>
                     </div>
-                <?php endforeach; ?>
-                <div class="clearfix"></div>
-            </div>
-        <?php endif; ?>
-    </div>
-</section>
+                <?php endif; ?>
+            <?php endif; ?>
+
+            <?php if ( $relatos_images ) : ?>
+                <div class="session1">
+                    <h5 class="title2"><?php echo __('Images', 'relatos'); ?></h5>
+                    <?php foreach ($relatos_images as $img): ?>
+                        <div class="relatos-thumb">
+                            <a href="<?php echo $img; ?>" data-lightbox="relatos-img">
+                                <img src="<?php echo $img; ?>" alt="" class="img-fluid" />
+                                <?php // $img_name = explode('_', basename($img)); ?>
+                                <?php // echo $img_name[1]; ?>
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                    <div class="clearfix"></div>
+                </div>
+            <?php endif; ?>
+        </div>
+    </section>
+<?php endif; ?>
 
 <section class="padding1 color1p">
     <div class="container">
@@ -346,7 +354,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <div class="card box2 card-box card-resp">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></small>
+                                    <?php if ( $responsible->filiation || $responsible->job || $responsible->email || $responsible->phone || $responsible->curriculum || $responsible->orcid ) : ?>
+                                        <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></small>
+                                    <?php else : ?>
+                                        <?php echo $responsible->name; ?>
+                                    <?php endif; ?>
                                     <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
                                 </h5>
                                 <div class="collapse" id="resp">
@@ -397,8 +409,14 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <?php foreach ($resource->members as $member) : $count++; ?>
                         <div class="card card-box box3 card-member">
                             <div class="card-body">
-                                <h6 class="card-title"><?php echo $member->name; ?> <a href="#div_<?=$count ?>" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></h6>
-                                <div class="collapse" id="div_<?=$count ?>">
+                                <h6 class="card-title">
+                                    <?php if ( $member->filiation || $member->job || $member->academic_formation || $member->email || $member->curriculum ) : ?>
+                                        <?php echo $member->name; ?> <a href="#div_<?php echo $count; ?>" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a>
+                                    <?php else : ?>
+                                        <?php echo $member->name; ?>
+                                    <?php endif; ?>
+                                </h6>
+                                <div class="collapse" id="div_<?php echo $count; ?>">
                                     <p class="card-text">
                                         <?php if ( $member->filiation ) : ?>
                                             <b><?php echo __('Filiation', 'relatos'); ?></b><br />
@@ -515,7 +533,8 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <table class="table table-sm">
                             <tbody>
                                 <tr>
-                                    <td width="35"><img src="https://www.countryflagsapi.com/png/<?php echo $resource->country->code; ?>" alt="" crossorigin="anonymous" style="width: 30px;"></td>
+                                    <!-- <td width="35"><img src="https://flagsapi.com/<?php echo $resource->country->code; ?>/flat/64.png" alt="" style="width: 30px;"></td> -->
+                                    <td width="35"><img src="https://www.countryflagicons.com/FLAT/64/<?php echo $resource->country->code; ?>.png" alt="" style="width: 30px;"></td>
                                     <td><?php echo $resource->country->name; ?></td>
                                 </tr>
                             </tbody>
@@ -601,14 +620,16 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 </div>
             <?php endif; ?>
             <?php if ( $resource->related_links ) : $related_links = explode("\r\n", $resource->related_links); ?>
+                <?php $related_links = array_map('trim', $related_links); ?>
                 <div class="col-md-4 margin1 boxs-links">
                     <div class="box1 title1 h-100">
                         <h4><b><?php echo __('Related links', 'relatos'); ?></b></h4>
                         <?php foreach ($related_links as $link): ?>
-                            <?php if (filter_var($link, FILTER_VALIDATE_URL) !== false) : ?>
-                                <a href="<?php echo $link; ?>" target="_blank">
+                            <?php $_link = strpos($link, 'http') === 0 ? $link : "https://".$link; ?>
+                            <?php if (filter_var($_link, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $_link; ?>" target="_blank">
                                     <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                                    <?php echo $link; ?>
+                                    <?php echo $_link; ?>
                                     <br />
                                 </a>
                             <?php endif; ?>
@@ -622,10 +643,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Other medias', 'relatos'); ?></h4>
                         <?php foreach ($relatos_medias as $uri): ?>
-                            <?php if (filter_var($uri, FILTER_VALIDATE_URL) !== false) : ?>
-                                <a href="<?php echo $uri; ?>" target="_blank">
+                            <?php $_uri = strpos($uri, 'http') === 0 ? $uri : "https://".$uri; ?>
+                            <?php if (filter_var($_uri, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $_uri; ?>" target="_blank">
                                     <i class="far fa-file-alt" aria-hidden="true"> </i>
-                                    <?php $filename = explode('_', basename($uri)); ?>
+                                    <?php $filename = explode('_', basename($_uri)); ?>
                                     <?php echo end($filename); ?>
                                     <br />
                                 </a>
@@ -634,12 +656,23 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                 </div>
             <?php endif; ?>
-            <?php if ( $resource->products_information ): ?>
+            <?php if ( $resource->products_information ) : $products_information = explode("\r\n", $resource->products_information); ?>
+                <?php $products_information = array_map('trim', $products_information); ?>
                 <div class="col-md-12 margin1">
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Products, materials and publications', 'relatos'); ?></h4>
-                        <?php $products_information = preg_replace( "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~", "<a href=\"\\0\" target=\"_blank\"><i class=\"fa fa-external-link-square-alt\" aria-hidden=\"true\"> </i> \\0</a>", $resource->products_information); // linkify ?>
-                        <p><?php echo nl2br($products_information); ?></p>
+                        <?php foreach ($products_information as $link): ?>
+                            <?php $_link = strpos($link, 'http') === 0 ? $link : "https://".$link; ?>
+                            <?php if (filter_var($_link, FILTER_VALIDATE_URL) !== false) : ?>
+                                <a href="<?php echo $_link; ?>" target="_blank">
+                                    <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
+                                    <?php echo $_link; ?>
+                                    <br />
+                                </a>
+                            <?php endif; ?>
+                        <?php endforeach; ?>
+                        <?php // $products_information = preg_replace( "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~", "<a href=\"\\0\" target=\"_blank\"><i class=\"fa fa-external-link-square-alt\" aria-hidden=\"true\"> </i> \\0</a>", $resource->products_information); // linkify ?>
+                        <!-- <p><?php echo nl2br($products_information); ?></p> -->
                     </div>
                 </div>
             <?php endif; ?>

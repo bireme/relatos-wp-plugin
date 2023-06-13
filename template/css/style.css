@@ -153,11 +153,12 @@ header[class*='ast-'] {
 }
 
 .box3 .card-body{
-    padding: 10px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
 }
 .box3 .card-title{
     line-height: 0;
     margin-bottom: 5px;
+    display: inline;
 }
 .carousel-control-next-icon {
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%2305548b' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5L3.75 4l-2.5 2.5L2.75 8l4-4-4-4z'/%3e%3c/svg%3e");
