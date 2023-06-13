@@ -192,6 +192,10 @@ header[class*='ast-'] {
     transition: all .5s ease;
 }
 
+.collapse:not(.in):not(.show) {
+    display: none;
+}
+
 .viewBt h3 i{
     padding-right: 10px;
     color: #05548b;
