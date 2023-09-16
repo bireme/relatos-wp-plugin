@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Best Practices WP Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2023-03-11 05:52-0300\n"
-"PO-Revision-Date: 2023-03-11 05:52-0300\n"
+"POT-Creation-Date: 2023-09-16 02:04-0300\n"
+"PO-Revision-Date: 2023-09-16 02:05-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -25,44 +25,44 @@ msgstr "ir a la página"
 
 #: relatos.php:106
 msgid "Experience Reports settings"
-msgstr ""
+msgstr "Informes de Experiencia - Configuración"
 
 #: relatos.php:106 template/home.php:162 template/resource.php:149
 #: widgets.php:13
 msgid "Experience Reports"
-msgstr ""
+msgstr "Informes de Experiencia"
 
 #: relatos.php:121
 msgid "Settings"
 msgstr "Configuración"
 
 #: relatos.php:176
-msgid "Relatos sidebar"
-msgstr ""
+msgid "Experience Reports sidebar"
+msgstr "Informes de Experiencia - Barra Lateral"
 
 #: relatos.php:186
-msgid "Relatos header"
-msgstr ""
+msgid "Experience Reports header"
+msgstr "Informes de Experiencia - Encabezamiento"
 
-#: settings.php:8 template/resource.php:445
+#: settings.php:8 template/resource.php:462
 msgid "Collection"
-msgstr ""
+msgstr "Colección"
 
 #: settings.php:9
 msgid "Thematic Area"
-msgstr ""
+msgstr "Área Temática"
 
 #: settings.php:10
 msgid "Population Group"
 msgstr "Grupo Poblacional"
 
-#: settings.php:11 template/resource.php:515
+#: settings.php:11 template/resource.php:532
 msgid "Country"
 msgstr "País"
 
 #: settings.php:30
 msgid "Experience Reports record settings"
-msgstr ""
+msgstr "Informes de Experiencia - Configuración"
 
 #: settings.php:38
 msgid "Plugin page"
@@ -80,8 +80,8 @@ msgstr "ID de AddThis"
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:54 template/resource.php:197 template/resource.php:255
-#: template/resource.php:271
+#: settings.php:54 template/resource.php:196 template/resource.php:254
+#: template/resource.php:275
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -123,11 +123,11 @@ msgstr "Seleccionados"
 
 #: settings.php:143
 msgid "Custom Color"
-msgstr ""
+msgstr "Color personalizado"
 
 #: settings.php:149
 msgid "Example"
-msgstr ""
+msgstr "Ejemplo"
 
 #: settings.php:155
 msgid "Save changes"
@@ -167,7 +167,7 @@ msgstr "Filtros"
 
 #: template/home.php:304
 msgid "show more"
-msgstr ""
+msgstr "mostrar más"
 
 #: template/related.php:64 template/similar.php:49
 msgid "No related documents"
@@ -191,19 +191,19 @@ msgstr "Inglés"
 
 #: template/resource.php:61
 msgid "Under implementation"
-msgstr ""
+msgstr "En fase de ejecución"
 
 #: template/resource.php:62
 msgid "Implemented and in regular operation"
-msgstr ""
+msgstr "Implementado y en funcionamiento regular"
 
 #: template/resource.php:63
 msgid "Interrupted"
-msgstr ""
+msgstr "Interrumpido"
 
 #: template/resource.php:64
 msgid "Completed"
-msgstr ""
+msgstr "Finalizado"
 
 #: template/resource.php:162
 msgid "Document not found"
@@ -211,207 +211,213 @@ msgstr "Documento no encontrado"
 
 #: template/resource.php:184
 msgid "Experience Details"
-msgstr ""
+msgstr "Detalles de la Experiencia"
 
-#: template/resource.php:188
+#: template/resource.php:187
 msgid "Issue"
-msgstr ""
+msgstr "Asunto"
 
-#: template/resource.php:188
+#: template/resource.php:187
 msgid "Situation"
-msgstr ""
+msgstr "Situación"
 
-#: template/resource.php:202
+#: template/resource.php:201
 msgid "Show"
 msgstr "Mostrar"
 
-#: template/resource.php:215
+#: template/resource.php:214
 msgid "Objectives"
-msgstr ""
+msgstr "Objetivos"
 
-#: template/resource.php:215
+#: template/resource.php:214
 msgid "Expected results"
-msgstr ""
+msgstr "Resultados previstos"
 
-#: template/resource.php:222
+#: template/resource.php:221
 msgid "Resources"
-msgstr ""
+msgstr "Recursos"
 
-#: template/resource.php:229
+#: template/resource.php:228
 msgid "Main results"
-msgstr ""
+msgstr "Resultados principales"
 
-#: template/resource.php:229
+#: template/resource.php:228
 msgid "Impacts"
-msgstr ""
+msgstr "Impactos"
 
-#: template/resource.php:236
+#: template/resource.php:235
 msgid "Challenges"
-msgstr ""
+msgstr "Desafíos"
 
-#: template/resource.php:243
+#: template/resource.php:242
 msgid "Lessons learned"
-msgstr ""
+msgstr "Lecciones aprendidas"
 
-#: template/resource.php:252
+#: template/resource.php:251
 msgid "Access the experience in fulltext:"
-msgstr ""
+msgstr "Accede a la experiencia en texto completo:"
 
-#: template/resource.php:260
+#: template/resource.php:261 template/resource.php:263
 msgid "Document"
-msgstr ""
+msgstr "Documento"
 
-#: template/resource.php:289 template/resource.php:311
+#: template/resource.php:296 template/resource.php:318
 msgid "Videos"
-msgstr ""
+msgstr "Vídeos"
 
-#: template/resource.php:297
+#: template/resource.php:305
 msgid "Your browser does not support the video tag."
-msgstr ""
+msgstr "Su navegador no soporta la tag de vídeo."
 
-#: template/resource.php:322
+#: template/resource.php:328
 msgid "Images"
-msgstr ""
+msgstr "Imágenes"
 
-#: template/resource.php:340
+#: template/resource.php:347
 msgid "Team"
-msgstr ""
+msgstr "Equipo"
 
-#: template/resource.php:344
+#: template/resource.php:351
 msgid "Responsible"
-msgstr ""
+msgstr "Responsable"
 
-#: template/resource.php:356 template/resource.php:405
+#: template/resource.php:367 template/resource.php:422
 msgid "Filiation"
-msgstr ""
+msgstr "Filiación"
 
-#: template/resource.php:360 template/resource.php:409
+#: template/resource.php:371 template/resource.php:426
 msgid "Job"
-msgstr ""
+msgstr "Trabajo"
 
-#: template/resource.php:364 template/resource.php:417
+#: template/resource.php:375 template/resource.php:434
 msgid "Email"
-msgstr ""
+msgstr "Correo electrónico"
 
-#: template/resource.php:368
+#: template/resource.php:379
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
-#: template/resource.php:374 template/resource.php:423
+#: template/resource.php:385 template/resource.php:440
 msgid "Curriculum"
-msgstr ""
+msgstr "Curriculum"
 
-#: template/resource.php:381
+#: template/resource.php:392
 msgid "ORCID"
-msgstr ""
+msgstr "ORCID"
 
-#: template/resource.php:396
+#: template/resource.php:407
 msgid "Members"
-msgstr ""
+msgstr "Miembros"
 
-#: template/resource.php:413
+#: template/resource.php:430
 msgid "Academic formation"
-msgstr ""
+msgstr "Formación académica"
 
-#: template/resource.php:439
+#: template/resource.php:456
 msgid "Other Information"
-msgstr ""
+msgstr "Otras informaciónes"
 
-#: template/resource.php:463 template/resource.php:471
+#: template/resource.php:480 template/resource.php:488
 msgid "Thematic area"
-msgstr ""
+msgstr "Área temática"
 
-#: template/resource.php:490
+#: template/resource.php:507
 msgid "Experience status"
-msgstr ""
+msgstr "Estado de la experiencia"
 
-#: template/resource.php:503
+#: template/resource.php:520
 msgid "Dates"
 msgstr "Fechas"
 
-#: template/resource.php:505
+#: template/resource.php:522
 msgid "Start"
 msgstr "Inicio"
 
-#: template/resource.php:508
+#: template/resource.php:525
 msgid "End"
 msgstr "Fin"
 
-#: template/resource.php:530
+#: template/resource.php:548
 msgid "Region"
-msgstr ""
+msgstr "Región"
 
-#: template/resource.php:538
+#: template/resource.php:556
 msgid "City"
-msgstr ""
+msgstr "Ciudad"
 
-#: template/resource.php:546
+#: template/resource.php:564
 msgid "Location"
-msgstr ""
+msgstr "Ubicación"
 
-#: template/resource.php:555 template/resource.php:562
+#: template/resource.php:573 template/resource.php:580
 msgid "Population"
-msgstr ""
+msgstr "Población"
 
-#: template/resource.php:579
+#: template/resource.php:597
 msgid "Language"
 msgstr "Idioma"
 
-#: template/resource.php:589
-msgid "Descriptors"
-msgstr ""
-
-#: template/resource.php:599
-msgid "Keywords"
-msgstr ""
-
 #: template/resource.php:607
+msgid "Descriptors"
+msgstr "Descriptores"
+
+#: template/resource.php:617
+msgid "Keywords"
+msgstr "Palabras clave"
+
+#: template/resource.php:626
 msgid "Related links"
-msgstr ""
+msgstr "Enlaces relacionados"
 
-#: template/resource.php:624
+#: template/resource.php:644
 msgid "Other medias"
-msgstr ""
+msgstr "Otros medios"
 
-#: template/resource.php:641
+#: template/resource.php:663
 msgid "Products, materials and publications"
-msgstr ""
+msgstr "Productos, materiales y publicaciones"
 
-#: template/resource.php:649
+#: template/resource.php:682
 msgid "Notes"
-msgstr ""
+msgstr "Notas"
 
-#: template/resource.php:670
+#: template/resource.php:703
 msgid "Image"
-msgstr ""
+msgstr "Imagen"
 
-#: template/resource.php:670
+#: template/resource.php:703
 msgid "of"
-msgstr ""
+msgstr "de"
 
 #: template/rss.php:52
 msgid "Experience Reports records"
-msgstr ""
+msgstr "Registros de informes de experiencia"
 
 #: widgets.php:14
 msgid "Display the lastest experiences"
-msgstr ""
+msgstr "Mostrar las últimas experiencias"
 
 #: widgets.php:67
 msgid "See more experiences"
-msgstr ""
+msgstr "Ver más experiencias"
 
 #: widgets.php:67
 msgid "See more Experience Reports"
-msgstr ""
+msgstr "Ver más informes de experiencia"
 
 #: widgets.php:69
 msgid "No experiences found"
-msgstr ""
+msgstr "No se encontraron experiencias"
 
 #: widgets.php:98
 msgid "Title"
 msgstr "Título"
+
+#~ msgid "Relatos sidebar"
+#~ msgstr "Informes de Experiencia - Barra Lateral"
+
+#~ msgid "Relatos header"
+#~ msgstr "Informes de Experiencia - Encabezamiento"
 
 #~ msgid "Best Practices settings"
 #~ msgstr "Buenas Prácticas - Configuración"

@@ -173,7 +173,7 @@ if(!class_exists('Relatos_Plugin')) {
 
         function register_sidebars(){
             $args = array(
-                'name' => __('Relatos sidebar', 'relatos'),
+                'name' => __('Experience Reports sidebar', 'relatos'),
                 'id'   => 'relatos-home',
                 'before_widget' => '<section id="%1$s" class="row-fluid marginbottom25 widget_categories">',
                 'after_widget'  => '</section>',
@@ -183,7 +183,7 @@ if(!class_exists('Relatos_Plugin')) {
             register_sidebar( $args );
 
             $args2 = array(
-                'name' => __('Relatos header', 'relatos'),
+                'name' => __('Experience Reports header', 'relatos'),
                 'id'   => 'relatos-header',
                 'before_widget' => '<section id="%1$s" class="row-fluid widget %2$s">',
                 'after_widget'  => '</section>',
