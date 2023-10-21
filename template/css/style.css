@@ -573,6 +573,23 @@ header[class*='ast-'] {
     margin-top:10px!important;
     height:auto!important;
 }
+.responsible-avatar{
+    height: 70px;
+    width: 70px;
+    background: #ddd;
+    border: 1px solid #fff;
+    overflow: hidden;
+    border-radius: 150%;
+    margin: -5px -5px 15px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: right;
+}
+.responsible-avatar img{
+    max-height: 100%;
+}
+
 /************************** Breakpoints *********************/
 @media (max-width: 1200px){
     #header-title{
@@ -629,5 +646,10 @@ header[class*='ast-'] {
     }
     .postPrev, .postNext{
         text-align: center;
+    }
+}
+@media (max-width: 575px){
+    .card-resp {
+        width: 100%;
     }
 }

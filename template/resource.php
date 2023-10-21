@@ -352,14 +352,21 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                 <div class="card-grid">
                     <?php foreach ($resource->responsible as $responsible) : ?>
                         <div class="card box2 card-box card-resp">
-                            <div class="card-body">
+                            <div class="card-body position-relative">
+                                <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
+                                <?php if ( $responsible_image ) : ?>
+                                    <a href="<?php echo $responsible_image[0]; ?>" data-lightbox="resp-img-<?php echo uniqid(); ?>">
+                                        <div class="responsible-avatar">
+                                            <img src="<?php echo $responsible_image[0]; ?>" alt="">
+                                        </div>
+                                    </a>
+                                <?php endif; ?>
                                 <h5 class="card-title">
                                     <?php if ( $responsible->filiation || $responsible->job || $responsible->email || $responsible->phone || $responsible->curriculum || $responsible->orcid ) : ?>
                                         <?php echo $responsible->name; ?> <small><a href="#resp" data-toggle="collapse"><i class="fa-solid fa-circle-plus"></i></a></small>
                                     <?php else : ?>
                                         <?php echo $responsible->name; ?>
                                     <?php endif; ?>
-                                    <?php $responsible_image = get_responsible_image($response_json[0], $responsible->filename); ?>
                                 </h5>
                                 <div class="collapse" id="resp">
                                     <p class="card-text">
