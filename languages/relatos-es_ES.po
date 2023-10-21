@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Best Practices WP Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/bibliographic\n"
-"POT-Creation-Date: 2023-09-16 02:04-0300\n"
-"PO-Revision-Date: 2023-09-16 02:05-0300\n"
+"POT-Creation-Date: 2023-10-21 03:40-0300\n"
+"PO-Revision-Date: 2023-10-21 03:43-0300\n"
 "Last-Translator: Vinicius de Andrade <antoniov@paho.org>\n"
 "Language-Team: \n"
 "Language: es_ES\n"
@@ -44,7 +44,7 @@ msgstr "Informes de Experiencia - Barra Lateral"
 msgid "Experience Reports header"
 msgstr "Informes de Experiencia - Encabezamiento"
 
-#: settings.php:8 template/resource.php:462
+#: settings.php:8 template/resource.php:473
 msgid "Collection"
 msgstr "Colección"
 
@@ -56,7 +56,7 @@ msgstr "Área Temática"
 msgid "Population Group"
 msgstr "Grupo Poblacional"
 
-#: settings.php:11 template/resource.php:532
+#: settings.php:11 template/resource.php:543
 msgid "Country"
 msgstr "País"
 
@@ -80,8 +80,7 @@ msgstr "ID de AddThis"
 msgid "Google Analytics code"
 msgstr "Código de Google Analytics"
 
-#: settings.php:54 template/resource.php:196 template/resource.php:254
-#: template/resource.php:275
+#: settings.php:54 template/resource.php:196 template/resource.php:279
 msgid "Fulltext"
 msgstr "Texto completo"
 
@@ -257,135 +256,143 @@ msgstr "Lecciones aprendidas"
 msgid "Access the experience in fulltext:"
 msgstr "Accede a la experiencia en texto completo:"
 
-#: template/resource.php:261 template/resource.php:263
-msgid "Document"
-msgstr "Documento"
+#: template/resource.php:254
+msgid "Show Fulltext"
+msgstr "Mostrar Texto Completo"
 
-#: template/resource.php:296 template/resource.php:318
+#: template/resource.php:261 template/resource.php:263
+msgid "Download Fulltext"
+msgstr "Descargar Texto Completo"
+
+#: template/resource.php:270
+msgid "Download Experience"
+msgstr "Descargar Experiencia"
+
+#: template/resource.php:300 template/resource.php:322
 msgid "Videos"
 msgstr "Vídeos"
 
-#: template/resource.php:305
+#: template/resource.php:309
 msgid "Your browser does not support the video tag."
 msgstr "Su navegador no soporta la tag de vídeo."
 
-#: template/resource.php:328
+#: template/resource.php:332
 msgid "Images"
 msgstr "Imágenes"
 
-#: template/resource.php:347
+#: template/resource.php:351
 msgid "Team"
 msgstr "Equipo"
 
-#: template/resource.php:351
+#: template/resource.php:355
 msgid "Responsible"
 msgstr "Responsable"
 
-#: template/resource.php:367 template/resource.php:422
+#: template/resource.php:378 template/resource.php:433
 msgid "Filiation"
 msgstr "Filiación"
 
-#: template/resource.php:371 template/resource.php:426
+#: template/resource.php:382 template/resource.php:437
 msgid "Job"
 msgstr "Trabajo"
 
-#: template/resource.php:375 template/resource.php:434
+#: template/resource.php:386 template/resource.php:445
 msgid "Email"
 msgstr "Correo electrónico"
 
-#: template/resource.php:379
+#: template/resource.php:390
 msgid "Phone"
 msgstr "Teléfono"
 
-#: template/resource.php:385 template/resource.php:440
+#: template/resource.php:396 template/resource.php:451
 msgid "Curriculum"
 msgstr "Curriculum"
 
-#: template/resource.php:392
+#: template/resource.php:403
 msgid "ORCID"
 msgstr "ORCID"
 
-#: template/resource.php:407
+#: template/resource.php:418
 msgid "Members"
 msgstr "Miembros"
 
-#: template/resource.php:430
+#: template/resource.php:441
 msgid "Academic formation"
 msgstr "Formación académica"
 
-#: template/resource.php:456
+#: template/resource.php:467
 msgid "Other Information"
 msgstr "Otras informaciónes"
 
-#: template/resource.php:480 template/resource.php:488
+#: template/resource.php:491 template/resource.php:499
 msgid "Thematic area"
 msgstr "Área temática"
 
-#: template/resource.php:507
+#: template/resource.php:518
 msgid "Experience status"
 msgstr "Estado de la experiencia"
 
-#: template/resource.php:520
+#: template/resource.php:531
 msgid "Dates"
 msgstr "Fechas"
 
-#: template/resource.php:522
+#: template/resource.php:533
 msgid "Start"
 msgstr "Inicio"
 
-#: template/resource.php:525
+#: template/resource.php:536
 msgid "End"
 msgstr "Fin"
 
-#: template/resource.php:548
+#: template/resource.php:559
 msgid "Region"
 msgstr "Región"
 
-#: template/resource.php:556
+#: template/resource.php:567
 msgid "City"
 msgstr "Ciudad"
 
-#: template/resource.php:564
+#: template/resource.php:575
 msgid "Location"
 msgstr "Ubicación"
 
-#: template/resource.php:573 template/resource.php:580
+#: template/resource.php:584 template/resource.php:591
 msgid "Population"
 msgstr "Población"
 
-#: template/resource.php:597
+#: template/resource.php:608
 msgid "Language"
 msgstr "Idioma"
 
-#: template/resource.php:607
+#: template/resource.php:618
 msgid "Descriptors"
 msgstr "Descriptores"
 
-#: template/resource.php:617
+#: template/resource.php:628
 msgid "Keywords"
 msgstr "Palabras clave"
 
-#: template/resource.php:626
+#: template/resource.php:637
 msgid "Related links"
 msgstr "Enlaces relacionados"
 
-#: template/resource.php:644
+#: template/resource.php:655
 msgid "Other medias"
 msgstr "Otros medios"
 
-#: template/resource.php:663
+#: template/resource.php:673
 msgid "Products, materials and publications"
 msgstr "Productos, materiales y publicaciones"
 
-#: template/resource.php:682
+#: template/resource.php:681
 msgid "Notes"
 msgstr "Notas"
 
-#: template/resource.php:703
+#: template/resource.php:702
 msgid "Image"
 msgstr "Imagen"
 
-#: template/resource.php:703
+#: template/resource.php:702
 msgid "of"
 msgstr "de"
 
@@ -412,6 +419,9 @@ msgstr "No se encontraron experiencias"
 #: widgets.php:98
 msgid "Title"
 msgstr "Título"
+
+#~ msgid "Document"
+#~ msgstr "Documento"
 
 #~ msgid "Relatos sidebar"
 #~ msgstr "Informes de Experiencia - Barra Lateral"
