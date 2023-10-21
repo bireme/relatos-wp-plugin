@@ -656,23 +656,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                     </div>
                 </div>
             <?php endif; ?>
-            <?php if ( $resource->products_information ) : $products_information = explode("\r\n", $resource->products_information); ?>
-                <?php $products_information = array_map('trim', $products_information); ?>
+            <?php if ( $resource->products_information ): ?>
                 <div class="col-md-12 margin1">
                     <div class="box1 title1 h-100">
                         <h4><?php echo __('Products, materials and publications', 'relatos'); ?></h4>
-                        <?php foreach ($products_information as $link): ?>
-                            <?php $_link = strpos($link, 'http') === 0 ? $link : "https://".$link; ?>
-                            <?php if (filter_var($_link, FILTER_VALIDATE_URL) !== false) : ?>
-                                <a href="<?php echo $_link; ?>" target="_blank">
-                                    <i class="fa fa-external-link-square-alt" aria-hidden="true"> </i>
-                                    <?php echo $_link; ?>
-                                    <br />
-                                </a>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                        <?php // $products_information = preg_replace( "~[[:alpha:]]+://[^<>[:space:]]+[[:alnum:]/]~", "<a href=\"\\0\" target=\"_blank\"><i class=\"fa fa-external-link-square-alt\" aria-hidden=\"true\"> </i> \\0</a>", $resource->products_information); // linkify ?>
-                        <!-- <p><?php echo nl2br($products_information); ?></p> -->
+                        <p><?php echo nl2br($resource->products_information); ?></p>
                     </div>
                 </div>
             <?php endif; ?>
