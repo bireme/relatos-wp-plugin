@@ -311,8 +311,8 @@ if(!class_exists('Relatos_Plugin')) {
                     'test_form' => false,
                 );
 
-                $filename = basename($relatos_config['custom_banner']);
-                if ( $filename == $custom_banner['name']) {
+                if ( $relatos_config['custom_banner'] ) {
+                    $filename = basename($relatos_config['custom_banner']);
                     $upload_dir = wp_upload_dir();
                     $filepath = $upload_dir['path'].'/'.$filename;
                     unlink($filepath);
