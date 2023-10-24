@@ -143,7 +143,11 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
         </nav>
 
         <?php if ( $resource ) : ?>
+            <?php if ( $relatos_config['custom_banner'] ) : ?>
+            <div id="header-title" style="background: url(<?php echo $relatos_config['custom_banner']; ?>) no-repeat center top;">
+            <?php else : ?>
             <div id="header-title">
+            <?php endif; ?>
                 <div class="row">
                     <div id="title-relatos">
                         <?php _e('Experience Reports','relatos'); ?>

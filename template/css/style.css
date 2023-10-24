@@ -490,7 +490,7 @@ header[class*='ast-'] {
 }
 #header-title{
     background: url("../images/foto1.jpg") no-repeat center top;
-    background-size: 100%;
+    background-size: 100% !important;
 }
 #header-title .row{
     height: 240px;

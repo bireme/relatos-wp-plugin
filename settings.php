@@ -28,7 +28,7 @@ function relatos_page_admin() {
     <div class="wrap">
         <div id="icon-options-general" class="icon32"></div>
         <h2><?php _e('Experience Reports record settings', 'relatos'); ?></h2>
-        <form method="post" action="options.php">
+        <form method="post" action="options.php" enctype="multipart/form-data">
 
             <?php settings_fields('relatos-settings-group'); ?>
 
@@ -131,11 +131,22 @@ function relatos_page_admin() {
                                                 }
                                               ?>
                                           </ul>
-                                          <input type="hidden" id="available_filter_aux" name="relatos_config[available_filter]" value="<?php echo $config['available_filter']; ?>" >
+                                          <input type="hidden" id="available_filter_aux" name="relatos_config[available_filter]" value="<?php echo $config['available_filter']; ?>">
                                         </p>
                                     </td>
                                 </tr>
                             </table>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <th scope="row"><?php _e('Custom Banner', 'relatos'); ?>:</th>
+                        <td>
+                            <input type="file" name="custom_banner" class="regular-text">
+                            <p class="regular-text">
+                                <?php if ( $config['custom_banner'] ) : ?>
+                                    <?php _e('Current banner', 'relatos'); ?>: <a href="<?php echo $config['custom_banner']; ?>" data-lightbox="custom-banner"><?php echo basename($config['custom_banner']); ?></a>
+                                <?php endif; ?>
+                            </p>
                         </td>
                     </tr>
                     <tr>

@@ -42,7 +42,9 @@ if(!class_exists('Relatos_Plugin')) {
             // register actions
 
             add_action('init', array(&$this, 'load_translation'));
+            add_action('admin_init', array(&$this, 'register_settings'));
             add_action('admin_menu', array(&$this, 'admin_menu'));
+            add_action('admin_enqueue_scripts', array(&$this, 'admin_styles_scripts'));
             add_action('plugins_loaded', array(&$this, 'plugin_init'));
             add_action('wp_head', array(&$this, 'google_analytics_code'));
             add_action('template_redirect', array(&$this, 'template_redirect'));
@@ -99,14 +101,16 @@ if(!class_exists('Relatos_Plugin')) {
                     }
                 }
             }
-
         }
 
         function admin_menu() {
-            add_options_page(__('Experience Reports settings', 'relatos'), __('Experience Reports', 'relatos'),
-                'manage_options', 'relatos-settings', 'relatos_page_admin');
-            //call register settings function
-            add_action( 'admin_init', array(&$this, 'register_settings'));
+            add_options_page(
+                __('Experience Reports settings', 'relatos'),
+                __('Experience Reports', 'relatos'),
+                'manage_options',
+                'relatos-settings',
+                'relatos_page_admin'
+            );
         }
 
         function settings_link( $links ) {
@@ -287,10 +291,41 @@ if(!class_exists('Relatos_Plugin')) {
             wp_enqueue_style('relatos-styles',  RELATOS_PLUGIN_URL . 'template/css/style.css', array(), RELATOS_PLUGIN_VERSION);
         }
 
+        function admin_styles_scripts(){
+            wp_enqueue_script('lightbox-js', '//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js');
+            wp_enqueue_style('lightbox-css', '//cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css');
+        }
+
         function register_settings(){
-            register_setting('relatos-settings-group', 'relatos_config');
+            register_setting('relatos-settings-group', 'relatos_config', array(&$this, 'relatos_plugin_settings'));
             wp_enqueue_style('relatos',  RELATOS_PLUGIN_URL . 'template/css/admin.css');
             wp_enqueue_script('jquery-ui-sortable');
+        }
+
+        function relatos_plugin_settings( $config ){
+            $relatos_config = get_option('relatos_config');
+            $custom_banner = $_FILES['custom_banner'];
+
+            if ( $custom_banner['name'] ) {
+                $override = array(
+                    'test_form' => false,
+                );
+
+                $filename = basename($relatos_config['custom_banner']);
+                if ( $filename == $custom_banner['name']) {
+                    $upload_dir = wp_upload_dir();
+                    $filepath = $upload_dir['path'].'/'.$filename;
+                    unlink($filepath);
+                }
+
+                $uploaded_file = wp_handle_upload( $custom_banner, $override );
+                if ( !is_wp_error( $uploaded_file ) ) {
+                    $config['custom_banner'] = $uploaded_file['url'];
+                }
+            }
+
+            $config = array_merge($relatos_config, $config);
+            return $config;
         }
 
         function google_analytics_code(){
