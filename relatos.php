@@ -303,7 +303,8 @@ if(!class_exists('Relatos_Plugin')) {
         }
 
         function relatos_plugin_settings( $config ){
-            $relatos_config = get_option('relatos_config');
+            $options = get_option('relatos_config');
+            $relatos_config = ( $options ) ? $options : array();
             $custom_banner = $_FILES['custom_banner'];
 
             if ( $custom_banner['name'] ) {
