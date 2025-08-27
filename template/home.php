@@ -51,7 +51,7 @@ if ($relatos_initial_filter != ''){
 
 $start = ($page * $count) - $count;
 
-$relatos_service_request = $solr_service_url . '/solr/relatos-experiencia/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json' . '&sort=id+desc';
+$relatos_service_request = $solr_service_url . '/solr/relatos-experiencia/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json' . '&sort=_version_+desc';
 //$relatos_service_request = $solr_service_url . '/solr/relatos-experiencia/select/?q=' . urlencode($query) . '&fq=' . urlencode($filter) . '&start=' . $start . '&rows=' . $count . '&wt=json';
 //echo $relatos_service_request;
 // $relatos_service_request = $relatos_service_url . '/api/experience?offset=' . $start . '&limit=' . $count . '&lang=' . $locale[$lang];;
@@ -100,8 +100,8 @@ $params  = !empty($format) ? '&format=' . $format : '';
 $params .= !empty($count) ? '&count=' . $count : '';
 $params .= !empty($_GET['sort']) ? '&sort=' . sanitize_text_field($_GET['sort']) : '';
 
-$page_url_params = real_site_url($relatos_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($user_filter) . $params;
-$feed_url = real_site_url($relatos_plugin_slug) . 'relatos-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter);
+$page_url_params = real_site_url($relatos_plugin_slug) . '?q=' . urlencode($query) . '&filter=' . urlencode($user_filter) . $params . '&sort=_version_+desc';
+$feed_url = real_site_url($relatos_plugin_slug) . 'relatos-feed?q=' . urlencode($query) . '&filter=' . urlencode($filter). '&sort=_version_+desc';
 
 $pages = new Paginator($total, $start);
 $pages->paginate($page_url_params);
