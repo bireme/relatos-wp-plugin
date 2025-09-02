@@ -250,13 +250,18 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                         <?php endif; ?>
 
                         <?php $relatos_docs = get_relatos_attachment($response_json[0], 'document'); ?>
-                        <?php if ( $resource->full_text || $relatos_docs  ) : ?>
-                            <div class="session1">
-                                <?php echo __('Access the experience in fulltext:', 'relatos'); ?>
+                        
+                        <div class="session1">
+                        <?php echo __('Access the experience in fulltext:', 'relatos'); ?>
+
+                        <!--
+                        <?php if ( $resource->full_text || $relatos_docs  && false) : ?>
+
                                 <div class="btn-group" role="group" aria-label="Basic outlined example">
                                     <?php if ( $resource->full_text ) : ?>
                                         <a type="button" href="#!" class="btn btn-outline-primary" data-target="#fulltext" data-toggle="collapse"><i class="fas fa-align-justify"></i> <?php echo __('Show Fulltext', 'relatos'); ?></a>
                                     <?php endif; ?>
+
                                     <?php if ( $relatos_docs ) : $dcount = 0; ?>
                                         <?php foreach ($relatos_docs as $uri) : $dcount++; ?>
                                             <?php $_uri = strpos($uri, 'http') === 0 ? $uri : "https://".$uri; ?>
@@ -269,12 +274,9 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                             <?php endif; ?>
                                         <?php endforeach; ?>
                                     <?php endif; ?>
-                                    <?php $file = $relatos_service_url . '/public/submission/' . $resource->id . '/pdf'; ?>
-                                    <?php if ( $handle = @fopen($file, 'r') ) : ?>
-                                        <a type="button" href="<?php echo $file; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Download Experience', 'relatos'); ?></a>
-                                    <?php endif; ?>
+
+
                                 </div>
-                            </div>
 
                             <?php if ( $resource->full_text ) : ?>
                                 <div class="session1">
@@ -285,7 +287,17 @@ if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
                                     </div>
                                 </div>
                             <?php endif; ?>
+
                         <?php endif; ?>
+
+                            -->
+
+                            
+                                    <?php $file = $relatos_service_url . '/public/submission/' . $resource->id . '/pdf'; ?>
+                                    <?php if ( $handle = @fopen($file, 'r') ) : ?>
+                                        <a type="button" href="<?php echo $file; ?>" class="btn btn-outline-primary" target="_blank" download><i class="fas fa-download"></i> <?php echo __('Download Experience', 'relatos'); ?></a>
+                                    <?php endif; ?>
+                        </div>
                     </div>
                 </div>
             <?php endif; ?>
