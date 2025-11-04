@@ -111,7 +111,7 @@ $plugin_breadcrumb = isset($relatos_config['plugin_title_' . $lang]) ? $relatos_
 if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
 
-echo $relatos_service_request;
+//echo $relatos_service_request;
 ?>
 
 <?php get_header('relatos');?>
