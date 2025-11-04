@@ -110,6 +110,8 @@ $home_url = ( $relatos_config['home_url_' . $lang] ) ? $relatos_config['home_url
 $plugin_breadcrumb = isset($relatos_config['plugin_title_' . $lang]) ? $relatos_config['plugin_title_' . $lang] : $relatos_config['plugin_title'];
 if ( empty($plugin_breadcrumb) ) $plugin_breadcrumb = get_bloginfo('name');
 
+
+echo $relatos_service_request;
 ?>
 
 <?php get_header('relatos');?>
